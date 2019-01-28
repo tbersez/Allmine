@@ -7,6 +7,7 @@ import csv
 import os
 
 tab = '    '
+cwd = os.getcwd() + "/"
 
 reads_dir = input('Path to raw read directory : ')
 genome_dir = input('Path to the reference genome_dir : ')
@@ -15,10 +16,11 @@ threads = input('How many threads should be used : ')
 with open(sys.argv[1], 'r') as file:
     reader = csv.DictReader(file, delimiter=',', quotechar='"')
     with open("config.yaml", 'w') as yaml:
-        yaml.write("RAW: " + reads_dir + "\n")
-        yaml.write("REF: " + genome_dir + "\n")
+        yaml.write("RAW: " + cwd + reads_dir + "\n")
+        yaml.write("TRIMMED: " + cwd + "trimmed/ \n")
+        yaml.write("REF: " + cwd + genome_dir + "\n")
         yaml.write("GENOME: " + os.listdir(genome_dir)[0] + "\n") #only one reference may be provided!
-        yaml.write("MAP: mapped/ \n")
+        yaml.write("MAP: " + cwd + "mapped/ \n")
         yaml.write("THREADS: " + threads + "\n\n")
         yaml.write("samples:\n")
         for row in reader:

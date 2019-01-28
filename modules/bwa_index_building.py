@@ -1,4 +1,4 @@
-#bwa paired end mode
+#bwa index building
 
 #tpm path to config and cwd for testing
 configfile: "config_pe.yaml"
@@ -17,11 +17,11 @@ rule bwa_index:
     input:
         genome = cwd + config["REF"] + config["GENOME"]
     output:
-        cwd + config["REF"] + config["GENOME"] + ".amb",
-        cwd + config["REF"] + config["GENOME"] + ".ann",
-        cwd + config["REF"] + config["GENOME"] + ".bwt",
-        cwd + config["REF"] + config["GENOME"] + ".pac",
-        cwd + config["REF"] + config["GENOME"] + ".sa"
+        protected(cwd + config["REF"] + config["GENOME"] + ".amb"),
+        protected(cwd + config["REF"] + config["GENOME"] + ".ann"),
+        protected(cwd + config["REF"] + config["GENOME"] + ".bwt"),
+        protected(cwd + config["REF"] + config["GENOME"] + ".pac"),
+        protected(cwd + config["REF"] + config["GENOME"] + ".sa")
     message: "Building BWA index for reference genome {input.genome}\n"
     threads: config["THREADS"]
     shell:

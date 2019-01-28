@@ -7,14 +7,14 @@ cwd = os.getcwd() + "/"
 
 rule all:
     input:
-        expand(cwd + config["TRIMMED"] + "{samples}_trim.fastq.gz", samples = config["samples"])
+        expand(config["TRIMMED"] + "{samples}_trim.fastq.gz", samples = config["samples"])
 #######################################
 
 rule run_fastp_paired:
     input:
         R1 = lambda wildcards: config["samples"][wildcards.samples]["R1"]
     output:
-        R1 = cwd + config["TRIMMED"] + "{samples}_trim.fastq.gz",
+        R1 = config["TRIMMED"] + "{samples}_trim.fastq.gz",
         html = cwd + "QC_reports/{samples}_QC.html"
     message: "Running fastp on file {input.R1}\n"
     params:
