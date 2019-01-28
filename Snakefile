@@ -1,5 +1,8 @@
-configfile: "./config.yaml"
-
+configfile: "./config_pe.yaml"
+cwd = os.getcwd() + "/"
+# modules loading...
+include : cwd + "modules/*"
+#############################
 rule all:
     input:
         expand(config["TRIMMED"] + "{samples}_R1_trim.fastq.gz", samples = config["samples"]) +
