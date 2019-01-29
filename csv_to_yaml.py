@@ -21,6 +21,7 @@ with open(sys.argv[1], 'r') as file:
         yaml.write("REF: " + cwd + genome_dir + "\n")
         yaml.write("GENOME: " + os.listdir(genome_dir)[0] + "\n") #only one reference may be provided!
         yaml.write("MAP: " + cwd + "mapped/ \n")
+        yaml.write("VAR: " + cwd + "variant/ \n")
         yaml.write("THREADS: " + threads + "\n\n")
         yaml.write("samples:\n")
         for row in reader:

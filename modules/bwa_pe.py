@@ -28,5 +28,5 @@ rule run_bwa_paired :
         {input.R2} \
         | /usr/bin/samtools view -Sb - \
         | /usr/bin/samtools sort -o - \
-        | /usr/bin/samtools rmdup -S - {output.bam}
+        | /usr/bin/samtools rmdup -s - {output.bam}
         """
