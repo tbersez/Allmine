@@ -1,34 +1,32 @@
-configfile: "./config_pe.yaml"
+        ##########################################################################################
+        #      ___           ___       ___       ___                       ___           ___     #
+        #     /\  \         /\__\     /\__\     /\__\          ___        /\__\         /\  \    #
+        #    /::\  \       /:/  /    /:/  /    /::|  |        /\  \      /::|  |       /::\  \   #
+        #   /:/\:\  \     /:/  /    /:/  /    /:|:|  |        \:\  \    /:|:|  |      /:/\:\  \  #
+        #  /::\~\:\  \   /:/  /    /:/  /    /:/|:|__|__      /::\__\  /:/|:|  |__   /::\~\:\  \ #
+        # /:/\:\ \:\__\ /:/__/    /:/__/    /:/ |::::\__\  __/:/\/__/ /:/ |:| /\__\ /:/\:\ \:\__\#
+        # \/__\:\/:/  / \:\  \    \:\  \    \/__/~~/:/  / /\/:/  /    \/__|:|/:/  / \:\~\:\ \/__/#
+        #      \::/  /   \:\  \    \:\  \         /:/  /  \::/__/         |:/:/  /   \:\ \:\__\  #
+        #      /:/  /     \:\  \    \:\  \       /:/  /    \:\__\         |::/  /     \:\ \/__/  #
+        #     /:/  /       \:\__\    \:\__\     /:/  /      \/__/         /:/  /       \:\__\    #
+        #     \/__/         \/__/     \/__/     \/__/                     \/__/         \/__/    #
+        ##########################################################################################
+
+                            # Allmine, a flexible pipeline for allele mining.
+                            # Develloped by Thomas Bersez (2019)
+                            # INRA-GAFL / Paris Saclay university
+                            # contact: thomasbersez@gmail.com
+
+
+configfile: "config.yaml"
 cwd = os.getcwd() + "/"
 # modules loading...
-include : cwd + "modules/*"
+include : cwd + "modules/" + config["FASTP"]
+include : cwd + "modules/bwa_index_building.py"
+include : cwd + "modules/" + config["BWA"]
+include : cwd + "modules/varscan.py"
+include : cwd + "modules/varscan_filtering.py"
 #############################
 rule all:
     input:
-        expand(config["TRIMMED"] + "{samples}_R1_trim.fastq.gz", samples = config["samples"]) +
-        expand(config["TRIMMED"] + "{samples}_R2_trim.fastq.gz", samples = config["samples"])
-
-rule run_fastp:
-    input:
-        R1 = lambda wildcards: config["samples"][wildcards.samples]["R1"],
-        R2 = lambda wildcards: config["samples"][wildcards.samples]["R2"]
-    output:
-        R1 =  config["TRIMMED"] + "{samples}_R1_trim.fastq.gz",
-        R2 =  config["TRIMMED"] + "{samples}_R2_trim.fastq.gz"
-    params:
-        title = lambda wildcards: config["samples"][wildcards.samples]["name"]
-    threads: config["THREADS"]
-    message: "Running fastp on files {input.R1} and {input.R2} \n"
-    benchmark:
-        "benchmarks/{samples}.fastp.benchmark.txt"
-    shell:
-        """
-        fastp \
-        -i {input.R1} \
-        -I {input.R2} \
-        -o {output.R1} \
-        -O {output.R2} \
-        -R {params.title} \
-        -h {params.title}_QC.html \
-        -j {params.title}_QC.json \
-        """
+        expand(config["VAR"] + "{samples}_varscan_filtered.tab", samples = config["samples"])

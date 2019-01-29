@@ -1,16 +1,5 @@
 #fastp, paired end mode
 
-#tpm path to config and cwd for testing
-configfile: "config_pe.yaml"
-cwd = os.getcwd() + "/"
-######################################
-
-rule all:
-    input:
-        expand(config["TRIMMED"] + "{samples}_1_trim.fastq.gz", samples = config["samples"]) +
-        expand(config["TRIMMED"] + "{samples}_2_trim.fastq.gz", samples = config["samples"])
-######################################
-
 rule run_fastp_paired:
     input:
         R1 = lambda wildcards: config["samples"][wildcards.samples]["R1"],

@@ -1,19 +1,11 @@
 #bwa paired end mode
 
-#tpm path to config and cwd for testing
-configfile: "config_pe.yaml"
-cwd = os.getcwd() + "/"
-#######################################
-
-rule all:
-    input:
-        expand(config["MAP"] + "{samples}_sorted.bam", samples = config["samples"])
-#######################################
-
 rule run_bwa_paired :
     input:
         R1 = expand(config["TRIMMED"] + "{samples}_1_trim.fastq.gz", samples = config["samples"]),
-        R2 = expand(config["TRIMMED"] + "{samples}_2_trim.fastq.gz", samples = config["samples"])
+        R2 = expand(config["TRIMMED"] + "{samples}_2_trim.fastq.gz", samples = config["samples"]),
+        #fake input used to force index building before alignement
+        idx = config["REF"] + config["GENOME"] + ".bwt"
     output:
         bam = protected(expand(config["MAP"] + "{samples}_sorted.bam", samples = config["samples"]))
     params:

@@ -12,7 +12,9 @@ rule all:
 
 rule run_bwa_paired :
     input:
-        R1 = expand(config["TRIMMED"] + "{samples}_1_trim.fastq.gz", samples = config["samples"])
+        R1 = expand(config["TRIMMED"] + "{samples}_1_trim.fastq.gz", samples = config["samples"]),
+        #fake input used to force index building before alignement
+        idx = config["REF"] + config["GENOME"] + ".bwt"
     output:
         bam = protected(expand(config["MAP"] + "{samples}_sorted.bam", samples = config["samples"]))
     params:
