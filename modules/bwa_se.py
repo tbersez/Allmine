@@ -1,14 +1,23 @@
-#bwa paired end mode
-
-#tpm path to config and cwd for testing
-configfile: "config_pe.yaml"
-cwd = os.getcwd() + "/"
-#######################################
-
-rule all:
-    input:
-        expand(config["MAP"] + "{samples}_sorted.bam", samples = config["samples"])
-#######################################
+# BWA single end mode:
+#
+#   This use bwa mem (http://bio-bwa.sourceforge.net/) to align
+#   your processed single end reads to your genome/transciptome/cds.
+#   To save computation time, pipes are use to convert the bwa output
+#   to the bam format, sort them and remove PCR dupplicates using
+#   Samtools (http://samtools.sourceforge.net/).
+#
+#   Input:
+#       - sample_trim.fastq
+#
+#   Output:
+#       - sample_sorted.bam
+#
+#   Parameters:
+#       bwa mem default parameters (see bwa manual for details).
+#       Advanced users can modify them in the script bellow if needed.
+#       Note : the bwa mem algorithm was choosed among others bwa algorithms
+#       because recomanded for s generally recommended for high-quality
+#       queries as it is faster and more accurate.
 
 rule run_bwa_paired :
     input:

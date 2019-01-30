@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
-# This script allow easy generation of .yaml configuration files
-# used by the Snakefile.
+
+#   This script allow easy generation of .yaml configuration files
+#   via your bash promt. Please note that all directories paths must
+#   specified folowing the <directory_name>/ format, and so need to
+#   be in the working directory.
+
 
 import sys
 import csv

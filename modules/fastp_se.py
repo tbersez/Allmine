@@ -1,14 +1,24 @@
-#fastp, single end mode
-
-#tpm path to config and cwd for testing
-configfile: "../config_se.yaml"
-cwd = os.getcwd() + "/"
-#######################################
-
-rule all:
-    input:
-        expand(config["TRIMMED"] + "{samples}_trim.fastq.gz", samples = config["samples"])
-#######################################
+# fastp, single end mode :
+#
+#   This module run fastp (https://doi.org/10.1093/bioinformatics/bty560)
+#   on your single end raw fastq files.
+#   fastp perfomrs:
+#       - adapters dectection and trimming
+#       - low quality bases trimming on both 3' and 5' ends (Qscore < 20)
+#       - low complexity regions elimination (ex: polyA tails)
+#       - QC report generation in .html format
+#
+#   Input:
+#       - sample.fastq
+#
+#   Output:
+#       - sample_1_trim.fastq
+#
+#   Parameters:
+#       fastp default parameters (see fastp manual for more information).
+#       Thoses parameters all well suited for most of sequencing data,
+#       However you can modify them directly into the script bellow if you
+#       feel the need to (for advanced users).
 
 rule run_fastp_paired:
     input:

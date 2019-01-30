@@ -1,4 +1,23 @@
-#varscan filtering variants
+# VarScan filtering variants
+#
+#   This module run VarScan filter (http://varscan.sourceforge.net/)
+#   on your putative SNPs. Filtering reduce false dicovery risks.
+#
+#   Input:
+#       - sample_varscan.tab
+#
+#   Output:
+#       - sample_varscan_filtered.tab
+#
+#   Parameters:
+#     Thoses filters are applied:
+#       - Minimum read depth at a position >= 10
+#       - Minimum supporting reads at a position >= 2
+#       - Minimum base quality at a position >= 20 (Qscore)
+#       - Minimum variant allele frequency threshold >= 0.20
+#       - P-value <= 0.05
+#   Those parameters may be modified in the script below to tune
+#   stringency of the filtering.
 
 rule filter_varscan:
     input:

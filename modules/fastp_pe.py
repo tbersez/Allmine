@@ -1,4 +1,26 @@
-#fastp, paired end mode
+# fastp, paired end mode :
+#
+#   This module run fastp (https://doi.org/10.1093/bioinformatics/bty560)
+#   on your paired end raw fastq files.
+#   fastp perfomrs:
+#       - adapters dectection and trimming
+#       - low quality bases trimming on both 3' and 5' ends (Qscore < 20)
+#       - low complexity regions elimination (ex: polyA tails)
+#       - QC report generation in .html format
+#
+#   Input:
+#       - sample_1.fastq
+#       - sample_2.fastq
+#
+#   Output:
+#       - sample_1_trim.fastq
+#       - sample_2_trim.fastq
+#
+#   Parameters:
+#       fastp default parameters (see fastp manual for more information).
+#       Thoses parameters all well suited for most ofsequencing data,
+#       However you can modify them directly into the script bellow if you
+#       feel the need to (for advanced users).
 
 rule run_fastp_paired:
     input:
