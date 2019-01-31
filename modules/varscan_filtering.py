@@ -21,18 +21,19 @@
 
 rule filter_varscan:
     input:
-        var = expand(config["VAR"] + "{samples}_varscan.tab", samples = config["samples"])
+        var = config["VAR"] + "{samples}_varscan.vcf"
     output:
-        var = protected(expand(config["VAR"] + "{samples}_varscan_filtered.tab", samples = config["samples"]))
+        var = protected(config["VAR"] + "{samples}_varscan_filtered.tab")
     message: "Filtering Varscan variants from {input.var} \n"
+    log: config["LOG"] + "varscan_filtering/{samples}.log"
     threads: config["THREADS"]
     # Appling filter function from Varscan, parameters may be changed to fit your needs
     shell:
         """
         /home/aa/anaconda3/bin/varscan filter \
         {input.var}  \
-        --min-coverage 10 \
-        --min-reads2 2 \
+        --min-coverage 0 \
+        --min-reads2 10 \
         --min-strands2 1 \
         --min-avg-qual 20 \
         --min-var-freq 0.20 \

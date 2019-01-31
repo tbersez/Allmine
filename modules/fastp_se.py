@@ -20,13 +20,14 @@
 #       However you can modify them directly into the script bellow if you
 #       feel the need to (for advanced users).
 
-rule run_fastp_paired:
+rule run_fastp_single:
     input:
         R1 = lambda wildcards: config["samples"][wildcards.samples]["R1"]
     output:
         R1 = config["TRIMMED"] + "{samples}_trim.fastq.gz",
         html = cwd + "QC_reports/{samples}_QC.html"
     message: "Running fastp on file {input.R1}\n"
+    log: config["LOG"] + "fastp/{samples}.log"
     params:
         title = lambda wildcards: config["samples"][wildcards.samples]["name"]
     threads: config["THREADS"]

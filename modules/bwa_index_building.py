@@ -33,6 +33,7 @@ rule bwa_index:
         protected(config["REF"] + config["GENOME"] + ".pac"),
         protected(config["REF"] + config["GENOME"] + ".sa")
     message: "Building BWA index for reference genome {input.genome}\n"
+    log: config["LOG"] + "bwa/index_building.log"
     threads: config["THREADS"]
     shell:
         """

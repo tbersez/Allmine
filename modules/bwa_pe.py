@@ -22,15 +22,16 @@
 
 rule run_bwa_paired :
     input:
-        R1 = expand(config["TRIMMED"] + "{samples}_1_trim.fastq.gz", samples = config["samples"]),
-        R2 = expand(config["TRIMMED"] + "{samples}_2_trim.fastq.gz", samples = config["samples"]),
+        R1 = config["TRIMMED"] + "{samples}_1_trim.fastq.gz",
+        R2 = config["TRIMMED"] + "{samples}_2_trim.fastq.gz"
         #fake input used to force index building before alignement
         idx = config["REF"] + config["GENOME"] + ".bwt"
     output:
-        bam = protected(expand(config["MAP"] + "{samples}_sorted.bam", samples = config["samples"]))
+        bam = protected(config["MAP"] + "{samples}_sorted.bam")
     params:
         idxbase = config["REF"] + config["GENOME"]
     message: "Mapping reads {input.R1} and {input.R2} to {params.idxbase} using BWA.\n"
+    log: config["LOG"] + "bwa/{samples}.log"
     #converting to bam, sorting and removing dupplicates in a single command!
     shell:
         """
