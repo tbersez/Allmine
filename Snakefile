@@ -34,8 +34,8 @@ configfile: "config.yaml"
 cwd = os.getcwd() + "/"
 # modules loading...
 include : cwd + "modules/" + config["FASTP"]
-include : cwd + "modules/bwa_index_building.py"
-include : cwd + "modules/" + config["BWA"]
+include : cwd + "modules/" + config["INDEXER"]
+include : cwd + "modules/" + config["ALLIGNER"]
 include : cwd + "modules/varscan.py"
 include : cwd + "modules/varscan_filtering.py"
 
@@ -43,4 +43,4 @@ include : cwd + "modules/varscan_filtering.py"
 rule all:
     # this rule define the target file of the pipeline, e.i. the putative variants
     input:
-        expand(config["VAR"] + "{samples}_varscan_filtered.tab", samples = config["samples"])
+        expand(config["MAP"] + "{samples}.SJ.out.tab", samples = config["samples"])

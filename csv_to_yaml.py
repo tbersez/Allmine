@@ -10,7 +10,7 @@
 #   If one, or more, of this conditions are not filled, this script
 #   will exit with an error message.
 
-# TODO: add config.yaml removal before error exit
+# TODO: add config.yaml removal before error exit and make a less dirty code !
 
 import sys
 import csv
@@ -19,6 +19,7 @@ import os
 tab = '    '
 cwd = os.getcwd() + "/"
 
+# User interface
 reads_dir = input('Path to raw read directory : ')
 genome_dir = input('Path to the reference genome_dir : ')
 tech = input('DNAseq or RNAseq (enter d or r) : ')
@@ -28,6 +29,8 @@ threads = input('How many threads should be used : ')
 with open(sys.argv[1], 'r') as file:
     reader = csv.DictReader(file, delimiter=',', quotechar='"')
     with open("config.yaml", 'w') as yaml:
+
+        # DNA mode
         if(tech == 'd'):
             yaml.write("TECH: DNAseq \n")
             files = os.listdir(cwd + genome_dir)
@@ -37,7 +40,10 @@ with open(sys.argv[1], 'r') as file:
                 else:
                     print("No valid reference provided in " + genome_dir + " !\n")
                     sys.exit()
+
+        # RNA mode
         elif(tech == 'r'):
+            yaml.write("TECH: RNAseq \n")
             files = os.listdir(cwd + genome_dir)
             for file in files: # Only one fasta and one gff are accepted !
                 if file.endswith(".fna" or ".fa" or ".fasta"):
@@ -47,15 +53,30 @@ with open(sys.argv[1], 'r') as file:
                 else:
                     print("Non valid files in " + genome_dir + " !\n")
                     sys.exit()
-            yaml.write("TECH: RNAseq \n")
+
+
+        # PAIRED END MODE
         if(mode == 'p'):
             yaml.write("MODE: paired \n")
             yaml.write("FASTP: fastp_pe.py \n")
-            yaml.write("BWA : bwa_pe.py \n")
+            if(tech == 'd'):
+                yaml.write("INDEXER: bwa_index_building.py \n")
+                yaml.write("ALLIGNER: bwa_pe.py \n")
+            elif(tech == 'r'):
+                yaml.write("INDEXER: star_index_building.py \n")
+                yaml.write("ALLIGNER: star_pe_FP.py \n")
+        # SINGLE END MODE
         elif(mode == 's'):
             yaml.write("MODE: single \n")
             yaml.write("FASTP: fastp_se.py \n")
-            yaml.write("BWA: bwa_se.py \n")
+            if(tech == 'd'):
+                yaml.write("INDEXER: bwa_index_building.py \n")
+                yaml.write("ALLIGNER: bwa_se.py \n")
+            elif(tech == 'r'):
+                yaml.write("INDEXER: star_index_building.py \n")
+                yaml.write("ALLIGNER: star_se_FP.py \n")
+
+        # Paths
         yaml.write("REF: " + cwd + genome_dir + "\n")
         yaml.write("RAW: " + cwd + reads_dir + "\n")
         yaml.write("TRIMMED: " + cwd + "trimmed/ \n")
@@ -63,6 +84,8 @@ with open(sys.argv[1], 'r') as file:
         yaml.write("VAR: " + cwd + "variant/ \n")
         yaml.write("LOG: " + cwd + "log/ \n")
         yaml.write("THREADS: " + threads + "\n\n")
+
+        # SAMPLE objects creation
         yaml.write("samples:\n")
         for row in reader:
             yaml.write(tab + row["filename"] + ": \n")
@@ -72,6 +95,5 @@ with open(sys.argv[1], 'r') as file:
                 yaml.write(2*tab + "R2: " + cwd + reads_dir + row["filename"] + row["R2_ext"] + "\n")
             yaml.write(2*tab + "platform: " + row["platform"] + "\n")
             yaml.write(2*tab + "date: " + row["date(mm/dd/yy)"] + "\n")
-sys.exit()
 
-# TODO: add config.yaml remove
+sys.exit()
