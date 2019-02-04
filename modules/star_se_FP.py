@@ -16,17 +16,20 @@
 #   Parameters:
 #       No fancy parameters needed, only the threads number is specified.
 
+include : "./star_se_SP.py"
+
 rule star_pe_FP:
     input:
         R1 = config["TRIMMED"] + "{samples}_trim.fastq.gz",
         #fake input to force index building
         ano = config["REF"] + "SAindex",
-        genomeDir = directory(config["REF"])
+        genomeDir = config["REF"]
     output:
         denovo_SJ = protected(config["MAP"] + "{samples}.SJ.out.tab")
     params:
         prefix = config["MAP"] + "STAR_SJ/{samples}.",
-        threads = config["THREADS"]
+        threads = config["THREADS"],
+        tmp = config["MAP"] + "STAR_TMP/"
     log: config["LOG"] + "STAR_FP/{samples}.log"
     message : "Running STAR first path with {input.R1} to get denovo SJ. \n"
     shell :
@@ -34,5 +37,6 @@ rule star_pe_FP:
         STAR --runThreadN  {params.threads} \
         --genomeDir {input.genomeDir} \
         --readFilesIn {input.R1} \
+        --outTmpDir {params.tmp} \
         --outFileNamePrefix {params.prefix}
         """

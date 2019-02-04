@@ -43,4 +43,4 @@ include : cwd + "modules/varscan_filtering.py"
 rule all:
     # this rule define the target file of the pipeline, e.i. the putative variants
     input:
-        expand(config["MAP"] + "{samples}.SJ.out.tab", samples = config["samples"])
+        expand(config["VAR"] + "{samples}_varscan_filtered.tab", samples = config["samples"])
