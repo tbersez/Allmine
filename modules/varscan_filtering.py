@@ -23,7 +23,7 @@ rule filter_varscan:
     input:
         var = config["VAR"] + "{samples}_varscan.vcf"
     output:
-        var = protected(config["VAR"] + "{samples}_varscan_filtered.tab")
+        var = protected(config["VAR"] + "{samples}_varscan_filtered.vcf")
     message: "Filtering Varscan variants from {input.var} \n"
     log: config["LOG"] + "varscan_filtering/{samples}.log"
     threads: config["THREADS"]

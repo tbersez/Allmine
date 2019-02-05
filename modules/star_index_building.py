@@ -17,6 +17,7 @@
 #   Parameters:
 #       Base command for STAR indexing does not ask for fancy parameters.
 
+
 rule STAR_index:
     input:
         genome = config["REF"] + config["GENOME"],

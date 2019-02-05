@@ -22,6 +22,7 @@ cwd = os.getcwd() + "/"
 # User interface
 reads_dir = input('Path to raw read directory : ')
 genome_dir = input('Path to the reference genome_dir : ')
+regions = input('Path to bed file with regions of interest : ')
 tech = input('DNAseq or RNAseq (enter d or r) : ')
 mode = input('Paired end or single end (enter p or s) : ')
 threads = input('How many threads should be used : ')
@@ -82,6 +83,7 @@ with open(sys.argv[1], 'r') as file:
         yaml.write("TRIMMED: " + cwd + "trimmed/ \n")
         yaml.write("MAP: " + cwd + "mapped/ \n")
         yaml.write("VAR: " + cwd + "variant/ \n")
+        yaml.write("REGIONS: " + cwd + regions + "\n")
         yaml.write("LOG: " + cwd + "log/ \n")
         yaml.write("THREADS: " + threads + "\n\n")
 
