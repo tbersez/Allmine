@@ -11,6 +11,7 @@ import os
 
 # loading the config.yaml file created by csv_to_yaml.py
 config = yaml.safe_load(open('config.yaml'))
+os.system('rm -rf snpEff_db/')
 os.system('mkdir snpEff_db')
 
 # copy files in snpEff_db
