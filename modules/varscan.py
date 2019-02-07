@@ -23,7 +23,7 @@
 
 rule run_varscan:
     input:
-        bam = config["MAP"] + "{samples}_sorted.bam"
+        bam = config["MAP"] + "{samples}_sorted_parsed.bam"
     params:
         ref = config["REF"] + config["GENOME"]
     output:

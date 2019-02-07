@@ -15,7 +15,7 @@
 
                             # AllMine, a flexible pipeline for Allele Mining #
                             # This software is under the MIT License         #
-                            # Develloped by Thomas Bersez (2019)             #
+                            # Copyright Thomas Bersez  2019                  #
                             # INRA-GAFL / Paris Saclay university            #
                             # contact: thomasbersez@gmail.com                #
 
@@ -32,15 +32,17 @@
 
 configfile: "config.yaml"
 cwd = os.getcwd() + "/"
+
 # modules loading...
 include : cwd + "modules/" + config["FASTP"]
 include : cwd + "modules/" + config["INDEXER"]
 include : cwd + "modules/" + config["ALLIGNER"]
+include : cwd + "modules/bam_with_bed_parse.py"
 include : cwd + "modules/varscan.py"
 include : cwd + "modules/varscan_filtering.py"
 include : cwd + "modules/vcf_parse.py"
+include : cwd + "modules/snpEff.py"
 
 rule all:
-    # this rule define the target file of the pipeline, e.i. the putative variants
     input:
-        expand(config["VAR"] + "{samples}_varscan_filtered.vcf", samples = config["samples"])
+        expand(config["VAR"] + "{samples}_varscan_filtered_parsed_annotated.vcf", samples = config["samples"])
