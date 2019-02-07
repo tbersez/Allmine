@@ -43,4 +43,4 @@ include : cwd + "modules/vcf_parse.py"
 rule all:
     # this rule define the target file of the pipeline, e.i. the putative variants
     input:
-        expand(config["VAR"] + "{samples}_varscan_filtered_parsed.vcf", samples = config["samples"])
+        expand(config["VAR"] + "{samples}_varscan_filtered.vcf", samples = config["samples"])

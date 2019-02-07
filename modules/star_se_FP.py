@@ -27,7 +27,7 @@ rule star_pe_FP:
     output:
         denovo_SJ = protected(config["MAP"] + "{samples}.SJ.out.tab")
     params:
-        prefix = config["MAP"] + "STAR_SJ/{samples}.",
+        prefix = config["MAP"] + "{samples}.",
         threads = config["THREADS"],
         tmp = config["MAP"] + "STAR_TMP/"
     log: config["LOG"] + "STAR_FP/{samples}.log"
