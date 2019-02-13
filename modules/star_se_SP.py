@@ -1,6 +1,6 @@
 # STAR aligner single end mode, second pass
 #
-#   This module runs the second path of the STAR aligner 2 path
+#   This module runs the second pass of the STAR aligner 2 path
 #   strategy. The goal is to align reads taking in account splice
 #   junction found in the fist pass..
 #

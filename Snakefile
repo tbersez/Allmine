@@ -34,7 +34,7 @@ configfile: "config.yaml"
 cwd = os.getcwd() + "/"
 
 # modules loading...
-include : cwd + "modules/fastqc.py"
+include : cwd + "modules/" + config["QC"]
 include : cwd + "modules/" + config["FASTP"]
 include : cwd + "modules/" + config["INDEXER"]
 include : cwd + "modules/" + config["ALLIGNER"]
@@ -46,5 +46,5 @@ include : cwd + "modules/snpEff.py"
 rule all:
     input:
         expand(config["VAR"] + "{samples}_varscan_filtered_parsed_annotated.vcf", samples = config["samples"]),
-        "QC",
-        expand(config["VAR"] + '{samples}_annotated_report.html', samples = config["samples"])
+        expand(config["VAR"] + '{samples}_annotated_report.html', samples = config["samples"]),
+        expand("QC_post_preproc/{samples}", samples = config["samples"])

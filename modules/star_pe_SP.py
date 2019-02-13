@@ -16,7 +16,7 @@
 #   Parameters:
 #       No fancy parameters needed, only the threads number is specified.
 
-rule star_se_SP:
+rule star_pe_SP:
         input:
             R1 = config["TRIMMED"] + "{samples}_1_trim.fastq.gz",
             R2 = config["TRIMMED"] + "{samples}_2_trim.fastq.gz",

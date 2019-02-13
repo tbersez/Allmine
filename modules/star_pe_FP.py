@@ -1,6 +1,6 @@
 # STAR aligner paired end mode, first path
 #
-#   This module runs the first path of the STAR aligner 2 path
+#   This module runs the first pass of the STAR aligner 2 pass
 #   strategy. The goal is to discover non annotated splice junctions
 #   onto the reference genome used. The sum of all de novo junctions
 #   detected will be used for the second path.
@@ -33,7 +33,7 @@ rule star_pe_FP:
         threads = config["THREADS"],
         tmp = config["MAP"] + "STAR_TMP/"
     log: config["LOG"] + "STAR_FP/{samples}.log"
-    message : "Running STAR first path with {input.R1} and {input.R2} to get denovo SJ. \n"
+    message : "Running STAR first pass with {input.R1} and {input.R2} to get denovo SJ. \n"
     shell :
         """
         STAR --runThreadN  {params.threads} \
