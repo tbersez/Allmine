@@ -1,6 +1,6 @@
 # BWA paired end mode:
 #
-#   This use bwa mem (http://bio-bwa.sourceforge.net/) to align
+#   This module use bwa mem (http://bio-bwa.sourceforge.net/) to align
 #   your processed paired end reads to your genome/transciptome/cds.
 #   To save computation time, pipes are use to convert the bwa output
 #   to the bam format, sort them and remove PCR dupplicates using

@@ -23,23 +23,24 @@ rule snpEff:
     input:
         vcf = config["VAR"] + "{samples}_varscan_filtered.vcf"
     output:
-        vcf = config["VAR"] + "{samples}_varscan_filtered_parsed_annotated.vcf"
+        vcf = protected(config["VAR"] + "{samples}_varscan_filtered_parsed_annotated.vcf"),
+        rep = protected(config["VAR"] + '{samples}_annotated_report.html')
     message: "Annotating {input.vcf} with snpEff \n"
     params:
         threads = config["THREADS"],
-        rep = config["VAR"] + '{samples}_annotated_report.html'
     shell:
         """
         java -jar /home/aa/softwares/snpEff_latest_core/snpEff/snpEff.jar \
         eff \
         -i vcf \
         -o vcf \
-        -htmlStats {params.rep} \
+        -htmlStats {output.rep} \
         -no-downstream \
         -no-intergenic \
         -no-intron \
         -no-upstream \
+        -noLog \
         -config ./snpEff.config \
         snpEff_db \
-        {output.vcf}
+        {input.vcf} > {output.vcf}
         """

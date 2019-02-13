@@ -32,7 +32,7 @@ rule star_se_SP:
         message : "Running STAR second pass with {input.R1} and {input.R2}. \n"
         shell:
             """
-            STAR
+            STAR \
             --runThreadN {params.threads} \
             --genomeDir {input.genomeDir} \
             --readFilesIn {input.R1} {input.R2} \
