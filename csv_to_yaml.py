@@ -59,6 +59,7 @@ with open(sys.argv[1], 'r') as file:
         # PAIRED END MODE
         if(mode == 'p'):
             yaml.write("MODE: paired \n")
+            yaml.write("QC: fastqc_pe.py \n")
             yaml.write("FASTP: fastp_pe.py \n")
             if(tech == 'd'):
                 yaml.write("INDEXER: bwa_index_building.py \n")
@@ -69,6 +70,7 @@ with open(sys.argv[1], 'r') as file:
         # SINGLE END MODE
         elif(mode == 's'):
             yaml.write("MODE: single \n")
+            yaml.write("QC: fastqc_se.py \n")
             yaml.write("FASTP: fastp_se.py \n")
             if(tech == 'd'):
                 yaml.write("INDEXER: bwa_index_building.py \n")
