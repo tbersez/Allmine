@@ -24,6 +24,6 @@ os.system(cp_anno)
 os.system('echo ' + "snpEff_db.genome : snpEff_db" + ' >> snpEff.config')
 
 # build the db
-os.system('java -jar /home/aa/softwares/snpEff_latest_core/snpEff/snpEff.jar build -v -gff3 snpEff_db')
+os.system('java -jar /snpEff/snpEff.jar build -v -gff3 snpEff_db')
 
 sys.exit()

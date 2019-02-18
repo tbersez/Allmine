@@ -35,7 +35,7 @@ rule run_bwa_paired :
     #converting to bam, sorting and removing dupplicates in a single command!
     shell:
         """
-        /home/aa/anaconda3/bin/bwa mem \
+        bwa mem \
         {params.idxbase} \
         {input.R1} \
         {input.R2} \

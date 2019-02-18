@@ -24,7 +24,7 @@ rule star_pe_FP:
         R1 = config["TRIMMED"] + "{samples}_1_trim.fastq.gz",
         R2 = config["TRIMMED"] + "{samples}_2_trim.fastq.gz",
         #fake input to force index building
-        ano = config["REF"] + "SAindex"
+        ano = config["REF"] + "SAindex",
         genomeDir = config["REF"]
     output:
         denovo_SJ = protected(config["MAP"] + "{samples}.SJ.out.tab")

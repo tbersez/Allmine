@@ -38,7 +38,7 @@ rule run_fastp_paired:
     threads: config["THREADS"]
     shell:
         """
-        /home/aa/anaconda3/bin/fastp \
+        fastp \
         -i {input.R1} \
         -I {input.R1} \
         -o {output.R1} \

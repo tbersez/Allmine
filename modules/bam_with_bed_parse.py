@@ -25,7 +25,7 @@ rule parse_bam_with_bed:
     message: "Parsing {input.bam} using the blueprint {params.bed} \n"
     shell:
         """
-        /usr/bin/samtools view \
+        samtools view \
         -b -h -L \
         -@ {params.threads} \
         {params.bed} \

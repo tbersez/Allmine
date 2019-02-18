@@ -33,7 +33,7 @@ rule run_bwa_single :
     #converting to bam, sorting and removing dupplicates in a single command!
     shell:
         """
-        /home/aa/anaconda3/bin/bwa mem \
+        bwa mem \
         {params.idxbase} \
         {input.R1} \
         | /usr/bin/samtools view -Sb - \

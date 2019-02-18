@@ -37,6 +37,6 @@ rule bwa_index:
     threads: config["THREADS"]
     shell:
         """
-        /home/aa/anaconda3/bin/bwa index\
+        bwa index\
         {input.genome}
         """

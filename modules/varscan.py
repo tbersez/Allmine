@@ -34,7 +34,7 @@ rule run_varscan:
     #from mpileup to varscan to save disk space
     shell:
         """
-        /usr/bin/samtools mpileup -A \
+        samtools mpileup -A \
         -f {params.ref} \
         {input.bam} | \
         /home/aa/anaconda3/bin/varscan mpileup2snp \

@@ -15,7 +15,7 @@ rule run_multiQC:
         cwd + "QC_reports/Global_QC_summary.html"
     shell:
         """
-        /home/aa/anaconda3/bin/multiqc \
+        multiqc \
         --quiet \
         --outdir {cwd}QC_reports/ \
         --filename Global_QC_summary.html \

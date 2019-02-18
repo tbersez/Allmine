@@ -30,7 +30,7 @@ rule filter_varscan:
     # Appling filter function from Varscan, parameters may be changed to fit your needs
     shell:
         """
-        /home/aa/anaconda3/bin/varscan filter \
+        varscan filter \
         {input.var}  \
         --min-coverage 0 \
         --min-reads2 10 \
