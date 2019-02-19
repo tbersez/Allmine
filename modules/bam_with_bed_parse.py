@@ -27,7 +27,6 @@ rule parse_bam_with_bed:
         """
         samtools view \
         -b -h -L \
-        -@ {params.threads} \
         {params.bed} \
         {input.bam} > {output.bam}
         """

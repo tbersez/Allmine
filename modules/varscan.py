@@ -37,7 +37,7 @@ rule run_varscan:
         samtools mpileup -A \
         -f {params.ref} \
         {input.bam} | \
-        /home/aa/anaconda3/bin/varscan mpileup2snp \
+        varscan mpileup2snp \
         --p-value 0.05 \
         --output-vcf 1 \
         > {output.var}

@@ -27,11 +27,11 @@ rule star_pe_FP:
         ano = config["REF"] + "SAindex",
         genomeDir = config["REF"]
     output:
-        denovo_SJ = protected(config["MAP"] + "{samples}.SJ.out.tab")
+        denovo_SJ = protected(config["MAP"] + "STAR_SJ/" + "{samples}.SJ.out.tab")
     params:
         prefix = config["MAP"] + "STAR_SJ/{samples}.",
         threads = config["THREADS"],
-        tmp = config["MAP"] + "STAR_TMP/"
+        tmp = directory(config["MAP"] + "{samples}_STAR_TMP")
     log: config["LOG"] + "STAR_FP/{samples}.log"
     message : "Running STAR first pass with {input.R1} and {input.R2} to get denovo SJ. \n"
     shell :
@@ -40,5 +40,6 @@ rule star_pe_FP:
         --genomeDir {input.genomeDir} \
         --readFilesIn {input.R1} {input.R2} \
         --outTmpDir {params.tmp} \
+        --readFilesCommand zcat \
         --outFileNamePrefix {params.prefix}
         """

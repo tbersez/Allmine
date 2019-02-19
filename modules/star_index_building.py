@@ -44,6 +44,7 @@ rule STAR_index:
     message: "Indexing {input.genome} with {input.ano} for STAR aligner \n"
     shell:
         """
+        mkdir -p mapped/STAR_SJ
         STAR --runMode genomeGenerate \
         --runThreadN {params.threads} \
         --genomeDir  {params.geno_dir}\
