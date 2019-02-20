@@ -21,12 +21,14 @@ rule parse_bam_with_bed:
         bam = config["MAP"] + "{samples}_sorted_parsed.bam"
     params:
         bed = config["REGIONS"],
+        ref = config["REF"] + config["GENOME"],
         threads = config["THREADS"]
     message: "Parsing {input.bam} using the blueprint {params.bed} \n"
     shell:
         """
         samtools view \
-        -b -h -L \
-        {params.bed} \
+        -b \
+        -L {params.bed} \
+        -O BAM \
         {input.bam} > {output.bam}
         """

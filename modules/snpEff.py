@@ -30,7 +30,7 @@ rule snpEff:
         threads = config["THREADS"],
     shell:
         """
-        java -jar snpEff.jar \
+        java -jar /snpEff/snpEff.jar \
         eff \
         -i vcf \
         -o vcf \

@@ -34,7 +34,8 @@ rule run_varscan:
     #from mpileup to varscan to save disk space
     shell:
         """
-        samtools mpileup -A \
+        samtools mpileup \
+        -C 50 \
         -f {params.ref} \
         {input.bam} | \
         varscan mpileup2snp \

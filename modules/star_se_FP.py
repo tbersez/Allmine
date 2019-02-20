@@ -27,9 +27,9 @@ rule star_se_FP:
     output:
         denovo_SJ = protected(config["MAP"] + "{samples}.SJ.out.tab")
     params:
-        prefix = config["MAP"] + "{samples}.",
+        prefix = config["MAP"] + "STAR_SJ/{samples}.",
         threads = config["THREADS"],
-        tmp = config["MAP"] + "STAR_TMP/"
+        tmp = directory(config["MAP"] + "{samples}_STAR_TMP")
     log: config["LOG"] + "STAR_FP/{samples}.log"
     message : "Running STAR first pass with {input.R1} to get denovo SJ. \n"
     shell :

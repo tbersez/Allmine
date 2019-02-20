@@ -41,6 +41,5 @@ rule star_pe_SP:
             --outStd  BAM_SortedByCoordinate \
             --outTmpDir {params.tmp} \
             --readFilesCommand zcat \
-            --sjdbFileChrStartEnd {input.denovo_SJ} | \
-            samtools rmdup -s - {output.bam}
+            --sjdbFileChrStartEnd {input.denovo_SJ} > {output.bam}
             """

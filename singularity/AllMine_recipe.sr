@@ -39,8 +39,12 @@ From: ubuntu:18.04
   export LC_ALL=C
 
   #Paths
-  export PATH="/opt/conda/bin:/usr/local/bin:/usr/bin:/bin:"
-  export PATH=~/anaconda3/bin:$PATH
+  LC_ALL=C
+  export LC_ALL
+  LC_NUMERIC=en_US.UTF-8
+  export LC_NUMERIC
+  export PATH="/usr/local/bin:$PATH"
+  export PATH="/opt/miniconda/bin:$PATH"
   export PATH=/snpEff:$PATH
 
   # Conda environement with dependancies for AllMine
@@ -49,39 +53,44 @@ From: ubuntu:18.04
 %post
 
   # Install git and wget for in-container downloads
+
   apt-get update
+
   apt-get install -y git
   apt-get install -y wget
   apt-get install -y unzip
-
-  # Install fastqc and samtools
-  apt-get install -y fastqc
-  apt-get install -y samtools
-
 
   # Install Snakemake for workflow management
   apt-get install -y python3
   apt install -y python3-pip
   pip3 install snakemake
 
-  # Install conda for AllMine dependancies download
+  # Install snpEff
+  cd /opt
   wget https://sourceforge.net/projects/snpeff/files/snpEff_latest_core.zip/download
   unzip download -d /
   rm -rf /clinEff
-  /usr/bin/wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
-  /bin/chmod +x Miniconda3-latest-Linux-x86_64.sh
-  echo '\n yes \n' | ./Miniconda3-latest-Linux-x86_64.sh
-  chmod +x /root/miniconda3/etc/profile.d/conda.sh
-  mv /root/miniconda3/etc/profile.d/conda.sh ./
-  ./conda.sh create -y -n ./AllMine.env
-  ./conda.sh activate ./AllMine.env
 
+  # Install miniconda
+	rm -fr /opt/miniconda*
+  wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
+  bash miniconda.sh -b -p /opt/miniconda
+  PATH="/opt/miniconda/bin:$PATH"
 
+  # Install AllMine deps
+  PATH="/opt/miniconda/bin:$PATH"
+  conda install -y -f -q -c bioconda bwa
+  conda install -y -f -q -c bioconda multiqc
+  conda install -y -f -q -c bioconda samtools
+  conda install -y -f -q -c bioconda star
+  conda install -y -f -q -c bioconda varscan
+  conda install -y -f -q -c bioconda fastp
+  conda install -y -f -q -c bioconda fastqc
+  conda install -y -f -q -c bioconda bcftools
 
-  # Install AllMine dependancies
-  ./conda.sh install -c -y bioconda fastp \
-  bwa \
-  varscan \
-  samtools \
-  star
+  # Get AllMine code from the github repo
+  cd ~
   /usr/bin/git clone https://github.com/tbersez/Allmine.git
+
+  # Final upgrade
+  apt-get upgrade -y
