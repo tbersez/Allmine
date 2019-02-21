@@ -42,6 +42,7 @@ include : cwd + "modules/bam_with_bed_parse.py"
 include : cwd + "modules/varscan.py"
 include : cwd + "modules/varscan_filtering.py"
 include : cwd + "modules/snpEff.py"
+include : cwd + "modules/snpsift_non_synonymous.py"
 
 rule all:
     input:
