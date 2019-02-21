@@ -17,38 +17,24 @@
 #   Parameters:
 #       Base command for STAR indexing does not ask for fancy parameters.
 
-include : "./star_index_regenerate.py"
-
-rule STAR_index:
+rule STAR_REindex:
     input:
         genome = config["REF"] + config["GENOME"],
-        ano = config["REF"] + config["ANO"]
-    output: # STAR index creates a lot of files!
-        config["REF"] + "chrLength.txt",
-        config["REF"] + "chrNameLength.txt",
-        config["REF"] + "chrName.txt",
-        config["REF"] + "chrStart.txt",
-        config["REF"] + "exonGeTrInfo.tab",
-        config["REF"] + "exonInfo.tab",
-        config["REF"] + "geneInfo.tab",
-        config["REF"] + "Genome",
-        config["REF"] + "genomeParameters.txt",
-        config["REF"] + "SA",
-        config["REF"] + "SAindex",
-        config["REF"] + "sjdbInfo.txt",
-        config["REF"] + "sjdbList.fromGTF.out.tab",
-        config["REF"] + "sjdbList.out.tab",
-        config["REF"] + "transcriptInfo.tab"
+        ano = config["REF"] + config["ANO"],
+        denovo_SJ = expand(config["MAP"] + "STAR_SJ/" + "{samples}.SJ.out.tab", samples = config["samples"])
+    output:
+        # Regenerated genome indexes
+        flag = config["REF"] + "REindexing_done.txt"
     params:
         threads = config["THREADS"],
         geno_dir = config["REF"]
-    message: "Indexing {input.genome} with {input.ano} for STAR aligner \n"
+    message: "RE-Indexing {input.genome} using de novo SJ from the first pass \n"
     shell:
         """
-        mkdir -p mapped/STAR_SJ
+        touch {output.flag}
         STAR --runMode genomeGenerate \
         --runThreadN {params.threads} \
         --genomeDir  {params.geno_dir}\
         --genomeFastaFiles {input.genome} \
-        --sjdbGTFfile {input.ano}
+        --sjdbFileChrStartEnd {input.denovo_SJ}
         """

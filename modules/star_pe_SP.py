@@ -18,6 +18,8 @@
 
 rule star_pe_SP:
         input:
+            # fake input
+            flag = config["REF"] + "REindexing_done.txt",
             R1 = config["TRIMMED"] + "{samples}_1_trim.fastq.gz",
             R2 = config["TRIMMED"] + "{samples}_2_trim.fastq.gz",
             genomeDir = config["REF"],
@@ -40,6 +42,5 @@ rule star_pe_SP:
             --outFileNamePrefix {params.prefix} \
             --outStd  BAM_SortedByCoordinate \
             --outTmpDir {params.tmp} \
-            --readFilesCommand zcat \
-            --sjdbFileChrStartEnd {input.denovo_SJ} > {output.bam}
+            --readFilesCommand zcat > {output.bam}
             """
