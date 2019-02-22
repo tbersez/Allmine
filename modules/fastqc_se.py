@@ -19,7 +19,8 @@ rule fastqc:
     input:
         R1 = config["TRIMMED"] + "{samples}_trim.fastq.gz"
     output:
-        dir = directory('QC_post_preproc/{samples}')
+        dir = directory('QC_post_preproc/{samples}'),
+        flag = "QC_post_preproc/{samples}.flag"
     message: "QC on trimmed reads {input.R1} with FastQC \n"
     threads: config["THREADS"]
     shell:

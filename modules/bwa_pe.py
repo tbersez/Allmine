@@ -31,7 +31,6 @@ rule run_bwa_paired :
     params:
         idxbase = config["REF"] + config["GENOME"]
     message: "Mapping reads {input.R1} and {input.R2} to {params.idxbase} using BWA.\n"
-    log: config["LOG"] + "bwa/{samples}.log"
     #converting to bam, sorting and removing dupplicates in a single command!
     shell:
         """

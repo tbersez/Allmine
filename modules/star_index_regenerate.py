@@ -31,10 +31,11 @@ rule STAR_REindex:
     message: "RE-Indexing {input.genome} using de novo SJ from the first pass \n"
     shell:
         """
-        touch {output.flag}
         STAR --runMode genomeGenerate \
         --runThreadN {params.threads} \
         --genomeDir  {params.geno_dir}\
         --genomeFastaFiles {input.genome} \
-        --sjdbFileChrStartEnd {input.denovo_SJ}
+        --sjdbFileChrStartEnd {input.denovo_SJ} \
+        --sjdbGTFfile {input.ano} 
+        touch {output.flag}
         """

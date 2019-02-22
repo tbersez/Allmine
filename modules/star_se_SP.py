@@ -26,7 +26,6 @@ rule star_se_SP:
             prefix = config["MAP"] + "{samples}.",
             threads = config["THREADS"],
             tmp = config["MAP"] + "STAR_TMP/"
-        log: config["LOG"] + "STAR_SP/{samples}.log"
         message : "Running STAR second pass with {input.R1}. \n"
         shell:
             """

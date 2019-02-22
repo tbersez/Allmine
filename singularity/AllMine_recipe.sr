@@ -65,6 +65,10 @@ From: ubuntu:18.04
   apt install -y python3-pip
   pip3 install snakemake
 
+  # For DAG graphics
+  apt-get install -y graphviz
+  apt-get install -y evince
+
   # Install snpEff
   cd /opt
   wget https://sourceforge.net/projects/snpeff/files/snpEff_latest_core.zip/download

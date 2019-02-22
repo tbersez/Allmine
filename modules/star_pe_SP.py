@@ -22,15 +22,13 @@ rule star_pe_SP:
             flag = config["REF"] + "REindexing_done.txt",
             R1 = config["TRIMMED"] + "{samples}_1_trim.fastq.gz",
             R2 = config["TRIMMED"] + "{samples}_2_trim.fastq.gz",
-            genomeDir = config["REF"],
-            denovo_SJ = expand(config["MAP"] + "STAR_SJ/" + "{samples}.SJ.out.tab", samples = config["samples"])
+            genomeDir = config["REF"]
         output:
             bam = config["MAP"] + "{samples}_sorted.bam"
         params:
             prefix = config["MAP"] + "{samples}.",
             threads = config["THREADS"],
             tmp = config["MAP"] + "{samples}_sp_STAR_TMP"
-        log: config["LOG"] + "STAR_SP/{samples}.log"
         message : "Running STAR second pass with {input.R1} and {input.R2}. \n"
         shell:
             """

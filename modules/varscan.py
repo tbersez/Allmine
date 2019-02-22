@@ -30,7 +30,6 @@ rule run_varscan:
         var = protected(config["VAR"] + "{samples}_varscan.vcf")
     threads: config["THREADS"]
     message: "Looking for SNP in {input.bam} with Varscan \n"
-    log: config["LOG"] + "varscan/{samples}.log"
     #from mpileup to varscan to save disk space
     shell:
         """

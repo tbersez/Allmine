@@ -31,10 +31,8 @@ rule run_fastp_paired:
         R2 = config["TRIMMED"] + "{samples}_2_trim.fastq.gz",
         html = cwd + "QC_reports/{samples}_QC.html"
     message: "Running fastp on files {input.R1} and {input.R2} \n"
-    log: config["LOG"] + "fastp/{samples}.log"
     params:
         title = lambda wildcards: config["samples"][wildcards.samples]["name"]
-
     threads: config["THREADS"]
     shell:
         """
@@ -44,7 +42,7 @@ rule run_fastp_paired:
         -o {output.R1} \
         -O {output.R2} \
         -R {params.title} \
-        -h {output.html}\
+        -h {output.html} \
 
         rm -f fastp.json
         """

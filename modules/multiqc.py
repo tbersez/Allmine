@@ -1,25 +1,31 @@
-#multiQC
+# MultiQC, interactive QC summary
+#
+#   This module uses multiqc to agregate all fastqc reports
+#   in one big reports
+#
+#   Inputs:
+#       - samples_fastqc.html
+#
+#   Output:
+#       - global_qc_report.html
+#
+#   Parameters:
+#       None
 
-#tpm path to config and cwd for testing
-configfile: "../config_se.yaml"
-cwd = os.getcwd() + "/"
-#######################################
-
-rule all:
+rule multiQC:
     input:
-        cwd + "QC_reports/Global_QC_summary.html"
-#######################################
-
-rule run_multiQC:
+        fastqc_flag = expand("QC_post_preproc/{samples}.flag", samples = config["samples"])
     output:
-        cwd + "QC_reports/Global_QC_summary.html"
+        "Global_QC_summary.html"
     shell:
         """
         multiqc \
         --quiet \
-        --outdir {cwd}QC_reports/ \
+        --outdir ./ \
         --filename Global_QC_summary.html \
-        {cwd}QC_reports
+        --dirs-depth 1 \
+        --fullnames \
+        --title Global_QC_summary \
+        --comment 'Generated during an AllMine run' \
+        ./QC_post_preproc
         """
-# TODO: fix the issue with fastp/multiQC versions
-# for the moment, run the pipe with the -k flag

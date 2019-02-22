@@ -7,7 +7,8 @@
 #   You can inspect them using a web browser.
 #
 #   Input:
-#       - samples_trim.fastq
+#       - samples_trim_R1.fastq
+#       - samples_trim_R1.fastq
 #
 #   Output:
 #       - samples_report.html
@@ -20,11 +21,16 @@ rule fastqc:
         R1 = config["TRIMMED"] + "{samples}_1_trim.fastq.gz",
         R2 = config["TRIMMED"] + "{samples}_2_trim.fastq.gz"
     output:
-        dir = directory('QC_post_preproc/{samples}')
+        dir = directory("QC_post_preproc/{samples}"),
+        flag = "QC_post_preproc/{samples}.flag"
     message: "QC on trimmed reads {input.R1} & {input.R2}  with FastQC \n"
     threads: config["THREADS"]
     shell:
         """
-        mkdir {output.dir}
-        fastqc -o {output.dir} {input.R1} {input.R2}
+        touch {output.flag}
+        mkdir -p {output.dir}
+        fastqc -q \
+        --noextract \
+        -o {output.dir} \
+        {input.R1} {input.R2}
         """

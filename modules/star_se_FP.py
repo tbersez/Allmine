@@ -30,7 +30,6 @@ rule star_se_FP:
         prefix = config["MAP"] + "STAR_SJ/{samples}.",
         threads = config["THREADS"],
         tmp = directory(config["MAP"] + "{samples}_STAR_TMP")
-    log: config["LOG"] + "STAR_FP/{samples}.log"
     message : "Running STAR first pass with {input.R1} to get denovo SJ. \n"
     shell :
         """

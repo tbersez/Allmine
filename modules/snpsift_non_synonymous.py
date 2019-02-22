@@ -18,7 +18,6 @@ rule snpSift:
     output:
         non_syno = config["VAR"] + "non_synonymous_vars/{samples}_non_syn.vcf"
     message: "Getting non synonimous variants from {input.vcf} \n"
-    log : config["LOG"] + "snpSift/{samples}.log"
     shell:
         """
         java -jar /snpEff/SnpSift.jar filter \
