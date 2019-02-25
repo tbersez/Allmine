@@ -20,7 +20,7 @@
 #       because recomanded for s generally recommended for high-quality
 #       queries as it is faster and more accurate.
 
-rule run_bwa_paired :
+rule bwa_paired :
     input:
         R1 = config["TRIMMED"] + "{samples}_1_trim.fastq.gz",
         R2 = config["TRIMMED"] + "{samples}_2_trim.fastq.gz"

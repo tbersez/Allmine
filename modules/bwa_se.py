@@ -19,7 +19,7 @@
 #       because recomanded for s generally recommended for high-quality
 #       queries as it is faster and more accurate.
 
-rule run_bwa_single :
+rule bwa_single :
     input:
         R1 =  config["TRIMMED"] + "{samples}_trim.fastq.gz",
         #fake input used to force index building before alignement

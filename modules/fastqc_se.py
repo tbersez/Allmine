@@ -15,7 +15,7 @@
 #   Parameters:
 #       No fancy parameters here ...
 
-rule fastqc:
+rule fastqc_single:
     input:
         R1 = config["TRIMMED"] + "{samples}_trim.fastq.gz"
     output:

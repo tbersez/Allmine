@@ -25,11 +25,11 @@ rule star_se_FP:
         ano = config["REF"] + "SAindex",
         genomeDir = config["REF"]
     output:
-        denovo_SJ = protected(config["MAP"] + "{samples}.SJ.out.tab")
+        denovo_SJ = protected(config["MAP"] + "FP/STAR_SJ/" + "{samples}.SJ.out.tab")
     params:
-        prefix = config["MAP"] + "STAR_SJ/{samples}.",
+        prefix = config["MAP"] + "FP/STAR_SJ/" + "{samples}.",
         threads = config["THREADS"],
-        tmp = directory(config["MAP"] + "{samples}_STAR_TMP")
+        tmp = directory(config["MAP"] + "FP/" + "{samples}_STAR_TMP")
     message : "Running STAR first pass with {input.R1} to get denovo SJ. \n"
     shell :
         """

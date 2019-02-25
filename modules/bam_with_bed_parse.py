@@ -16,7 +16,7 @@
 
 rule parse_bam_with_bed:
     input:
-        bam = config["MAP"] + "{samples}_sorted.bam"
+        bam = config["MAP"] + "SP/{samples}_sorted.bam"
     output:
         bam = config["MAP"] + "{samples}_sorted_parsed.bam"
     params:

@@ -22,18 +22,18 @@
 #       However you can modify them directly into the script bellow if you
 #       feel the need to (for advanced users).
 
-rule run_fastp_paired:
+rule fastp_paired:
     input:
         R1 = lambda wildcards: config["samples"][wildcards.samples]["R1"],
         R2 = lambda wildcards: config["samples"][wildcards.samples]["R2"]
     output:
         R1 = config["TRIMMED"] + "{samples}_1_trim.fastq.gz",
         R2 = config["TRIMMED"] + "{samples}_2_trim.fastq.gz",
-        html = cwd + "QC_reports/{samples}_QC.html"
+        html = config["TRIMMED"] + "{samples}_out.html",
+        json = config["TRIMMED"] + "{samples}_out.json"
     message: "Running fastp on files {input.R1} and {input.R2} \n"
     params:
         title = lambda wildcards: config["samples"][wildcards.samples]["name"]
-    threads: config["THREADS"]
     shell:
         """
         fastp \
@@ -43,6 +43,7 @@ rule run_fastp_paired:
         -O {output.R2} \
         -R {params.title} \
         -h {output.html} \
+        -j {output.json} 
 
-        rm -f fastp.json
+        rm -f {output.html} {output.json}
         """

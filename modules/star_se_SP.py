@@ -18,14 +18,13 @@
 rule star_se_SP:
         input:
             R1 = config["TRIMMED"] + "{samples}_trim.fastq.gz",
-            genomeDir = config["REF"],
-            denovo_SJ = expand(config["MAP"] + "STAR_SJ/" + "{samples}.SJ.out.tab", samples = config["samples"])
+            genomeDir = config["REF"]
         output:
-            bam = config["MAP"] + "{samples}_sorted.bam"
+            bam = config["MAP"] + "SP/" + "{samples}_sorted.bam"
         params:
             prefix = config["MAP"] + "{samples}.",
             threads = config["THREADS"],
-            tmp = config["MAP"] + "STAR_TMP/"
+            tmp = config["MAP"] + "SP/STAR_TMP/"
         message : "Running STAR second pass with {input.R1}. \n"
         shell:
             """
@@ -36,6 +35,5 @@ rule star_se_SP:
             --outSAMtype BAM SortedByCoordinate \
             --outFileNamePrefix {params.prefix} \
             --outStd  BAM_SortedByCoordinate \
-            --outTmpDir {params.tmp} \
-            --sjdbFileChrStartEnd {input.denovo_SJ} > {output.bam}
+            --outTmpDir {params.tmp}
             """

@@ -24,11 +24,11 @@ rule star_pe_SP:
             R2 = config["TRIMMED"] + "{samples}_2_trim.fastq.gz",
             genomeDir = config["REF"]
         output:
-            bam = config["MAP"] + "{samples}_sorted.bam"
+            bam = config["MAP"] + "SP/" + "{samples}_sorted.bam"
         params:
-            prefix = config["MAP"] + "{samples}.",
+            prefix = config["MAP"] + "SP/" + "{samples}.",
             threads = config["THREADS"],
-            tmp = config["MAP"] + "{samples}_sp_STAR_TMP"
+            tmp = config["MAP"] + "SP/" + "{samples}_sp_STAR_TMP"
         message : "Running STAR second pass with {input.R1} and {input.R2}. \n"
         shell:
             """

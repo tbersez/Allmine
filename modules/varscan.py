@@ -21,7 +21,7 @@
 #   Those parameters are quite permisive, thats why a filtering step is needed
 #   (they can be modified in the varscan_filtering.py script).
 
-rule run_varscan:
+rule varscan:
     input:
         bam = config["MAP"] + "{samples}_sorted_parsed.bam"
     params:
