@@ -47,27 +47,23 @@ From: ubuntu:18.04
   export PATH="/opt/miniconda/bin:$PATH"
   export PATH=/snpEff:$PATH
 
-  # Conda environement with dependancies for AllMine
-  /conda.sh activate AllMine
-
 %post
 
-  # Install git and wget for in-container downloads
-
+  # Update/upgrade OS
   apt-get update
+  apt-get -y dist-upgrade
 
+  # Install git and wget for in-container downloads
   apt-get install -y git
   apt-get install -y wget
   apt-get install -y unzip
 
-  # Install Snakemake for workflow management
+  # Install python
   apt-get install -y python3
-  apt install -y python3-pip
-  pip3 install snakemake
+  apt-get install -y python3-pip
 
   # For DAG graphics
   apt-get install -y graphviz
-  apt-get install -y evince
 
   # Install snpEff
   cd /opt
@@ -95,6 +91,3 @@ From: ubuntu:18.04
   # Get AllMine code from the github repo
   cd ~
   /usr/bin/git clone https://github.com/tbersez/Allmine.git
-
-  # Final upgrade
-  apt-get upgrade -y

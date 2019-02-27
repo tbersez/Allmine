@@ -19,6 +19,7 @@ rule multiQC:
         "Global_QC_summary.html"
     shell:
         """
+        singularity exec -B /mnt/nas_eic/gafl01/home/gafl/tbersez ~/Allmine/AllMine \
         multiqc \
         --quiet \
         --outdir ./ \

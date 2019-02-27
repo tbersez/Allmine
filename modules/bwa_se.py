@@ -32,10 +32,11 @@ rule bwa_single :
     #converting to bam, sorting and removing dupplicates in a single command!
     shell:
         """
-        bwa mem \
+        singularity exec ~/Allmine/AllMine bwa mem \
+        -t 5 \
         {params.idxbase} \
         {input.R1} \
-        | /usr/bin/samtools view -Sb - \
+        | /usr/bin/samtools view -Sb -q 1 - \
         | /usr/bin/samtools sort -o - \
         | /usr/bin/samtools rmdup -s - {output.bam}
         """

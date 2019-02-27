@@ -16,7 +16,9 @@
 
 rule parse_bam_with_bed:
     input:
-        bam = config["MAP"] + "SP/{samples}_sorted.bam"
+    # TODO: fat bug here !
+    #       config["MAP"] + "SP/{samples}_sorted.bam" for rna mode
+        bam = config["MAP"] + "{samples}_sorted.bam"
     output:
         bam = config["MAP"] + "{samples}_sorted_parsed.bam"
     params:
@@ -26,7 +28,7 @@ rule parse_bam_with_bed:
     message: "Parsing {input.bam} using the blueprint {params.bed} \n"
     shell:
         """
-        samtools view \
+        singularity exec -B /mnt/nas_eic/gafl01/home/gafl/tbersez ~/Allmine/AllMine samtools view \
         -b \
         -L {params.bed} \
         -O BAM \

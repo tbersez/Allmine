@@ -28,12 +28,12 @@ rule star_se_FP:
         denovo_SJ = protected(config["MAP"] + "FP/STAR_SJ/" + "{samples}.SJ.out.tab")
     params:
         prefix = config["MAP"] + "FP/STAR_SJ/" + "{samples}.",
-        threads = config["THREADS"],
         tmp = directory(config["MAP"] + "FP/" + "{samples}_STAR_TMP")
     message : "Running STAR first pass with {input.R1} to get denovo SJ. \n"
     shell :
         """
-        STAR --runThreadN  {params.threads} \
+        singularity exec ~/Allmine/AllMine STAR \
+        --runThreadN  2 \
         --genomeDir {input.genomeDir} \
         --readFilesIn {input.R1} \
         --outTmpDir {params.tmp} \

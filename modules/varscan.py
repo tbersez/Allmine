@@ -17,7 +17,7 @@
 #       - Minimum supporting reads at a position >= 2
 #       - Minimum base quality at a position >= 15 (Qscore)
 #       - Minimum variant allele frequency threshold >= 0.01
-#       - P-value <= 0.05
+#       - P-value <= 0.99 (equivalent to no pvalue filter)
 #   Those parameters are quite permisive, thats why a filtering step is needed
 #   (they can be modified in the varscan_filtering.py script).
 
@@ -33,12 +33,19 @@ rule varscan:
     #from mpileup to varscan to save disk space
     shell:
         """
+        singularity exec -B /mnt/nas_eic/gafl01/home/gafl/tbersez ~/Allmine/AllMine \
         samtools mpileup \
         -C 50 \
+        -A \
         -f {params.ref} \
         {input.bam} | \
+        singularity exec -B /mnt/nas_eic/gafl01/home/gafl/tbersez ~/Allmine/AllMine \
         varscan mpileup2snp \
-        --p-value 0.05 \
+        --p-value 0.99 \
+        --min-coverage 5 \
         --output-vcf 1 \
+        --min-reads2 2 \
+        --min-var-freq 0.01 \
+        --min-avg-qual 15 \
         > {output.var}
         """

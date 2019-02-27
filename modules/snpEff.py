@@ -30,6 +30,7 @@ rule snpEff:
         threads = config["THREADS"],
     shell:
         """
+        singularity exec -B /mnt/nas_eic/gafl01/home/gafl/tbersez ~/Allmine/AllMine \
         java -jar /snpEff/snpEff.jar \
         eff \
         -i vcf \

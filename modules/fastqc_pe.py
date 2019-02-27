@@ -21,15 +21,15 @@ rule fastqc_paired:
         R1 = config["TRIMMED"] + "{samples}_1_trim.fastq.gz",
         R2 = config["TRIMMED"] + "{samples}_2_trim.fastq.gz"
     output:
-        dir = directory("QC_post_preproc/{samples}"),
+        dir = "QC_post_preproc/{samples}",
         flag = "QC_post_preproc/{samples}.flag"
     message: "QC on trimmed reads {input.R1} & {input.R2}  with FastQC \n"
     threads: config["THREADS"]
     shell:
         """
-        touch {output.flag}
         mkdir -p {output.dir}
-        fastqc -q \
+        touch {output.flag}
+        singularity exec -B /mnt/nas_eic/gafl01/home/gafl/tbersez ~/Allmine/AllMine fastqc -q \
         --noextract \
         -o {output.dir} \
         {input.R1} {input.R2}

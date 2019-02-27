@@ -30,13 +30,13 @@ rule filter_varscan:
     # Appling filter function from Varscan, parameters may be changed to fit your needs
     shell:
         """
-        varscan filter \
+        singularity exec -B /mnt/nas_eic/gafl01/home/gafl/tbersez ~/Allmine/AllMine varscan filter \
         {input.var}  \
-        --min-coverage 0 \
-        --min-reads2 10 \
+        --min-coverage 6 \
+        --min-reads2  2 \
         --min-strands2 1 \
         --min-avg-qual 20 \
         --min-var-freq 0.20 \
-        --p-value 0.05 \
+        --p-value 0.10 \
         > {output.var}
         """

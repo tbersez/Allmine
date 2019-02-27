@@ -23,13 +23,12 @@ rule star_se_SP:
             bam = config["MAP"] + "SP/" + "{samples}_sorted.bam"
         params:
             prefix = config["MAP"] + "{samples}.",
-            threads = config["THREADS"],
             tmp = config["MAP"] + "SP/STAR_TMP/"
         message : "Running STAR second pass with {input.R1}. \n"
         shell:
             """
-            STAR \
-            --runThreadN {params.threads} \
+            singularity exec ~/Allmine/AllMine STAR \
+            --runThreadN 2 \
             --genomeDir {input.genomeDir} \
             --readFilesIn {input.R1} \
             --outSAMtype BAM SortedByCoordinate \

@@ -29,21 +29,21 @@ rule fastp_paired:
     output:
         R1 = config["TRIMMED"] + "{samples}_1_trim.fastq.gz",
         R2 = config["TRIMMED"] + "{samples}_2_trim.fastq.gz",
-        html = config["TRIMMED"] + "{samples}_out.html",
-        json = config["TRIMMED"] + "{samples}_out.json"
     message: "Running fastp on files {input.R1} and {input.R2} \n"
     params:
-        title = lambda wildcards: config["samples"][wildcards.samples]["name"]
+        title = lambda wildcards: config["samples"][wildcards.samples]["name"],
+        html = config["TRIMMED"] + "{samples}_out.html",
+        json = config["TRIMMED"] + "{samples}_out.json"
     shell:
         """
-        fastp \
+        singularity exec -B /mnt/nas_eic/gafl01/home/gafl/tbersez ~/Allmine/AllMine fastp \
         -i {input.R1} \
         -I {input.R1} \
         -o {output.R1} \
         -O {output.R2} \
         -R {params.title} \
-        -h {output.html} \
-        -j {output.json} 
+        -h {params.html} \
+        -j {params.json}
 
-        rm -f {output.html} {output.json}
+        rm -f {params.html} {params.json}
         """

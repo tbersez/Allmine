@@ -23,7 +23,7 @@
 rule bwa_paired :
     input:
         R1 = config["TRIMMED"] + "{samples}_1_trim.fastq.gz",
-        R2 = config["TRIMMED"] + "{samples}_2_trim.fastq.gz"
+        R2 = config["TRIMMED"] + "{samples}_2_trim.fastq.gz",
         #fake input used to force index building before alignement
         idx = config["REF"] + config["GENOME"] + ".bwt"
     output:
@@ -34,11 +34,12 @@ rule bwa_paired :
     #converting to bam, sorting and removing dupplicates in a single command!
     shell:
         """
-        bwa mem \
+        singularity exec -B /mnt/nas_eic/gafl01/home/gafl/tbersez ~/Allmine/AllMine bwa mem \
+        -t 5 \
         {params.idxbase} \
         {input.R1} \
         {input.R2} \
-        | /usr/bin/samtools view -Sb - \
+        | /usr/bin/samtools view -Sb -q 1 - \
         | /usr/bin/samtools sort -o - \
         | /usr/bin/samtools rmdup -s - {output.bam}
         """

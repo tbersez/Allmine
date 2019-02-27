@@ -36,6 +36,6 @@ rule bwa_index:
     threads: config["THREADS"]
     shell:
         """
-        bwa index\
+        singularity exec -B /mnt/nas_eic/gafl01/home/gafl/tbersez ~/Allmine/AllMine bwa index \
         {input.genome}
         """

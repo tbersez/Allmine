@@ -73,12 +73,12 @@
     },
 
     "bwa_paired" : {
-      "cpus-per-task"  : 2,
-      "mem-per-cpu-mb" : 10000
+      "cpus-per-task"  : 5,
+      "mem-per-cpu-mb" : 30000
     },
     "bwa_single" : {
-      "cpus-per-task"  : 2,
-      "mem-per-cpu-mb" : 8000
+      "cpus-per-task"  : 5,
+      "mem-per-cpu-mb" : 30000
     },
 
     "varscan" : {
