@@ -48,7 +48,10 @@ From: ubuntu:18.04
   export PATH=/snpEff:$PATH
 
 %post
+  echo -e "\e[1;36mAllMine, a flexible pipeline for Allele Mining. \n
+                Copyright Thomas Bersez 2019, INRA-GAFL \e[0m"
 
+  echo -e "\e[1;32mUpgrading Ubuntu OS\e[0m"
   # Update/upgrade OS
   apt-get update
   apt-get -y dist-upgrade
@@ -70,24 +73,30 @@ From: ubuntu:18.04
   wget https://sourceforge.net/projects/snpeff/files/snpEff_latest_core.zip/download
   unzip download -d /
   rm -rf /clinEff
+  cd /
 
   # Install miniconda
+  echo -e "\e[1;32mInstalling Miniconda3\e[0m"
 	rm -fr /opt/miniconda*
   wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
   bash miniconda.sh -b -p /opt/miniconda
   PATH="/opt/miniconda/bin:$PATH"
 
   # Install AllMine deps
+  echo -e "\e[1;32mInstalling AllMine bioinformatics tools\e[0m"
   PATH="/opt/miniconda/bin:$PATH"
-  conda install -y -f -q -c bioconda bwa
-  conda install -y -f -q -c bioconda multiqc
-  conda install -y -f -q -c bioconda samtools
-  conda install -y -f -q -c bioconda star
-  conda install -y -f -q -c bioconda varscan
-  conda install -y -f -q -c bioconda fastp
-  conda install -y -f -q -c bioconda fastqc
-  conda install -y -f -q -c bioconda bcftools
+  conda install -y -q -c bioconda bwa=0.7.17
+  conda install -y -q -c bioconda multiqc
+  conda install -y -q -c bioconda samtools=1.9
+  conda install -y -q -c bioconda star=2.7.0d
+  conda install -y -q -c bioconda varscan=2.4.3
+  conda install -y -q -c bioconda fastp=0.19.7
+  conda install -y -q -c bioconda fastqc=0.11.8
+  conda install -y -q -c bioconda bcftools=1.9
 
   # Get AllMine code from the github repo
+  echo -e "\e[1;32mPulling AllMine from Github\e[0m"
   cd ~
-  /usr/bin/git clone https://github.com/tbersez/Allmine.git
+  /usr/bin/git clone --progress https://github.com/tbersez/Allmine.git /home
+
+  echo -e "\e[1;32mFinished! \e[0m"

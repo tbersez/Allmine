@@ -24,7 +24,7 @@ rule star_pe_SP:
             R2 = config["TRIMMED"] + "{samples}_2_trim.fastq.gz",
             genomeDir = config["REF"]
         output:
-            bam = config["MAP"] + "SP/" + "{samples}_sorted.bam"
+            bam = config["MAP"] + "{samples}_sorted.bam"
         params:
             prefix = config["MAP"] + "SP/" + "{samples}.",
             tmp = config["MAP"] + "SP/" + "{samples}_sp_STAR_TMP"
@@ -40,5 +40,4 @@ rule star_pe_SP:
             --outStd  BAM_SortedByCoordinate \
             --outTmpDir {params.tmp} \
             --readFilesCommand zcat > {output.bam}
-            mv {output.bam} ../
             """
