@@ -47,7 +47,7 @@ rule STAR_index:
         """
         mkdir -p mapped/FP/STAR_SJ
         mkdir -p mapped/SP
-        STAR --runMode genomeGenerate \
+        singularity exec ~/Allmine/AllMine STAR --runMode genomeGenerate \
         --runThreadN {params.threads} \
         --genomeDir  {params.geno_dir}\
         --genomeFastaFiles {input.genome} \

@@ -29,7 +29,8 @@ rule fastqc_paired:
         """
         mkdir -p {output.dir}
         touch {output.flag}
-        singularity exec -B /mnt/nas_eic/gafl01/home/gafl/tbersez ~/Allmine/AllMine fastqc -q \
+        singularity exec -B /mnt/nas_eic/gafl01/home/gafl/tbersez ~/Allmine/AllMine \
+        fastqc -q \
         --noextract \
         -o {output.dir} \
         {input.R1} {input.R2}

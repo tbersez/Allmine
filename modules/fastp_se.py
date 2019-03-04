@@ -32,7 +32,7 @@ rule fastp_single:
         title = lambda wildcards: config["samples"][wildcards.samples]["name"]
     shell:
         """
-        fastp \
+        singularity exec -B /mnt/nas_eic/gafl01/home/gafl/tbersez ~/Allmine/AllMine fastp \
         -i {input.R1} \
         -o {output.R1} \
         -R {params.title} \

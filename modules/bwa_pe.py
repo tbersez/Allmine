@@ -39,7 +39,7 @@ rule bwa_paired :
         {params.idxbase} \
         {input.R1} \
         {input.R2} \
-        | /usr/bin/samtools view -Sb -q 1 - \
-        | /usr/bin/samtools sort -o - \
+        | /usr/bin/samtools view -Sb -@ 5 - \
+        | /usr/bin/samtools sort -@ 5 -o - \
         | /usr/bin/samtools rmdup -s - {output.bam}
         """

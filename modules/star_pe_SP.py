@@ -40,4 +40,5 @@ rule star_pe_SP:
             --outStd  BAM_SortedByCoordinate \
             --outTmpDir {params.tmp} \
             --readFilesCommand zcat > {output.bam}
+            mv {output.bam} ../
             """

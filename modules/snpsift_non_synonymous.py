@@ -20,7 +20,7 @@ rule snpSift:
     message: "Getting non synonimous variants from {input.vcf} \n"
     shell:
         """
-        java -jar /snpEff/SnpSift.jar filter \
+        singularity exec ~/Allmine/AllMine java -jar /snpEff/SnpSift.jar filter \
         -f {input.vcf} \
         --addFilter # TODO: DEFINE THE EXP TO GET NON SYNM VARS \
         > {output.non_syno}

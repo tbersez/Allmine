@@ -34,5 +34,7 @@ rule star_se_SP:
             --outSAMtype BAM SortedByCoordinate \
             --outFileNamePrefix {params.prefix} \
             --outStd  BAM_SortedByCoordinate \
-            --outTmpDir {params.tmp}
+            --outTmpDir {params.tmp} \
+            --readFilesCommand zcat > {output.bam}
+            mv {output.bam} ../
             """

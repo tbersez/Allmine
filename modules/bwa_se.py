@@ -36,7 +36,7 @@ rule bwa_single :
         -t 5 \
         {params.idxbase} \
         {input.R1} \
-        | /usr/bin/samtools view -Sb -q 1 - \
-        | /usr/bin/samtools sort -o - \
+        | /usr/bin/samtools view -Sb -@ 5 - \
+        | /usr/bin/samtools sort -@ 5 -o - \
         | /usr/bin/samtools rmdup -s - {output.bam}
         """

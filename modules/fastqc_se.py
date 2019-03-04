@@ -26,5 +26,8 @@ rule fastqc_single:
     shell:
         """
         mkdir {output.dir}
-        fastqc -o {output.dir} {input.R1}
+        singularity exec -B /mnt/nas_eic/gafl01/home/gafl/tbersez ~/Allmine/AllMine \
+        fastqc -q \
+        --noextract \
+        -o {output.dir} {input.R1}
         """
