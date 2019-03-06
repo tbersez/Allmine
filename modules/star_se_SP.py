@@ -27,7 +27,8 @@ rule star_se_SP:
         message : "Running STAR second pass with {input.R1}. \n"
         shell:
             """
-            singularity exec ~/Allmine/AllMine STAR \
+            singularity exec -B /mnt/nas_eic/gafl01/home/gafl/tbersez \
+            ~/Allmine/AllMine STAR \
             --runThreadN 2 \
             --genomeDir {input.genomeDir} \
             --readFilesIn {input.R1} \

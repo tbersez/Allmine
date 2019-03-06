@@ -51,7 +51,7 @@ with open(sys.argv[1], 'r') as file:
             for file in files: # Only one fasta and one gff are accepted !
                 if file.endswith(".fna" or ".fa" or ".fasta"):
                     yaml.write("GENOME: " + file + "\n")
-                elif file.endswith(".gff"):
+                elif file.endswith(".gff" or ".gtf"):
                     yaml.write("ANO: " + file + "\n")
                 else:
                     print("Non valid files in " + genome_dir + " !\n")

@@ -32,15 +32,15 @@
     },
 
     "STAR_index" : {
-      "mem-per-cpu-mb" : 100000,
-      "cpus-per-task"  : 5,
+      "mem-per-cpu-mb" : 200000,
+      "cpus-per-task"  : 10,
       "job-name"       : "AllMine.{rule}",
       "output"    : "logs/{rule}.out",
       "error"     : "logs/{rule}.err"
     },
     "STAR_REindex" : {
-      "mem-per-cpu-mb" : 100000,
-      "cpus-per-task"  : 5,
+      "mem-per-cpu-mb" : 200000,
+      "cpus-per-task"  : 10,
       "job-name"       : "AllMine.{rule}",
       "output"    : "logs/{rule}.out",
       "error"     : "logs/{rule}.err"

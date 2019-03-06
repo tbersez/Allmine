@@ -64,6 +64,7 @@ From: ubuntu:18.04
   # Install python
   apt-get install -y python3
   apt-get install -y python3-pip
+  apt-get install -y python3-yaml
 
   # For DAG graphics
   apt-get install -y graphviz
@@ -93,6 +94,7 @@ From: ubuntu:18.04
   conda install -y -q -c bioconda fastp=0.19.7
   conda install -y -q -c bioconda fastqc=0.11.8
   conda install -y -q -c bioconda bcftools=1.9
+  conda install -y -c bioconda fastq-tools=0.8
 
   # Get AllMine code from the github repo
   echo -e "\e[1;32mPulling AllMine from Github\e[0m"

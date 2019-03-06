@@ -45,11 +45,12 @@ rule STAR_index:
     message: "Indexing {input.genome} with {input.ano} for STAR aligner \n"
     shell:
         """
-        mkdir -p mapped/FP/STAR_SJ
-        mkdir -p mapped/SP
-        singularity exec ~/Allmine/AllMine STAR --runMode genomeGenerate \
-        --runThreadN {params.threads} \
+        singularity exec -B /mnt/nas_eic/gafl01/home/gafl/tbersez \
+        ~/Allmine/AllMine STAR --runMode genomeGenerate \
+        --runThreadN 10 \
         --genomeDir  {params.geno_dir}\
         --genomeFastaFiles {input.genome} \
         --sjdbGTFfile {input.ano}
+        mkdir -p mapped/FP/STAR_SJ
+        mkdir -p mapped/SP
         """

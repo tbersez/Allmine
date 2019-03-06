@@ -34,10 +34,13 @@ rule star_pe_FP:
     message : "Running STAR first pass with {input.R1} and {input.R2} to get denovo SJ. \n"
     shell :
         """
-        singularity exec ~/Allmine/AllMine STAR --runThreadN 2 \
+        singularity exec -B /mnt/nas_eic/gafl01/home/gafl/tbersez \
+         ~/Allmine/AllMine STAR --runThreadN 2 \
         --genomeDir {input.genomeDir} \
         --readFilesIn {input.R1} {input.R2} \
         --outTmpDir {params.tmp} \
         --readFilesCommand zcat \
+        --outFilterScoreMinOverLread 0.3 \
+        --outFilterMatchNminOverLread 0.3 \
         --outFileNamePrefix {params.prefix}
         """

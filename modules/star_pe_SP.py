@@ -31,7 +31,8 @@ rule star_pe_SP:
         message : "Running STAR second pass with {input.R1} and {input.R2}. \n"
         shell:
             """
-            singularity exec ~/Allmine/AllMine STAR \
+            singularity exec -B /mnt/nas_eic/gafl01/home/gafl/tbersez \
+            ~/Allmine/AllMine STAR \
             --runThreadN 2 \
             --genomeDir {input.genomeDir} \
             --readFilesIn {input.R1} {input.R2} \
@@ -39,5 +40,7 @@ rule star_pe_SP:
             --outFileNamePrefix {params.prefix} \
             --outStd  BAM_SortedByCoordinate \
             --outTmpDir {params.tmp} \
+            --outFilterScoreMinOverLread 0.3 \
+            --outFilterMatchNminOverLread 0.3 \
             --readFilesCommand zcat > {output.bam}
             """

@@ -32,7 +32,8 @@ rule star_se_FP:
     message : "Running STAR first pass with {input.R1} to get denovo SJ. \n"
     shell :
         """
-        singularity exec ~/Allmine/AllMine STAR \
+        singularity exec -B /mnt/nas_eic/gafl01/home/gafl/tbersez \
+        ~/Allmine/AllMine STAR \
         --runThreadN  2 \
         --genomeDir {input.genomeDir} \
         --readFilesIn {input.R1} \

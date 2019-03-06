@@ -18,7 +18,7 @@
 #
 #   Parameters:
 #       fastp default parameters (see fastp manual for more information).
-#       Thoses parameters all well suited for most ofsequencing data,
+#       Thoses parameters all well suited for most of sequencing data,
 #       However you can modify them directly into the script bellow if you
 #       feel the need to (for advanced users).
 
@@ -38,7 +38,7 @@ rule fastp_paired:
         """
         singularity exec -B /mnt/nas_eic/gafl01/home/gafl/tbersez ~/Allmine/AllMine fastp \
         -i {input.R1} \
-        -I {input.R1} \
+        -I {input.R2} \
         -o {output.R1} \
         -O {output.R2} \
         -R {params.title} \

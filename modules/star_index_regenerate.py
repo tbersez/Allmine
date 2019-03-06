@@ -31,8 +31,9 @@ rule STAR_REindex:
     message: "RE-Indexing {input.genome} using de novo SJ from the first pass \n"
     shell:
         """
-        singularity exec ~/Allmine/AllMine STAR --runMode genomeGenerate \
-        --runThreadN {params.threads} \
+        singularity exec -B /mnt/nas_eic/gafl01/home/gafl/tbersez \
+        ~/Allmine/AllMine STAR --runMode genomeGenerate \
+        --runThreadN 10 \
         --genomeDir  {params.geno_dir}\
         --genomeFastaFiles {input.genome} \
         --sjdbFileChrStartEnd {input.denovo_SJ} \

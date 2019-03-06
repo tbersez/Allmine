@@ -27,7 +27,7 @@ rule varscan:
     params:
         ref = config["REF"] + config["GENOME"]
     output:
-        var = protected(config["VAR"] + "{samples}_varscan.vcf")
+        var = config["VAR"] + "{samples}_varscan.vcf"
     threads: config["THREADS"]
     message: "Looking for SNP in {input.bam} with Varscan \n"
     #from mpileup to varscan to save disk space
