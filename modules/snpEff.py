@@ -21,10 +21,10 @@
 
 rule snpEff:
     input:
-        vcf = config["VAR"] + "{samples}_varscan_filtered.vcf"
+        vcf = config["VAR"] + "{samples}/{samples}_varscan_filtered.vcf"
     output:
-        vcf = protected(config["VAR"] + "{samples}_varscan_filtered_parsed_annotated.vcf"),
-        rep = protected(config["VAR"] + '{samples}_annotated_report.html')
+        vcf = config["VAR"] + "{samples}/{samples}_varscan_filtered_parsed_annotated.vcf",
+        rep = config["VAR"] + "{samples}/{samples}_annotated_report.html"
     message: "Annotating {input.vcf} with snpEff \n"
     params:
         threads = config["THREADS"],

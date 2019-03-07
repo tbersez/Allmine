@@ -21,22 +21,21 @@
 
 rule filter_varscan:
     input:
-        var = config["VAR"] + "{samples}_varscan.vcf"
+        var = config["VAR"] + "{samples}/{samples}_varscan.vcf"
     output:
-        var = protected(config["VAR"] + "{samples}_varscan_filtered.vcf")
+        var = config["VAR"] + "{samples}/{samples}_varscan_filtered.vcf"
     message: "Filtering Varscan variants from {input.var} \n"
-    log: config["LOG"] + "varscan_filtering/{samples}.log"
     threads: config["THREADS"]
     # Appling filter function from Varscan, parameters may be changed to fit your needs
     shell:
         """
         singularity exec -B /mnt/nas_eic/gafl01/home/gafl/tbersez ~/Allmine/AllMine varscan filter \
         {input.var}  \
-        --min-coverage 6 \
+        --min-coverage 8 \
         --min-reads2  2 \
         --min-strands2 1 \
         --min-avg-qual 20 \
-        --min-var-freq 0.20 \
-        --p-value 0.10 \
+        --min-var-freq 0.05 \
+        --p-value 0.99 \
         > {output.var}
         """

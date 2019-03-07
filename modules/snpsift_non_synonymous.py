@@ -1,7 +1,7 @@
 # snpSift SNPs filtration
 #
 #   This module use snpSift (http://snpeff.sourceforge.net/SnpSift.html)
-#   to filter your putative variants. Only non synonymous are kept.
+#   to filter your putative variants. Only non synonymous SNPs are kept.
 #
 #   Input:
 #       - sample_variants_annotated.vcf
@@ -14,15 +14,16 @@
 
 rule snpSift:
     input:
-        vcf = config["VAR"] + "{samples}_varscan_filtered_parsed_annotated.vcf"
+        vcf = config["VAR"] + "{samples}/{samples}_varscan_filtered_parsed_annotated.vcf"
     output:
-        non_syno = config["VAR"] + "non_synonymous_vars/{samples}_non_syn.vcf"
+        non_syno = config["VAR"] + "{samples}/{samples}_non_synonymous.vcf"
     message: "Getting non synonimous variants from {input.vcf} \n"
     shell:
         """
-        singularity exec ~/Allmine/AllMine java -jar /snpEff/SnpSift.jar filter \
-        -f {input.vcf} \
-        --addFilter # TODO: DEFINE THE EXP TO GET NON SYNM VARS \
+        cat {input.vcf} | \
+        singularity exec -B /mnt/nas_eic/gafl01/home/gafl/tbersez \
+        ~/Allmine/AllMine \
+        java -jar /snpEff/SnpSift.jar filter "ANN[*].EFFECT has 'missense_variant'" \
         > {output.non_syno}
         """
 

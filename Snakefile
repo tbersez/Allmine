@@ -47,6 +47,7 @@ include : cwd + "modules/snpsift_non_synonymous.py"
 
 rule all:
     input:
-        expand(config["VAR"] + "{samples}_varscan_filtered_parsed_annotated.vcf", samples = config["samples"]),
-        expand(config["VAR"] + '{samples}_annotated_report.html', samples = config["samples"]),
+        expand(config["VAR"] + "{samples}/{samples}_varscan_filtered_parsed_annotated.vcf", samples = config["samples"]),
+        expand(config["VAR"] + "{samples}/{samples}_annotated_report.html", samples = config["samples"]),
+        expand(config["VAR"] + "{samples}/{samples}_non_synonymous.vcf", samples = config["samples"]),
         "Global_QC_summary.html"

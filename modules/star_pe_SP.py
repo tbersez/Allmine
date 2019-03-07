@@ -38,7 +38,7 @@ rule star_pe_SP:
             --readFilesIn {input.R1} {input.R2} \
             --outSAMtype BAM SortedByCoordinate \
             --outFileNamePrefix {params.prefix} \
-            --outStd  BAM_SortedByCoordinate \
+            --outStd BAM_SortedByCoordinate \
             --outTmpDir {params.tmp} \
             --outFilterScoreMinOverLread 0.3 \
             --outFilterMatchNminOverLread 0.3 \
