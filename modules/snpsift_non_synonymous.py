@@ -17,7 +17,7 @@ rule snpSift:
         vcf = config["VAR"] + "{samples}/{samples}_varscan_filtered_parsed_annotated.vcf"
     output:
         non_syno = config["VAR"] + "{samples}/{samples}_non_synonymous.vcf"
-    message: "Getting non synonimous variants from {input.vcf} \n"
+    message: "Getting non synonymous variants from {input.vcf} \n"
     shell:
         """
         cat {input.vcf} | \

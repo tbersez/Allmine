@@ -45,6 +45,7 @@ rule varscan:
         --min-coverage 5 \
         --output-vcf 1 \
         --min-reads2 2 \
+        --min-strands2 1 \
         --min-var-freq 0.05 \
         --min-avg-qual 15 \
         > {output.var}
