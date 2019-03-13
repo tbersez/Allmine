@@ -1,13 +1,13 @@
 {
     "__default__" : {
-      "job-name"       : "AllMine.{rule}.{wildcards.samples}",
+      "name"      : "AllMine {rule} [{wildcards.samples}]",
       "partition"      : "express",
-      "time"           : "12:00:00",
+      "time"           : "48:00:00",
       "ntasks"         : 1,
       "cpus-per-task"  : 1,
       "mem-per-cpu-mb" : 2000,
-      "output"    : "logs/{rule}.{wildcards.samples}.out",
-      "error"     : "logs/{rule}.{wildcards.samples}.err"
+      "output"    : "~/logs/{rule}.{wildcards.samples}.stout",
+      "error"     : "~/logs/{rule}.{wildcards.samples}.sterr"
     },
 
     "fastp_paired" : {
@@ -27,31 +27,31 @@
     "multiQC" : {
       "mem-per-cpu-mb" : 1000,
       "job-name"       : "AllMine.{rule}",
-      "output"    : "logs/{rule}.out",
-      "error"     : "logs/{rule}.err"
+      "output"    : "~/logs/{rule}.out",
+      "error"     : "~/logs/{rule}.err"
     },
 
     "STAR_index" : {
       "mem-per-cpu-mb" : 200000,
       "cpus-per-task"  : 10,
       "job-name"       : "AllMine.{rule}",
-      "output"    : "logs/{rule}.out",
-      "error"     : "logs/{rule}.err"
+      "output"    : "~/logs/{rule}.out",
+      "error"     : "~/logs/{rule}.err"
     },
     "STAR_REindex" : {
       "mem-per-cpu-mb" : 200000,
       "cpus-per-task"  : 10,
       "job-name"       : "AllMine.{rule}",
-      "output"    : "logs/{rule}.out",
-      "error"     : "logs/{rule}.err"
+      "output"    : "~/logs/{rule}.out",
+      "error"     : "~/logs/{rule}.err"
     },
 
     "bwa_index" : {
       "mem-per-cpu-mb" : 10000,
       "cpus-per-task"  : 5,
       "job-name"       : "AllMine.{rule}",
-      "output"    : "logs/{rule}.out",
-      "error"     : "logs/{rule}.err"
+      "output"    : "~/logs/{rule}.out",
+      "error"     : "~/logs/{rule}.err"
     },
 
     "star_pe_FP" : {
@@ -89,11 +89,10 @@
     "snpEff" : {
       "cpus-per-task"  : 1,
       "mem-per-cpu-mb" : 10000
+    },
+
+    "snpSift" : {
+      "cpus-per-task"  : 1,
+      "mem-per-cpu-mb" : 2000
     }
-
-
-
-
-
-
 }

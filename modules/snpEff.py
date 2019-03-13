@@ -21,7 +21,7 @@
 
 rule snpEff:
     input:
-        vcf = config["VAR"] + "{samples}/{samples}_varscan_filtered.vcf"
+        vcf = config["VAR"] + "{samples}/{samples}_varscan.vcf"
     output:
         vcf = config["VAR"] + "{samples}/{samples}_varscan_filtered_parsed_annotated.vcf",
         rep = config["VAR"] + "{samples}/{samples}_annotated_report.html"

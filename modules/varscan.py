@@ -13,13 +13,11 @@
 #
 #   Parameters:
 #     A putative SNP is called if:
-#       - Minimum read depth at a position >= 8
-#       - Minimum supporting reads at a position >= 2
-#       - Minimum base quality at a position >= 15 (Qscore)
-#       - Minimum variant allele frequency threshold >= 0.01
+#       - Minimum read depth at a position
+#       - Minimum base quality at a position
+#       - Minimum variant allele frequency threshold
 #       - P-value <= 0.99 (equivalent to no pvalue filter)
-#   Those parameters are quite permisive, thats why a filtering step is needed
-#   (they can be modified in the varscan_filtering.py script).
+#   Thoses parameters may have to be edited to tune the calling sensitivity !
 
 rule varscan:
     input:
@@ -28,7 +26,6 @@ rule varscan:
         ref = config["REF"] + config["GENOME"]
     output:
         var = config["VAR"] + "{samples}/{samples}_varscan.vcf"
-    threads: config["THREADS"]
     message: "Looking for SNP in {input.bam} with Varscan \n"
     #from mpileup to varscan to save disk space
     shell:
@@ -42,11 +39,10 @@ rule varscan:
         singularity exec -B /mnt/nas_eic/gafl01/home/gafl/tbersez ~/Allmine/AllMine \
         varscan mpileup2snp \
         --p-value 0.99 \
-        --min-coverage 5 \
+        --min-coverage 10 \
         --output-vcf 1 \
-        --min-reads2 2 \
         --min-strands2 1 \
-        --min-var-freq 0.05 \
-        --min-avg-qual 15 \
+        --min-var-freq 0.80 \
+        --min-avg-qual 20 \
         > {output.var}
         """
