@@ -29,7 +29,7 @@ rule star_se_SP:
             """
             singularity exec -B /mnt/nas_eic/gafl01/home/gafl/tbersez \
             ~/Allmine/AllMine STAR \
-            --runThreadN 2 \
+            --runThreadN 10 \
             --genomeDir {input.genomeDir} \
             --readFilesIn {input.R1} \
             --outSAMtype BAM SortedByCoordinate \

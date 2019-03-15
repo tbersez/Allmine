@@ -37,7 +37,8 @@ rule fastp_single:
         -o {output.R1} \
         -R {params.title} \
         -h {output.html} \
-        -j {output.json}
+        -j {output.json} \
+        -w 10
 
         rm -f {output.html} {output.json}
         """

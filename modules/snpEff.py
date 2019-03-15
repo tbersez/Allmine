@@ -26,8 +26,6 @@ rule snpEff:
         vcf = config["VAR"] + "{samples}/{samples}_varscan_filtered_parsed_annotated.vcf",
         rep = config["VAR"] + "{samples}/{samples}_annotated_report.html"
     message: "Annotating {input.vcf} with snpEff \n"
-    params:
-        threads = config["THREADS"],
     shell:
         """
         singularity exec -B /mnt/nas_eic/gafl01/home/gafl/tbersez ~/Allmine/AllMine \

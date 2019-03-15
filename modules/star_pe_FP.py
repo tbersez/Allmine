@@ -35,7 +35,7 @@ rule star_pe_FP:
     shell :
         """
         singularity exec -B /mnt/nas_eic/gafl01/home/gafl/tbersez \
-         ~/Allmine/AllMine STAR --runThreadN 2 \
+         ~/Allmine/AllMine STAR --runThreadN 10 \
         --genomeDir {input.genomeDir} \
         --readFilesIn {input.R1} {input.R2} \
         --outTmpDir {params.tmp} \

@@ -40,7 +40,6 @@ rule STAR_index:
         config["REF"] + "sjdbList.out.tab",
         config["REF"] + "transcriptInfo.tab"
     params:
-        threads = config["THREADS"],
         geno_dir = config["REF"]
     message: "Indexing {input.genome} with {input.ano} for STAR aligner \n"
     shell:

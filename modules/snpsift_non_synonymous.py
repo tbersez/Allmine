@@ -26,5 +26,3 @@ rule snpSift:
         java -jar /snpEff/SnpSift.jar filter "ANN[*].EFFECT has 'missense_variant'" \
         > {output.non_syno}
         """
-
-# NB: this module constitute the end point of the pipeline

@@ -26,7 +26,6 @@ rule STAR_REindex:
         # Regenerated genome indexes
         flag = config["REF"] + "REindexing_done.txt"
     params:
-        threads = config["THREADS"],
         geno_dir = config["REF"]
     message: "RE-Indexing {input.genome} using de novo SJ from the first pass \n"
     shell:

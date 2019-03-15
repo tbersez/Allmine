@@ -33,7 +33,7 @@ rule bwa_single :
     shell:
         """
         singularity exec ~/Allmine/AllMine bwa mem \
-        -t 5 \
+        -t 10 \
         {params.idxbase} \
         {input.R1} \
         | /usr/bin/samtools view -Sb -@ 5 - \

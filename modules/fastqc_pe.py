@@ -24,7 +24,6 @@ rule fastqc_paired:
         dir = "QC_post_preproc/{samples}",
         flag = "QC_post_preproc/{samples}.flag"
     message: "QC on trimmed reads {input.R1} & {input.R2}  with FastQC \n"
-    threads: config["THREADS"]
     shell:
         """
         mkdir -p {output.dir}

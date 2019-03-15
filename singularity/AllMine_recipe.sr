@@ -69,6 +69,16 @@ From: ubuntu:18.04
   # For DAG graphics
   apt-get install -y graphviz
 
+  # For benchmark
+  apt-get install -y python
+  pip3 install setuptools
+  cd /
+  rm -rf Syrupy
+  git clone https://github.com/jeetsukumaran/Syrupy
+  cd /Syrupy
+  python3 setup.py install
+
+
   # Install snpEff
   cd /opt
   wget https://sourceforge.net/projects/snpeff/files/snpEff_latest_core.zip/download
@@ -87,14 +97,12 @@ From: ubuntu:18.04
   echo -e "\e[1;32mInstalling AllMine bioinformatics tools\e[0m"
   PATH="/opt/miniconda/bin:$PATH"
   conda install -y -q -c bioconda bwa=0.7.17
-  conda install -y -q -c bioconda multiqc
+  conda install -y -q -c bioconda/label/cf201901 multiqc
   conda install -y -q -c bioconda samtools=1.9
   conda install -y -q -c bioconda star=2.7.0d
   conda install -y -q -c bioconda varscan=2.4.3
   conda install -y -q -c bioconda fastp=0.19.7
   conda install -y -q -c bioconda fastqc=0.11.8
-  conda install -y -q -c bioconda bcftools=1.9
-  conda install -y -c bioconda fastq-tools=0.8
 
   # Get AllMine code from the github repo
   echo -e "\e[1;32mPulling AllMine from Github\e[0m"

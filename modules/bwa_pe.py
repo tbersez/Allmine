@@ -35,7 +35,7 @@ rule bwa_paired :
     shell:
         """
         singularity exec -B /mnt/nas_eic/gafl01/home/gafl/tbersez ~/Allmine/AllMine bwa mem \
-        -t 5 \
+        -t 10 \
         {params.idxbase} \
         {input.R1} \
         {input.R2} \

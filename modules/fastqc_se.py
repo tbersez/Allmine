@@ -22,7 +22,6 @@ rule fastqc_single:
         dir = directory('QC_post_preproc/{samples}'),
         flag = "QC_post_preproc/{samples}.flag"
     message: "QC on trimmed reads {input.R1} with FastQC \n"
-    threads: config["THREADS"]
     shell:
         """
         mkdir {output.dir}

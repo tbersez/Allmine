@@ -1,20 +1,22 @@
 {
     "__default__" : {
-      "name"      : "AllMine {rule} [{wildcards.samples}]",
+      "name"      : "AllMine {rule} [{wildcards}]",
       "partition"      : "express",
       "time"           : "48:00:00",
       "ntasks"         : 1,
       "cpus-per-task"  : 1,
       "mem-per-cpu-mb" : 2000,
-      "output"    : "~/logs/{rule}.{wildcards.samples}.stout",
-      "error"     : "~/logs/{rule}.{wildcards.samples}.sterr"
+      "output"    : "~/logs/{rule}.{wildcards}.stout",
+      "error"     : "~/logs/{rule}.{wildcards}.sterr"
     },
 
     "fastp_paired" : {
-	    "mem-per-cpu-mb" : 6000
+      "cpus-per-task"  : 10,
+	    "mem-per-cpu-mb" : 7000
     },
     "fastp_single" : {
-      "mem-per-cpu-mb" : 3000
+      "cpus-per-task"  : 10,
+      "mem-per-cpu-mb" : 4000
     },
 
     "fastqc_paired" : {
@@ -48,36 +50,36 @@
 
     "bwa_index" : {
       "mem-per-cpu-mb" : 10000,
-      "cpus-per-task"  : 5,
+      "cpus-per-task"  : 10,
       "job-name"       : "AllMine.{rule}",
       "output"    : "~/logs/{rule}.out",
       "error"     : "~/logs/{rule}.err"
     },
 
     "star_pe_FP" : {
-      "cpus-per-task"  : 2,
+      "cpus-per-task"  : 10,
       "mem-per-cpu-mb" : 10000
     },
     "star_pe_SP" : {
-      "cpus-per-task"  : 2,
+      "cpus-per-task"  : 10,
       "mem-per-cpu-mb" : 10000
     },
 
     "star_se_FP" : {
-      "cpus-per-task"  : 2,
+      "cpus-per-task"  : 10,
       "mem-per-cpu-mb" : 10000
     },
     "star_se_SP" : {
-      "cpus-per-task"  : 2,
+      "cpus-per-task"  : 10,
       "mem-per-cpu-mb" : 10000
     },
 
     "bwa_paired" : {
-      "cpus-per-task"  : 5,
+      "cpus-per-task"  : 10,
       "mem-per-cpu-mb" : 30000
     },
     "bwa_single" : {
-      "cpus-per-task"  : 5,
+      "cpus-per-task"  : 10,
       "mem-per-cpu-mb" : 30000
     },
 

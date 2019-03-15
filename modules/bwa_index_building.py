@@ -33,7 +33,6 @@ rule bwa_index:
         protected(config["REF"] + config["GENOME"] + ".pac"),
         protected(config["REF"] + config["GENOME"] + ".sa")
     message: "Building BWA index for reference genome {input.genome}\n"
-    threads: config["THREADS"]
     shell:
         """
         singularity exec -B /mnt/nas_eic/gafl01/home/gafl/tbersez ~/Allmine/AllMine bwa index \

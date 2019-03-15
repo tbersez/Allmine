@@ -23,8 +23,7 @@ rule parse_bam_with_bed:
         bam = config["MAP"] + "{samples}_sorted_parsed.bam"
     params:
         bed = config["REGIONS"],
-        ref = config["REF"] + config["GENOME"],
-        threads = config["THREADS"]
+        ref = config["REF"] + config["GENOME"]
     message: "Parsing {input.bam} using the blueprint {params.bed} \n"
     shell:
         """

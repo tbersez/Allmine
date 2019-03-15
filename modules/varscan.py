@@ -39,10 +39,10 @@ rule varscan:
         singularity exec -B /mnt/nas_eic/gafl01/home/gafl/tbersez ~/Allmine/AllMine \
         varscan mpileup2snp \
         --p-value 0.99 \
-        --min-coverage 10 \
+        --min-coverage 8 \
         --output-vcf 1 \
         --min-strands2 1 \
-        --min-var-freq 0.80 \
+        --min-var-freq 0.05 \
         --min-avg-qual 20 \
         > {output.var}
         """

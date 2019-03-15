@@ -43,7 +43,8 @@ rule fastp_paired:
         -O {output.R2} \
         -R {params.title} \
         -h {params.html} \
-        -j {params.json}
+        -j {params.json} \
+        -w 10
 
         rm -f {params.html} {params.json}
         """
