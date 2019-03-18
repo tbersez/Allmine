@@ -23,11 +23,13 @@ rule parse_bam_with_bed:
         bam = config["MAP"] + "{samples}_sorted_parsed.bam"
     params:
         bed = config["REGIONS"],
-        ref = config["REF"] + config["GENOME"]
+        ref = config["REF"] + config["GENOME"],
+        bind = config["BIND"],
+        cont = config["CONT"]
     message: "Parsing {input.bam} using the blueprint {params.bed} \n"
     shell:
         """
-        singularity exec -B /mnt/nas_eic/gafl01/home/gafl/tbersez ~/Allmine/AllMine samtools view \
+        singularity exec -B {params.bind} {params.cont} samtools view \
         -b \
         -L {params.bed} \
         -O BAM \

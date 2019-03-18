@@ -23,12 +23,14 @@ rule star_se_SP:
             bam = config["MAP"] + "{samples}_sorted.bam"
         params:
             prefix = config["MAP"] + "{samples}.",
-            tmp = config["MAP"] + "SP/STAR_TMP/"
+            tmp = config["MAP"] + "SP/STAR_TMP/",
+            bind = config["BIND"],
+            cont = config["CONT"]
         message : "Running STAR second pass with {input.R1}. \n"
         shell:
             """
-            singularity exec -B /mnt/nas_eic/gafl01/home/gafl/tbersez \
-            ~/Allmine/AllMine STAR \
+            singularity exec -B {params.bind} {params.cont} \
+            STAR \
             --runThreadN 10 \
             --genomeDir {input.genomeDir} \
             --readFilesIn {input.R1} \

@@ -27,12 +27,14 @@ rule bwa_single :
     output:
         bam = protected(config["MAP"] + "{samples}_sorted.bam")
     params:
-        idxbase = config["REF"] + config["GENOME"]
+        idxbase = config["REF"] + config["GENOME"],
+        bind = config["BIND"],
+        cont = config["CONT"]
     message: "Mapping reads {input.R1} to {params.idxbase} using BWA.\n"
     #converting to bam, sorting and removing dupplicates in a single command!
     shell:
         """
-        singularity exec ~/Allmine/AllMine bwa mem \
+        singularity exec -B {params.bind} {params.cont} bwa mem \
         -t 10 \
         {params.idxbase} \
         {input.R1} \

@@ -25,10 +25,13 @@ rule snpEff:
     output:
         vcf = config["VAR"] + "{samples}/{samples}_varscan_filtered_parsed_annotated.vcf",
         rep = config["VAR"] + "{samples}/{samples}_annotated_report.html"
+    params:
+        bind = config["BIND"],
+        cont = config["CONT"]
     message: "Annotating {input.vcf} with snpEff \n"
     shell:
         """
-        singularity exec -B /mnt/nas_eic/gafl01/home/gafl/tbersez ~/Allmine/AllMine \
+        singularity exec -B {params.bind} {params.cont} \
         java -jar /snpEff/snpEff.jar \
         eff \
         -i vcf \

@@ -23,20 +23,22 @@ rule varscan:
     input:
         bam = config["MAP"] + "{samples}_sorted_parsed.bam"
     params:
-        ref = config["REF"] + config["GENOME"]
+        ref = config["REF"] + config["GENOME"],
+        bind = config["BIND"],
+        cont = config["CONT"]
     output:
-        var = config["VAR"] + "{samples}/{samples}_varscan.vcf"
+        var = config["VAR"] + "{samples}/{samples}_varscan.vcf",
     message: "Looking for SNP in {input.bam} with Varscan \n"
     #from mpileup to varscan to save disk space
     shell:
         """
-        singularity exec -B /mnt/nas_eic/gafl01/home/gafl/tbersez ~/Allmine/AllMine \
+        singularity exec -B {params.bind} {params.cont} \
         samtools mpileup \
         -C 50 \
         -A \
         -f {params.ref} \
         {input.bam} | \
-        singularity exec -B /mnt/nas_eic/gafl01/home/gafl/tbersez ~/Allmine/AllMine \
+        singularity exec -B {params.bind} {params.cont} \
         varscan mpileup2snp \
         --p-value 0.99 \
         --min-coverage 8 \

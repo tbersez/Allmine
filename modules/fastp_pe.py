@@ -33,10 +33,12 @@ rule fastp_paired:
     params:
         title = lambda wildcards: config["samples"][wildcards.samples]["name"],
         html = config["TRIMMED"] + "{samples}_out.html",
-        json = config["TRIMMED"] + "{samples}_out.json"
+        json = config["TRIMMED"] + "{samples}_out.json",
+        bind = config["BIND"],
+        cont = config["CONT"]
     shell:
         """
-        singularity exec -B /mnt/nas_eic/gafl01/home/gafl/tbersez ~/Allmine/AllMine fastp \
+        singularity exec -B {params.bind} {params.cont} fastp \
         -i {input.R1} \
         -I {input.R2} \
         -o {output.R1} \

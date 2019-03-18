@@ -26,12 +26,14 @@ rule STAR_REindex:
         # Regenerated genome indexes
         flag = config["REF"] + "REindexing_done.txt"
     params:
-        geno_dir = config["REF"]
+        geno_dir = config["REF"],
+        bind = config["BIND"],
+        cont = config["CONT"]
     message: "RE-Indexing {input.genome} using de novo SJ from the first pass \n"
     shell:
         """
-        singularity exec -B /mnt/nas_eic/gafl01/home/gafl/tbersez \
-        ~/Allmine/AllMine STAR --runMode genomeGenerate \
+        singularity exec -B {params.bind} {params.cont} STAR \
+        --runMode genomeGenerate \
         --runThreadN 10 \
         --genomeDir  {params.geno_dir}\
         --genomeFastaFiles {input.genome} \

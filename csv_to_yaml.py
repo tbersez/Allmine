@@ -40,6 +40,8 @@ genome_dir = input('Path to the reference genome_dir : ')
 regions = input('Path to bed file with regions of interest : ')
 tech = input('DNAseq or RNAseq data (enter d or r) : ')
 mode = input('Paired end or single end reads (enter p or s) : ')
+bind = input('Bind path point to your home directory (absolute path) : ')
+container_path = input('Absolute path to AllMine container : ')
 
 # Parse the samples sheet in csv format
 with open(sys.argv[1], 'r') as file:
@@ -104,7 +106,7 @@ with open(sys.argv[1], 'r') as file:
         yaml.write("MAP: " + cwd + "mapped/ \n")
         yaml.write("VAR: " + cwd + "variant/ \n")
         yaml.write("REGIONS: " + cwd + regions + "\n")
-        yaml.write("LOG: " + cwd + "log/ \n")
+        yaml.write("CONT: " + cwd + container_path + "\n")
 
         # SAMPLE objects creation
         yaml.write("samples:\n")

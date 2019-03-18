@@ -29,10 +29,12 @@ rule fastp_single:
         json = config["TRIMMED"] + "{samples}_out.json"
     message: "Running fastp on file {input.R1}\n"
     params:
-        title = lambda wildcards: config["samples"][wildcards.samples]["name"]
+        title = lambda wildcards: config["samples"][wildcards.samples]["name"],
+        bind = config["BIND"],
+        cont = config["CONT"]
     shell:
         """
-        singularity exec -B /mnt/nas_eic/gafl01/home/gafl/tbersez ~/Allmine/AllMine fastp \
+        singularity exec -B {params.bind} {params.cont} fastp \
         -i {input.R1} \
         -o {output.R1} \
         -R {params.title} \

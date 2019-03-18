@@ -17,12 +17,14 @@ rule snpSift:
         vcf = config["VAR"] + "{samples}/{samples}_varscan_filtered_parsed_annotated.vcf"
     output:
         non_syno = config["VAR"] + "{samples}/{samples}_non_synonymous.vcf"
+    params:
+        bind = config["BIND"],
+        cont = config["CONT"]
     message: "Getting non synonymous variants from {input.vcf} \n"
     shell:
         """
         cat {input.vcf} | \
-        singularity exec -B /mnt/nas_eic/gafl01/home/gafl/tbersez \
-        ~/Allmine/AllMine \
+        singularity exec -B {params.bind} {params.cont} \
         java -jar /snpEff/SnpSift.jar filter "ANN[*].EFFECT has 'missense_variant'" \
         > {output.non_syno}
         """

@@ -30,12 +30,14 @@ rule star_pe_FP:
         denovo_SJ = config["MAP"] + "FP/STAR_SJ/" + "{samples}.SJ.out.tab"
     params:
         prefix = config["MAP"] + "FP/STAR_SJ/" + "{samples}.",
-        tmp = config["MAP"] + "FP/" + "{samples}_STAR_TMP"
+        tmp = config["MAP"] + "FP/" + "{samples}_STAR_TMP",
+        bind = config["BIND"],
+        cont = config["CONT"]
     message : "Running STAR first pass with {input.R1} and {input.R2} to get denovo SJ. \n"
     shell :
         """
-        singularity exec -B /mnt/nas_eic/gafl01/home/gafl/tbersez \
-         ~/Allmine/AllMine STAR --runThreadN 10 \
+        singularity exec -B {params.bind} {params.cont} \
+        STAR --runThreadN 10 \
         --genomeDir {input.genomeDir} \
         --readFilesIn {input.R1} {input.R2} \
         --outTmpDir {params.tmp} \

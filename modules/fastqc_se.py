@@ -21,11 +21,14 @@ rule fastqc_single:
     output:
         dir = directory('QC_post_preproc/{samples}'),
         flag = "QC_post_preproc/{samples}.flag"
+    params:
+        bind = config["BIND"],
+        cont = config["CONT"]
     message: "QC on trimmed reads {input.R1} with FastQC \n"
     shell:
         """
         mkdir {output.dir}
-        singularity exec -B /mnt/nas_eic/gafl01/home/gafl/tbersez ~/Allmine/AllMine \
+        singularity exec -B {params.bind} {params.cont} \
         fastqc -q \
         --noextract \
         -o {output.dir} {input.R1}

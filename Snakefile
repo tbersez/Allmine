@@ -43,10 +43,10 @@ include : cwd + "modules/bam_with_bed_parse.py"
 include : cwd + "modules/varscan.py"
 include : cwd + "modules/snpEff.py"
 include : cwd + "modules/snpsift_non_synonymous.py"
+include : cwd + "modules/make_report.py"
 
+# target files...
 rule all:
     input:
-        expand(config["VAR"] + "{samples}/{samples}_varscan_filtered_parsed_annotated.vcf", samples = config["samples"]),
-        expand(config["VAR"] + "{samples}/{samples}_annotated_report.html", samples = config["samples"]),
-        expand(config["VAR"] + "{samples}/{samples}_non_synonymous.vcf", samples = config["samples"]),
+        'Non_synonymous_variants_summary.tab',
         "Global_QC_summary.html"

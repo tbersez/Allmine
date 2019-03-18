@@ -32,9 +32,12 @@ rule bwa_index:
         protected(config["REF"] + config["GENOME"] + ".bwt"),
         protected(config["REF"] + config["GENOME"] + ".pac"),
         protected(config["REF"] + config["GENOME"] + ".sa")
+    params:
+        bind = config["BIND"],
+        cont = config["CONT"]
     message: "Building BWA index for reference genome {input.genome}\n"
     shell:
         """
-        singularity exec -B /mnt/nas_eic/gafl01/home/gafl/tbersez ~/Allmine/AllMine bwa index \
+        singularity exec -B {params.bind} {params.cont} bwa index \
         {input.genome}
         """

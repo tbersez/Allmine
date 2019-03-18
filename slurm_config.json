@@ -76,25 +76,30 @@
 
     "bwa_paired" : {
       "cpus-per-task"  : 10,
-      "mem-per-cpu-mb" : 30000
+      "mem-per-cpu-mb" : 20000
     },
     "bwa_single" : {
       "cpus-per-task"  : 10,
-      "mem-per-cpu-mb" : 30000
+      "mem-per-cpu-mb" : 20000
     },
 
     "varscan" : {
       "cpus-per-task"  : 1,
-      "mem-per-cpu-mb" : 10000
+      "mem-per-cpu-mb" : 5000
     },
 
     "snpEff" : {
       "cpus-per-task"  : 1,
-      "mem-per-cpu-mb" : 10000
+      "mem-per-cpu-mb" : 3000
     },
 
     "snpSift" : {
       "cpus-per-task"  : 1,
-      "mem-per-cpu-mb" : 2000
+      "mem-per-cpu-mb" : 1000
+    },
+
+    "make_report" : {
+      "cpus-per-task"  : 1,
+      "mem-per-cpu-mb" : 1000
     }
 }
