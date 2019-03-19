@@ -29,6 +29,8 @@ rule varscan:
     output:
         var = config["VAR"] + "{samples}/{samples}_varscan.vcf",
     message: "Looking for SNP in {input.bam} with Varscan \n"
+    benchmark:
+        "benchmarks/varscan/{samples}.tsv"
     #from mpileup to varscan to save disk space
     shell:
         """

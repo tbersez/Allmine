@@ -29,6 +29,8 @@ rule STAR_REindex:
         geno_dir = config["REF"],
         bind = config["BIND"],
         cont = config["CONT"]
+    benchmark:
+            "benchmarks/star_reindex/REindexing.tsv"
     message: "RE-Indexing {input.genome} using de novo SJ from the first pass \n"
     shell:
         """

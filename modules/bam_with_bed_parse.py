@@ -26,6 +26,8 @@ rule parse_bam_with_bed:
         ref = config["REF"] + config["GENOME"],
         bind = config["BIND"],
         cont = config["CONT"]
+    benchmark:
+        "benchmarks/bam_parse/{samples}.tsv"
     message: "Parsing {input.bam} using the blueprint {params.bed} \n"
     shell:
         """

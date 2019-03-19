@@ -32,16 +32,19 @@ rule bwa_paired :
         idxbase = config["REF"] + config["GENOME"],
         bind = config["BIND"],
         cont = config["CONT"]
+    benchmark:
+        "benchmarks/bwa/{samples}.tsv"
     message: "Mapping reads {input.R1} and {input.R2} to {params.idxbase} using BWA.\n"
     #converting to bam, sorting and removing dupplicates in a single command!
     shell:
         """
         singularity exec -B {params.bind} {params.cont} bwa mem \
         -t 10 \
+        -M \
         {params.idxbase} \
         {input.R1} \
         {input.R2} \
-        | /usr/bin/samtools view -Sb -@ 5 - \
-        | /usr/bin/samtools sort -@ 5 -o - \
+        | /usr/bin/samtools view -Sb -@ 10 - \
+        | /usr/bin/samtools sort -@ 10 -o - \
         | /usr/bin/samtools rmdup -s - {output.bam}
         """

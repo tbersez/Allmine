@@ -24,6 +24,8 @@ rule fastqc_single:
     params:
         bind = config["BIND"],
         cont = config["CONT"]
+    benchmark:
+        "benchmarks/fastqc/{samples}.tsv"
     message: "QC on trimmed reads {input.R1} with FastQC \n"
     shell:
         """

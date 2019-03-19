@@ -28,6 +28,8 @@ rule snpEff:
     params:
         bind = config["BIND"],
         cont = config["CONT"]
+    benchmark:
+        "benchmarks/snpEff/{samples}.tsv"
     message: "Annotating {input.vcf} with snpEff \n"
     shell:
         """

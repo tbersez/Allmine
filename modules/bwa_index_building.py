@@ -35,6 +35,8 @@ rule bwa_index:
     params:
         bind = config["BIND"],
         cont = config["CONT"]
+    benchmark:
+        "benchmarks/bwa_index/index.tsv"
     message: "Building BWA index for reference genome {input.genome}\n"
     shell:
         """

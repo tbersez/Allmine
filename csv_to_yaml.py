@@ -106,7 +106,7 @@ with open(sys.argv[1], 'r') as file:
         yaml.write("MAP: " + cwd + "mapped/ \n")
         yaml.write("VAR: " + cwd + "variant/ \n")
         yaml.write("REGIONS: " + cwd + regions + "\n")
-        yaml.write("CONT: " + cwd + container_path + "\n")
+        yaml.write("CONT: " + container_path + "\n")
 
         # SAMPLE objects creation
         yaml.write("samples:\n")

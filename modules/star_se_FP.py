@@ -31,6 +31,8 @@ rule star_se_FP:
         tmp = directory(config["MAP"] + "FP/" + "{samples}_STAR_TMP"),
         bind = config["BIND"],
         cont = config["CONT"]
+    benchmark:
+        "benchmarks/star_FP/{samples}.tsv"
     message : "Running STAR first pass with {input.R1} to get denovo SJ. \n"
     shell :
         """

@@ -26,6 +26,8 @@ rule star_se_SP:
             tmp = config["MAP"] + "SP/STAR_TMP/",
             bind = config["BIND"],
             cont = config["CONT"]
+        benchmark:
+            "benchmarks/star_SP/{samples}.tsv"
         message : "Running STAR second pass with {input.R1}. \n"
         shell:
             """

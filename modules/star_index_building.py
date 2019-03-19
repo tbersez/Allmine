@@ -43,6 +43,8 @@ rule STAR_index:
         geno_dir = config["REF"],
         bind = config["BIND"],
         cont = config["CONT"]
+    benchmark:
+        "benchmarks/star_index/index.tsv"
     message: "Indexing {input.genome} with {input.ano} for STAR aligner \n"
     shell:
         """

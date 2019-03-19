@@ -36,6 +36,8 @@ rule fastp_paired:
         json = config["TRIMMED"] + "{samples}_out.json",
         bind = config["BIND"],
         cont = config["CONT"]
+    benchmark:
+        "benchmarks/fastp/{samples}.tsv"
     shell:
         """
         singularity exec -B {params.bind} {params.cont} fastp \

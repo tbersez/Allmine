@@ -18,5 +18,5 @@ rule make_report :
         report = 'Non_synonymous_variants_summary.tab'
     shell:
         """
-        ./report_generator.py
+        ./modules/report_generator.py
         """
