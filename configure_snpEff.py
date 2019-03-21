@@ -24,6 +24,6 @@ os.system(cp_anno)
 os.system('echo ' + "snpEff_db.genome : snpEff_db" + ' >> snpEff.config')
 
 # build the db
-os.system('singularity exec -B /mnt/nas_eic/gafl01/home/gafl/tbersez ~/Allmine/AllMine java -jar /snpEff/snpEff.jar build -v -gff3 snpEff_db')
+os.system('singularity exec -B '+ config["BIND"] + ' ' + config["CONT"] + ' java -jar /snpEff/snpEff.jar build -v -gff3 snpEff_db')
 
 sys.exit()
