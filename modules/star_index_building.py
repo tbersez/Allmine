@@ -50,7 +50,7 @@ rule STAR_index:
         """
         singularity exec -B {params.bind} {params.cont} \
         STAR --runMode genomeGenerate \
-        --runThreadN 10 \
+        --runThreadN 20 \
         --genomeDir  {params.geno_dir}\
         --genomeFastaFiles {input.genome} \
         --sjdbGTFfile {input.ano}

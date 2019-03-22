@@ -28,7 +28,7 @@ rule star_se_FP:
         denovo_SJ = config["MAP"] + "FP/STAR_SJ/" + "{samples}.SJ.out.tab"
     params:
         prefix = config["MAP"] + "FP/STAR_SJ/" + "{samples}.",
-        tmp = directory(config["MAP"] + "FP/" + "{samples}_STAR_TMP"),
+        tmp = config["MAP"] + "FP/" + "{samples}_STAR_TMP",
         bind = config["BIND"],
         cont = config["CONT"]
     benchmark:
@@ -42,5 +42,6 @@ rule star_se_FP:
         --genomeDir {input.genomeDir} \
         --readFilesIn {input.R1} \
         --outTmpDir {params.tmp} \
+        --readFilesCommand zcat \
         --outFileNamePrefix {params.prefix}
         """

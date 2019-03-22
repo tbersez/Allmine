@@ -24,14 +24,14 @@ rule fastp_single:
     input:
         R1 = lambda wildcards: config["samples"][wildcards.samples]["R1"]
     output:
-        R1 = config["TRIMMED"] + "{samples}_trim.fastq.gz",
-        html = config["TRIMMED"] + "{samples}_out.html",
-        json = config["TRIMMED"] + "{samples}_out.json"
+        R1 = config["TRIMMED"] + "{samples}_trim.fastq.gz"
     message: "Running fastp on file {input.R1}\n"
     params:
         title = lambda wildcards: config["samples"][wildcards.samples]["name"],
         bind = config["BIND"],
-        cont = config["CONT"]
+        cont = config["CONT"],
+        html = config["TRIMMED"] + "{samples}_out.html",
+        json = config["TRIMMED"] + "{samples}_out.json"
     benchmark:
         "benchmarks/fastp/{samples}.tsv"
     shell:
@@ -40,9 +40,10 @@ rule fastp_single:
         -i {input.R1} \
         -o {output.R1} \
         -R {params.title} \
-        -h {output.html} \
-        -j {output.json} \
+        -h {params.html} \
+        -j {params.json} \
+        --max_len1 350 \
         -w 10
 
-        rm -f {output.html} {output.json}
+        rm -f {params.html} {params.json}
         """

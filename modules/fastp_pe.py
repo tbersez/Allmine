@@ -48,6 +48,7 @@ rule fastp_paired:
         -R {params.title} \
         -h {params.html} \
         -j {params.json} \
+        --max_len1 350 \
         -w 10
 
         rm -f {params.html} {params.json}

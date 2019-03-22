@@ -17,13 +17,15 @@
 
 rule star_se_SP:
         input:
+            # fake input
+            flag = config["REF"] + "REindexing_done.txt",
             R1 = config["TRIMMED"] + "{samples}_trim.fastq.gz",
             genomeDir = config["REF"]
         output:
             bam = config["MAP"] + "{samples}_sorted.bam"
         params:
             prefix = config["MAP"] + "{samples}.",
-            tmp = config["MAP"] + "SP/STAR_TMP/",
+            tmp = config["MAP"] + "SP/" + "{samples}_sp_STAR_TMP",
             bind = config["BIND"],
             cont = config["CONT"]
         benchmark:
