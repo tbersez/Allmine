@@ -18,7 +18,7 @@ rule parse_bam_with_bed:
     input:
     # TODO: fat bug here !
     #       config["MAP"] + "SP/{samples}_sorted.bam" for rna mode
-        bam = config["MAP"] + "{samples}_sorted.bam"
+        bam = config["MAP"] + "{samples}_sorted_SP.bam"
     output:
         bam = config["MAP"] + "{samples}_sorted_parsed.bam"
     params:

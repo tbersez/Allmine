@@ -33,6 +33,8 @@ for sample in samples:
             if variant not in de_novo_var:
                 # new variant
                 de_novo_var.append(variant)
+                id = de_novo_var.index(variant)
+                is_in_sample[id] = sample
             else:
                 id = de_novo_var.index(variant)
                 if is_in_sample[id] == None:
@@ -47,6 +49,7 @@ with open('Non_synonymous_variants_summary.tab', 'w') as out:
     for snp in de_novo_var:
         for i in snp :
             out.write(i + '\t')
-        out.write(is_in_sample[id] + '\n')
+        out.write(is_in_sample[id])
+        out.write('\n')
         id += 1
 sys.exit()
