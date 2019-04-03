@@ -25,7 +25,7 @@ rule bwa_single :
         #fake input used to force index building before alignement
         idx = config["REF"] + config["GENOME"] + ".bwt"
     output:
-        bam = protected(config["MAP"] + "{samples}_sorted.bam")
+        bam = config["MAP"] + "{samples}_sorted.bam.gz"
     params:
         idxbase = config["REF"] + config["GENOME"],
         bind = config["BIND"],
@@ -43,5 +43,6 @@ rule bwa_single :
         {input.R1} \
         | /usr/bin/samtools view -Sb -@ 10 - \
         | /usr/bin/samtools sort -@ 10 -o - \
-        | /usr/bin/samtools rmdup -s - {output.bam}
+        | /usr/bin/samtools rmdup -s - \
+        | gzip --stdout > {output.bam}
         """

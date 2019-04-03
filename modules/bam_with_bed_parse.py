@@ -16,9 +16,7 @@
 
 rule parse_bam_with_bed:
     input:
-    # TODO: fat bug here !
-    #       config["MAP"] + "SP/{samples}_sorted.bam" for rna mode
-        bam = config["MAP"] + "{samples}_sorted_SP.bam"
+        bam = config["MAP"] + "{samples}_sorted.bam.gz"
     output:
         bam = config["MAP"] + "{samples}_sorted_parsed.bam"
     params:
@@ -31,9 +29,11 @@ rule parse_bam_with_bed:
     message: "Parsing {input.bam} using the blueprint {params.bed} \n"
     shell:
         """
+        gzip --stdout -d {input.bam} | \
         singularity exec -B {params.bind} {params.cont} samtools view \
         -b \
         -L {params.bed} \
         -O BAM \
-        {input.bam} > {output.bam}
+        - \
+        > {output.bam}
         """

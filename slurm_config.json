@@ -101,5 +101,15 @@
     "make_report" : {
       "cpus-per-task"  : 1,
       "mem-per-cpu-mb" : 1000
+    },
+
+    "whatshap" : {
+      "cpus-per-task"  : 1,
+      "mem-per-cpu-mb" : 1000
+    },
+
+    "bam_index" : {
+      "cpus-per-task"  : 1,
+      "mem-per-cpu-mb" : 2000
     }
 }

@@ -84,11 +84,11 @@ From: ubuntu:18.04
   echo -e "\e[1;32mInstalling AllMine bioinformatics tools\e[0m"
   PATH="/opt/miniconda/bin:$PATH"
   conda install -y -q -c bioconda bwa=0.7.17
-  conda install -y -q -c bioconda/label/cf201901 multiqc
   conda install -y -q -c bioconda samtools=1.9
   conda install -y -q -c bioconda star=2.7.0d
   conda install -y -q -c bioconda varscan=2.4.3
   conda install -y -q -c bioconda fastp=0.19.7
   conda install -y -q -c bioconda fastqc=0.11.8
+  conda install -y -q -c bioconda whatshap
 
   echo -e "\e[1;32mFinished! \e[0m"

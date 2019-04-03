@@ -35,7 +35,6 @@ cwd = os.getcwd() + "/"
 
 # modules loading...
 include : cwd + "modules/" + config["QC"]
-include : cwd + "modules/multiqc.py"
 include : cwd + "modules/" + config["FASTP"]
 include : cwd + "modules/" + config["INDEXER"]
 include : cwd + "modules/" + config["ALLIGNER"]
@@ -44,9 +43,11 @@ include : cwd + "modules/varscan.py"
 include : cwd + "modules/snpEff.py"
 include : cwd + "modules/snpsift_non_synonymous.py"
 include : cwd + "modules/make_report.py"
+include : cwd + "modules/bam_index.py"
+include : cwd + "modules/whatshap.py"
 
 # target files...
 rule all:
     input:
         'Non_synonymous_variants_summary.tab',
-        "Global_QC_summary.html"
+        expand(config["VAR"] + "{samples}/{samples}_varscan_phased.vcf", samples = config["samples"])

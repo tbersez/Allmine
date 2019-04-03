@@ -24,10 +24,10 @@ rule star_pe_SP:
             R2 = config["TRIMMED"] + "{samples}_2_trim.fastq.gz",
             genomeDir = config["REF"]
         output:
-            bam = config["MAP"] + "{samples}_sorted.bam"
+            bam = config["MAP"] + "{samples}_sorted.bam.gz"
         params:
             prefix = config["MAP"] + "SP/" + "{samples}.",
-            tmp = config["MAP"] + "SP/" + "{samples}_sp_STAR_TMP",
+            tmp = config["MAP"] + "SP/" + "{samples}_SP_STAR_TMP",
             bind = config["BIND"],
             cont = config["CONT"]
         benchmark:
@@ -46,5 +46,5 @@ rule star_pe_SP:
             --outTmpDir {params.tmp} \
             --outFilterScoreMinOverLread 0.3 \
             --outFilterMatchNminOverLread 0.3 \
-            --readFilesCommand zcat > {output.bam}
+            --readFilesCommand zcat | gzip --stdout > {output.bam}
             """

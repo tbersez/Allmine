@@ -38,7 +38,8 @@ rule STAR_index:
         config["REF"] + "sjdbInfo.txt",
         config["REF"] + "sjdbList.fromGTF.out.tab",
         config["REF"] + "sjdbList.out.tab",
-        config["REF"] + "transcriptInfo.tab"
+        config["REF"] + "transcriptInfo.tab",
+        config["REF"] + config["GENOME"] + ".fai"
     params:
         geno_dir = config["REF"],
         bind = config["BIND"],
@@ -54,6 +55,8 @@ rule STAR_index:
         --genomeDir  {params.geno_dir}\
         --genomeFastaFiles {input.genome} \
         --sjdbGTFfile {input.ano}
+        singularity exec -B {params.bind} {params.cont} \
+        samtools faidx {input.genome}
         mkdir -p mapped/FP/STAR_SJ
         mkdir -p mapped/SP
         """
