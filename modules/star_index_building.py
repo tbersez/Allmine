@@ -39,7 +39,8 @@ rule STAR_index:
         config["REF"] + "sjdbList.fromGTF.out.tab",
         config["REF"] + "sjdbList.out.tab",
         config["REF"] + "transcriptInfo.tab",
-        config["REF"] + config["GENOME"] + ".fai"
+        config["REF"] + config["GENOME"] + ".fai",
+        ind = config["REF"] + "INdexed.text"
     params:
         geno_dir = config["REF"],
         bind = config["BIND"],
@@ -59,4 +60,5 @@ rule STAR_index:
         samtools faidx {input.genome}
         mkdir -p mapped/FP/STAR_SJ
         mkdir -p mapped/SP
+        touch {output.ind}
         """

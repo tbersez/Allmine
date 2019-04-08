@@ -14,7 +14,7 @@
 
 rule snpSift:
     input:
-        vcf = config["VAR"] + "{samples}/{samples}_varscan_filtered_parsed_annotated.vcf"
+        vcf = config["VAR"] + "{samples}/{samples}_varscan_annotated.vcf"
     output:
         non_syno = config["VAR"] + "{samples}/{samples}_non_synonymous.vcf"
     params:

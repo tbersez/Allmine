@@ -22,7 +22,7 @@ rule star_se_SP:
             R1 = config["TRIMMED"] + "{samples}_trim.fastq.gz",
             genomeDir = config["REF"]
         output:
-            bam = config["MAP"] + "{samples}_sorted_SP.bam.gz"
+            bam = config["MAP"] + "{samples}_sorted.bam.gz"
         params:
             prefix = config["MAP"] + "{samples}.",
             tmp = config["MAP"] + "SP/" + "{samples}_sp_STAR_TMP",

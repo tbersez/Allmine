@@ -22,7 +22,7 @@ rule star_se_FP:
     input:
         R1 = config["TRIMMED"] + "{samples}_trim.fastq.gz",
         #fake input to force index building
-        ano = config["REF"] + "SAindex",
+        config["REF"] + "INdexed.text",
         genomeDir = config["REF"]
     output:
         denovo_SJ = config["MAP"] + "FP/STAR_SJ/" + "{samples}.SJ.out.tab"
