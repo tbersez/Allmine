@@ -29,7 +29,8 @@ for sample in samples:
             alt = line [4]
             eff = line[7].strip().split("|")[1]
             gene = line[7].strip().split("|")[18]
-            variant = (chr, base, ref, alt, gene)
+            het = line[9].strip().split(":")[0]
+            variant = (chr, base, ref, alt, gene, het)
             if variant not in de_novo_var:
                 # new variant
                 de_novo_var.append(variant)
@@ -45,7 +46,7 @@ for sample in samples:
                     is_in_sample[id] = is_in_sample[id] + (", " + sample)
 with open('Non_synonymous_variants_summary.tab', 'w') as out:
     id = 0
-    out.write("chr\tposition\tref\talt\tgene\tsamples\n")
+    out.write("chr\tposition\tref\talt\tgene\tgenotype\tsamples\n")
     for snp in de_novo_var:
         for i in snp :
             out.write(i + '\t')
