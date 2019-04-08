@@ -21,9 +21,8 @@ include : "./star_se_SP.py"
 rule star_se_FP:
     input:
         R1 = config["TRIMMED"] + "{samples}_trim.fastq.gz",
-        #fake input to force index building
-        config["REF"] + "INdexed.text",
-        genomeDir = config["REF"]
+        flag = ancient(config["REF"] + "INdexed.text"),
+        genomeDir = ancient(config["REF"])
     output:
         denovo_SJ = config["MAP"] + "FP/STAR_SJ/" + "{samples}.SJ.out.tab"
     params:

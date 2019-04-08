@@ -24,7 +24,7 @@ rule STAR_REindex:
         denovo_SJ = expand(config["MAP"] + "FP/STAR_SJ/" + "{samples}.SJ.out.tab", samples = config["samples"])
     output:
         # Regenerated genome indexes
-        flag = config["REF"] + "REindexing_done.txt"
+        touch(config["REF"] + "REindexing_done.txt")
     params:
         geno_dir = config["REF"],
         bind = config["BIND"],
@@ -41,5 +41,4 @@ rule STAR_REindex:
         --genomeFastaFiles {input.genome} \
         --sjdbFileChrStartEnd {input.denovo_SJ} \
         --sjdbGTFfile {input.ano}
-        touch {output.flag}
         """

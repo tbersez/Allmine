@@ -40,7 +40,7 @@ rule STAR_index:
         config["REF"] + "sjdbList.out.tab",
         config["REF"] + "transcriptInfo.tab",
         config["REF"] + config["GENOME"] + ".fai",
-        ind = config["REF"] + "INdexed.text"
+        touch(config["REF"] + "INdexed.text")
     params:
         geno_dir = config["REF"],
         bind = config["BIND"],

@@ -23,9 +23,8 @@ rule star_pe_FP:
     input:
         R1 = config["TRIMMED"] + "{samples}_1_trim.fastq.gz",
         R2 = config["TRIMMED"] + "{samples}_2_trim.fastq.gz",
-        #fake input to force index building
-        flag = config["REF"] + "INdexed.text",
-        genomeDir = config["REF"]
+        flag = ancient(config["REF"] + "INdexed.text"),
+        genomeDir = ancient(config["REF"])
     output:
         denovo_SJ = config["MAP"] + "FP/STAR_SJ/" + "{samples}.SJ.out.tab"
     params:

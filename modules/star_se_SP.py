@@ -18,9 +18,9 @@
 rule star_se_SP:
         input:
             # fake input
-            flag = config["REF"] + "REindexing_done.txt",
+            flag = ancient(config["REF"] + "REindexing_done.txt"),
             R1 = config["TRIMMED"] + "{samples}_trim.fastq.gz",
-            genomeDir = config["REF"]
+            genomeDir = ancient(config["REF"])
         output:
             bam = config["MAP"] + "{samples}_sorted.bam.gz"
         params:
