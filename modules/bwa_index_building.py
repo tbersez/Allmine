@@ -27,11 +27,12 @@ rule bwa_index:
     input:
         genome = config["REF"] + config["GENOME"]
     output:
-        protected(config["REF"] + config["GENOME"] + ".amb"),
-        protected(config["REF"] + config["GENOME"] + ".ann"),
-        protected(config["REF"] + config["GENOME"] + ".bwt"),
-        protected(config["REF"] + config["GENOME"] + ".pac"),
-        protected(config["REF"] + config["GENOME"] + ".sa")
+        config["REF"] + config["GENOME"] + ".amb",
+        config["REF"] + config["GENOME"] + ".ann",
+        config["REF"] + config["GENOME"] + ".bwt",
+        config["REF"] + config["GENOME"] + ".pac",
+        config["REF"] + config["GENOME"] + ".sa",
+        config["REF"] + config["GENOME"] + ".fai"
     params:
         bind = config["BIND"],
         cont = config["CONT"]
@@ -40,6 +41,10 @@ rule bwa_index:
     message: "Building BWA index for reference genome {input.genome}\n"
     shell:
         """
-        singularity exec -B {params.bind} {params.cont} bwa index \
+        singularity exec -B {params.bind} {params.cont} \
+        bwa index \
+        {input.genome}
+        singularity exec -B {params.bind} {params.cont} \
+        samtools faidx \
         {input.genome}
         """

@@ -39,6 +39,8 @@ rule snpEff:
         -i vcf \
         -o vcf \
         -canon \
+        -geneId \
+        -onlyProtein \
         -htmlStats {output.rep} \
         -config ./snpEff.config \
         snpEff_db \

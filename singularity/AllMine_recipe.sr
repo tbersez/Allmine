@@ -90,5 +90,6 @@ From: ubuntu:18.04
   conda install -y -q -c bioconda fastp=0.19.7
   conda install -y -q -c bioconda fastqc=0.11.8
   conda install -y -q -c bioconda whatshap
+  conda install -c bioconda bcftools=1.9
 
   echo -e "\e[1;32mFinished! \e[0m"
