@@ -27,7 +27,8 @@ rule bwa_paired :
         #fake input used to force index building before alignement
         idx = config["REF"] + config["GENOME"] + ".bwt"
     output:
-        bam = config["MAP"] + "{samples}_sorted.bam.gz"
+        bam = temp(config["MAP"] + "{samples}_sorted.bam"),
+        bam_gz = config["MAP"] + "{samples}_sorted.bam.gz"
     params:
         idxbase = config["REF"] + config["GENOME"],
         bind = config["BIND"],
@@ -46,6 +47,6 @@ rule bwa_paired :
         {input.R2} \
         | /usr/bin/samtools view -Sb -@ 10 - \
         | /usr/bin/samtools sort -@ 10 -o - \
-        | /usr/bin/samtools rmdup -s - \
-        | gzip --stdout > {output.bam}
+        | /usr/bin/samtools rmdup -s - {output.bam}
+        gzip --keep {output.bam}
         """
