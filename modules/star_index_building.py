@@ -60,5 +60,4 @@ rule STAR_index:
         samtools faidx {input.genome}
         mkdir -p mapped/FP/STAR_SJ
         mkdir -p mapped/SP
-        touch {output.ind}
         """

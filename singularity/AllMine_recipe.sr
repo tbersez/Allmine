@@ -71,7 +71,11 @@ From: ubuntu:18.04
   wget https://sourceforge.net/projects/snpeff/files/snpEff_latest_core.zip/download
   unzip download -d /
   rm -rf /clinEff
+  wget http://www.openbioinformatics.org/annovar/download/0wgxR2rIVP/annovar.latest.tar.gz
+  tar -xvf annovar.latest.tar.gz
+  rm -rf annovar.latest.tar.gz
   cd /
+  # path to annovar : /opt/annovar
 
   # Install miniconda
   echo -e "\e[1;32mInstalling Miniconda3\e[0m"
@@ -83,6 +87,8 @@ From: ubuntu:18.04
   # Install AllMine deps
   echo -e "\e[1;32mInstalling AllMine bioinformatics tools\e[0m"
   PATH="/opt/miniconda/bin:$PATH"
+  conda install -y -q -c bioconda ucsc-gtftogenepred
+  conda install -y -q -c bioconda ucsc-gff3togenepred
   conda install -y -q -c bioconda bwa=0.7.17
   conda install -y -q -c bioconda samtools=1.9
   conda install -y -q -c bioconda star=2.7.0d
@@ -90,6 +96,6 @@ From: ubuntu:18.04
   conda install -y -q -c bioconda fastp=0.19.7
   conda install -y -q -c bioconda fastqc=0.11.8
   conda install -y -q -c bioconda whatshap
-  conda install -c bioconda bcftools=1.9
+  conda install -y -q -c bioconda bcftools=1.9
 
   echo -e "\e[1;32mFinished! \e[0m"
