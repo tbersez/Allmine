@@ -1,13 +1,15 @@
 {
     "__default__" : {
       "name"      : "AllMine {rule} [{wildcards}]",
-      "partition"      : "express",
-      "time"           : "48:00:00",
+      "partition"      : "lm.q",
+      "time"           : "72:00:00",
       "ntasks"         : 1,
       "cpus-per-task"  : 1,
       "mem-per-cpu-mb" : 2000,
-      "output"    : "~/logs/{rule}.{wildcards}.stout",
-      "error"     : "~/logs/{rule}.{wildcards}.sterr"
+      "errorStrategy" : "retry",
+      "maxRetries" : 2,
+      "cache" : "deep",
+      "maxErrors" : 10
     },
 
     "fastp_paired" : {
@@ -111,5 +113,15 @@
     "bam_index" : {
       "cpus-per-task"  : 1,
       "mem-per-cpu-mb" : 2000
+    },
+
+    "annovar" : {
+      "cpus-per-task"  : 1,
+      "mem-per-cpu-mb" : 6000
+    },
+
+    "vcf4_to_avinput" : {
+      "cpus-per-task"  : 1,
+      "mem-per-cpu-mb" : 4000
     }
 }
