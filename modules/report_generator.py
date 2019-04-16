@@ -15,7 +15,7 @@ is_in_sample = [None] * 1000
 samples = list((config["samples"]).keys())
 for sample in samples:
     # path to vcf with non synonymous SNPs
-    path = config['VAR'] + sample + "/" + sample + "_non_synonymous.vcf"
+    path = config['VAR'] + sample + "/" + sample + "_varscan.avinput.exonic_variant_function"
     with open (path, 'r') as vcf:
         for lines in vcf.readlines():
             # skip comment lines
@@ -23,30 +23,32 @@ for sample in samples:
                 continue
             # parsing vcf lines
             line = (lines.strip().split("\t"))
-            chr = line[0]
-            base = line[1]
-            ref = line[3]
-            alt = line [4]
-            eff = line[7].strip().split("|")[1]
-            gene = line[7].strip().split("|")[18]
-            het = line[9].strip().split(":")[0]
-            variant = (chr, base, ref, alt, gene, het)
-            if variant not in de_novo_var:
-                # new variant
-                de_novo_var.append(variant)
-                id = de_novo_var.index(variant)
-                is_in_sample[id] = sample
-            else:
-                id = de_novo_var.index(variant)
-                if is_in_sample[id] == None:
-                    # create entry for new variant
+            if(line[1] == 'nonsynonymous SNV'):
+                chr = line[3]
+                base = line[4]
+                ref = line[6]
+                alt = line[7]
+                aa_change = line[2].strip().split(":")[4].split(",")[0].split(".")[1]
+                genid = line[2].strip().split(":")[0]
+                genotype = line[8]
+                exon = line[2].strip().split(":")[2]
+                variant = (chr, base, ref, alt, aa_change, exon, genid, genotype)
+                if variant not in de_novo_var:
+                    # new variant
+                    de_novo_var.append(variant)
+                    id = de_novo_var.index(variant)
                     is_in_sample[id] = sample
                 else:
-                    # build sample list for variant of index 'id'
-                    is_in_sample[id] = is_in_sample[id] + (", " + sample)
+                    id = de_novo_var.index(variant)
+                    if is_in_sample[id] == None:
+                        # create entry for new variant
+                        is_in_sample[id] = sample
+                    else:
+                        # build sample list for variant of index 'id'
+                        is_in_sample[id] = is_in_sample[id] + ("," + sample)
 with open('Non_synonymous_variants_summary.tab', 'w') as out:
     id = 0
-    out.write("chr\tposition\tref\talt\tgene\tgenotype\tsamples\n")
+    out.write("CHR\tBASE\tREF\tALT\tAA_CHANGE\tEXON\tGENE\tGENOTYPE\tSAMPLE(s)\n")
     for snp in de_novo_var:
         for i in snp :
             out.write(i + '\t')

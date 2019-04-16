@@ -13,7 +13,7 @@
 
 rule make_report :
     input:
-        non_syno = expand(config["VAR"] + "{samples}/{samples}_non_synonymous.vcf", samples = config["samples"])
+        non_syno = expand(config["VAR"] + "{samples}/{samples}_varscan.avinput.exonic_variant_function", samples = config["samples"])
     output:
         report = 'Non_synonymous_variants_summary.tab'
     shell:

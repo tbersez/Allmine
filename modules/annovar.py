@@ -26,9 +26,9 @@ rule annovar :
         """
         singularity exec -B {params.bind} {params.cont} \
         /opt/annovar/annotate_variation.pl \
-        -geneanno \
-        -dbtype refGene \
-        -buildver AV \
+        --geneanno \
+        --dbtype refGene \
+        --buildver AV \
         {input.inav} \
         avdb/ \
         """

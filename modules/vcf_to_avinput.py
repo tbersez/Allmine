@@ -26,7 +26,6 @@ rule vcf4_to_avinput:
         singularity exec -B {params.bind} {params.cont} \
         /opt/annovar/convert2annovar.pl \
         -format vcf4 \
-        -includeinfo \
         -outfile {output.annovar} \
         {input.vcf}
         """

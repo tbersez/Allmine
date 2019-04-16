@@ -49,4 +49,5 @@ include : cwd + "modules/whatshap.py"
 # target files...
 rule all:
     input:
-        expand(config["VAR"] + "{samples}/{samples}_varscan.avinput.variant_function", samples = config["samples"])
+        expand(config["VAR"] + "{samples}/{samples}_varscan_phased.vcf", samples = config["samples"]),
+        'Non_synonymous_variants_summary.tab'
