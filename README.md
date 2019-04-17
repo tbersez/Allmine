@@ -7,3 +7,4 @@ AllMine is flexible and parallel pipeline for allele mining. You can use AllMine
 * Python3 >= V3.5.3
     * including modules csv and yaml
 * Slurm >= V0.4.3
+* Singularity >= V2.5.1
