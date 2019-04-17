@@ -6,3 +6,4 @@ AllMine is flexible and parallel pipeline for allele mining. You can use AllMine
 * Snakemake >= V4.8.0
 * Python3 >= V3.5.3
     * including modules csv and yaml
+* Slurm >= V0.4.3
