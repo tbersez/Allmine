@@ -46,5 +46,15 @@ rule star_pe_SP:
             --outTmpDir {params.tmp} \
             --outFilterScoreMinOverLread 0.3 \
             --outFilterMatchNminOverLread 0.3 \
+            --scoreGap 0 \
+            --scoreGapNoncan -8 \
+            --scoreGapGCAG -4 \
+            --scoreGapATAC -8 \
+            --scoreGenomicLengthLog2scale -0.25 \
+            --scoreDelOpen -2 \
+            --scoreDelBase -2 \
+            --scoreInsOpen -2 \
+            --scoreInsBase -2 \
+            --scoreStitchSJshift 1 \
             --readFilesCommand zcat | gzip --stdout > {output.bam}
             """

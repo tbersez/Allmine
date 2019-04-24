@@ -89,6 +89,8 @@
 <li class="toctree-l2"><a class="reference internal" href="#fastqc-quality-control">FastQC; quality control</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#bwa-index-genome-indexing">BWA index; genome indexing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#star-index-genome-indexing">STAR index; genome indexing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bwa-mem-dnaseq-read-mapping">BWA mem; DNAseq read mapping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#star-rnaseq-reads-mapping">STAR; RNAseq reads mapping</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="Dependancies.html">Dependancies</a></li>
@@ -160,7 +162,7 @@
   <div class="section" id="modules-documentation">
 <h1>Modules documentation<a class="headerlink" href="#modules-documentation" title="Permalink to this headline">¶</a></h1>
 <p>AllMine is developed in a <strong>modular fashion</strong>. Current AllMine modules are
-documented here. Some of them include tweakable parameters !</p>
+documented here. Some of them include <strong>tweakable parameters</strong> !</p>
 <div class="section" id="fastp-reads-presprocessing">
 <h2>fastp; reads presprocessing<a class="headerlink" href="#fastp-reads-presprocessing" title="Permalink to this headline">¶</a></h2>
 <p>AllMine uses <a class="reference external" href="https://github.com/OpenGene/fastp">fastp</a> v0.20.0 to
@@ -180,6 +182,8 @@ Increasing this number will relax the trimming. Set to 1 for per base trimming
 base[i+1])</strong>. Reads bellow the threshold are discarded. Usefull to filter polyA
 tails in RNA seq data !</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">-w</span></code> : Threads used.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--max_len1</span> <span class="pre">350</span></code> : Maximum lenght of submited reads. Longer reads will be
+trimmed from 3’ end to the maximum size.</p></li>
 </ul>
 </div></blockquote>
 <p>Please refer to the fastp manual for more informations.</p>
@@ -209,6 +213,62 @@ large genome (size &gt; 3Gbp). Switch to <code class="docutils literal notransla
 <p>If you have submited RNAseq data, AllMine will index your reference genome using
 the <code class="docutils literal notranslate"><span class="pre">STAR</span> <span class="pre">--runMode</span> <span class="pre">genomeGenerate</span></code> command from
 <a class="reference external" href="https://github.com/alexdobin/STAR">STAR</a> v2.7.0f.</p>
+</div>
+<div class="section" id="bwa-mem-dnaseq-read-mapping">
+<h2>BWA mem; DNAseq read mapping<a class="headerlink" href="#bwa-mem-dnaseq-read-mapping" title="Permalink to this headline">¶</a></h2>
+<p>If you have submited DNAseq data, AllMine will map your reads using
+the <code class="docutils literal notranslate"><span class="pre">bwa</span> <span class="pre">mem</span></code> command from <a class="reference external" href="http://bio-bwa.sourceforge.net/">BWA</a> v0.7.17.
+Two modules, <strong>bwa_pe</strong> and <strong>bwa_se</strong> have been implemented to handle
+paired end and single end reads respectively. This mapping algorithm handle
+reads from 70bp to 1Mbp.</p>
+<p>Parameters :</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-w</span></code> : Set to 100 bp. Band width. Essentially, gaps longer than INT will
+not be found.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-d</span></code> : Set to 100. Z-dropoff. Avoids unnecessary extension, but also
+reduces poor alignments inside a long good alignment.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-r</span></code> : Set to 1.5. <strong>Larger value yields fewer seeds, which leads to faster
+alignment speed but lower accuracy</strong>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-B</span></code> : Set to 4. Mismatch penalty.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-O</span></code> : Set to 6. Gap opening penalty.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-E</span></code> : Set to 1. Gap extention penalty.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-L</span></code> : Set to 5. When performing SW extension, BWA-MEM keeps track of the
+best score reaching the end of query.</p></li>
+</ul>
+</div></blockquote>
+<p>Note : In most of the cases BWA parameters are well suited for balance between
+accuracy and computational cost.</p>
+</div>
+<div class="section" id="star-rnaseq-reads-mapping">
+<h2>STAR; RNAseq reads mapping<a class="headerlink" href="#star-rnaseq-reads-mapping" title="Permalink to this headline">¶</a></h2>
+<p>If you have submited RNAseq data, AllMine will map your reads using <code class="docutils literal notranslate"><span class="pre">STAR</span></code>
+command from <a class="reference external" href="https://github.com/alexdobin/STAR">STAR</a> v2.7.0f. AllMine apply
+a two pass mapping strategy. Two both handle paired and single end data four
+modules where developped <strong>star_pe_FP</strong>, <strong>star_pe_SP</strong>, <strong>star_pe_FP</strong> and
+<strong>star_pe_SP</strong>.</p>
+<p>Parameters :</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">--scoreGap</span></code> : Set to 0. Gap penalty.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--scoreGapNoncan</span></code> : Set to -8. Non-canonical junction penalty.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--scoreGapGCAG</span></code> : Set to -4. GC/AG and CT/GC junction penalty.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--scoreGapATAC</span></code> : Set to -8. AT/AC and GT/AT junction penalty.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--scoreGenomicLengthLog2scale</span></code> : Set to -0.25. Extra score
+logarithmically scaled with genomic length of the alignment :
+scoreGenomicLengthLog2scale*log2(genomicLength).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--scoreDelOpen</span></code> : Set to -2. Deletion open penalty.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--scoreDelBase</span></code> : Set to -2. Deletion extension penalty per base
+(in addition to scoreDelOpen).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--scoreInsOpen</span></code> : Set to -2. Insertion open penalty.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--scoreInsBase</span></code> : Set to -2. Insertion extension penalty per base
+(in addition to scoreInsOpen).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--scoreStitchSJshift</span></code> : Set to 1. Maximum score reduction while searching
+for SJ boundaries inthe stitching step.</p></li>
+</ul>
+</div></blockquote>
+<p>Note : STAR include numerous parameters, please read the manual for more
+informations.</p>
 </div>
 </div>
 

@@ -41,7 +41,13 @@ rule bwa_paired :
         """
         singularity exec -B {params.bind} {params.cont} bwa mem \
         -t 10 \
-        -M \
+        -w 100 \
+        -d 100 \
+        -r 1.5 \
+        -B 4 \
+        -O 6 \
+        -E 1 \
+        -L 5 \
         {params.idxbase} \
         {input.R1} \
         {input.R2} \

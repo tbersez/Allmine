@@ -42,5 +42,15 @@ rule star_se_FP:
         --readFilesIn {input.R1} \
         --outTmpDir {params.tmp} \
         --readFilesCommand zcat \
+        --scoreGap 0 \
+        --scoreGapNoncan -8 \
+        --scoreGapGCAG -4 \
+        --scoreGapATAC -8 \
+        --scoreGenomicLengthLog2scale -0.25 \
+        --scoreDelOpen -2 \
+        --scoreDelBase -2 \
+        --scoreInsOpen -2 \
+        --scoreInsBase -2 \
+        --scoreStitchSJshift 1 \
         --outFileNamePrefix {params.prefix}
         """
