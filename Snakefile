@@ -45,9 +45,17 @@ include : cwd + "modules/annovar.py"
 include : cwd + "modules/make_report.py"
 include : cwd + "modules/bam_index.py"
 include : cwd + "modules/whatshap.py"
+include : cwd + "modules/alternative_proteins.py"
 
 # target files...
+#
+# expand(config["VAR"] + "{samples}/{samples}_varscan_phased.vcf", samples = config["samples"])
+#   - This line is used to ask for trying to phase SNPs, note that phasing is efficient for
+#     at least 10X 300bp paired end. No errors will be returned if the phasing fail !
+#     Browse the outputs to get the results.
+
 rule all:
     input:
         expand(config["VAR"] + "{samples}/{samples}_varscan_phased.vcf", samples = config["samples"]),
+        expand(config["VAR"] + "{samples}/{samples}_mutated_proteins.fasta", samples = config["samples"]),
         'Non_synonymous_variants_summary.tab'

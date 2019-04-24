@@ -1,0 +1,239 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>AllMine Documentation &mdash; AllMine 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Quick Start guide" href="Quick Start guide.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="#" class="icon icon-home"> AllMine
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Quick Start guide.html">Quick Start guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AllMine outputs.html">AllMine outputs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Modules documentation.html">Modules documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Dependancies.html">Dependancies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Licence and contact.html">Licence and contact</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">AllMine</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="#">Docs</a> &raquo;</li>
+        
+      <li>AllMine Documentation</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="allmine-documentation">
+<h1>AllMine Documentation<a class="headerlink" href="#allmine-documentation" title="Permalink to this headline">¶</a></h1>
+<p>AllMine is a flexible allele mining pipeline. AllMine can handle various NGS
+data types (WGS, RRGS, RNAseq, paired/sengle end layouts…) and process all
+steps from raw reads to de novo SNPs phasing and annotation. Designed for easy
+usage, AllMine can be use by non bioinformaticians. AllMine is HPC compatible
+via Slurm.</p>
+<p>AllMine was developed at INRA’s PACA GAFL unit. For more informations on our
+lab, please visit our <a class="reference external" href="https://www6.paca.inra.fr/gafl/">web page</a>.</p>
+<p>Follow AllMine development on <a class="reference external" href="https://github.com/tbersez/Allmine">GitHub</a>.</p>
+<div class="toctree-wrapper compound" id="mastertoc">
+<p class="caption"><span class="caption-text">Contents:</span><a class="headerlink" href="#mastertoc" title="Permalink to this toctree">¶</a></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Quick Start guide.html">Quick Start guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Quick Start guide.html#getting-allmine-code">Getting AllMine code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Quick Start guide.html#input-files">Input files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Quick Start guide.html#sequencing-data">Sequencing data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Quick Start guide.html#sample-sheet">Sample sheet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Quick Start guide.html#reference-genome-and-annotation">Reference genome and annotation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Quick Start guide.html#bed-file">Bed file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Quick Start guide.html#making-your-work-space-ready">Making your work space ready</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Quick Start guide.html#configuration-of-an-allmine-run">Configuration of an AllMine run</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Quick Start guide.html#running-allmine">Running AllMine</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="AllMine outputs.html">AllMine outputs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Modules documentation.html">Modules documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Modules documentation.html#fastp-reads-presprocessing">fastp; reads presprocessing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Modules documentation.html#fastqc-quality-control">FastQC; quality control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Modules documentation.html#bwa-index-genome-indexing">BWA index; genome indexing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Modules documentation.html#star-index-genome-indexing">STAR index; genome indexing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Dependancies.html">Dependancies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Licence and contact.html">Licence and contact</a></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="Quick Start guide.html" class="btn btn-neutral float-right" title="Quick Start guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, T.Bersez
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

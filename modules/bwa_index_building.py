@@ -43,6 +43,7 @@ rule bwa_index:
         """
         singularity exec -B {params.bind} {params.cont} \
         bwa index \
+        -a is \
         {input.genome}
         singularity exec -B {params.bind} {params.cont} \
         samtools faidx \

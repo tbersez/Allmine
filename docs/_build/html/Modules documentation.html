@@ -1,0 +1,264 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Modules documentation &mdash; AllMine 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Dependancies" href="Dependancies.html" />
+    <link rel="prev" title="AllMine outputs" href="AllMine outputs.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> AllMine
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Quick Start guide.html">Quick Start guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AllMine outputs.html">AllMine outputs</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Modules documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#fastp-reads-presprocessing">fastp; reads presprocessing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fastqc-quality-control">FastQC; quality control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bwa-index-genome-indexing">BWA index; genome indexing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#star-index-genome-indexing">STAR index; genome indexing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Dependancies.html">Dependancies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Licence and contact.html">Licence and contact</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">AllMine</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Modules documentation</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/Modules documentation.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="modules-documentation">
+<h1>Modules documentation<a class="headerlink" href="#modules-documentation" title="Permalink to this headline">¶</a></h1>
+<p>AllMine is developed in a <strong>modular fashion</strong>. Current AllMine modules are
+documented here. Some of them include tweakable parameters !</p>
+<div class="section" id="fastp-reads-presprocessing">
+<h2>fastp; reads presprocessing<a class="headerlink" href="#fastp-reads-presprocessing" title="Permalink to this headline">¶</a></h2>
+<p>AllMine uses <a class="reference external" href="https://github.com/OpenGene/fastp">fastp</a> v0.20.0 to
+perform presprocessing on submited reads. Two modules, <strong>fastp_pe</strong> and
+<strong>fastp_se</strong> have been implemented to handle paired end and single end reads
+respectively.</p>
+<p>Parameters :</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">--correction</span></code> : Enable paired end overlaping regions correction.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--cut_mean_quality</span></code> : Set to 20. Threshold for trimming in <strong>both 5’ and 3’</strong>.
+You can increase this number for a more stringeant quality trimming.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--cut_window_size</span></code> : Size of the sliding window for sliding window trimming.
+Increasing this number will relax the trimming. Set to 1 for per base trimming
+(not recommended).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--complexity_threshold</span></code> : Set to 30. Complexity is defined as <strong>P(base[i] !=
+base[i+1])</strong>. Reads bellow the threshold are discarded. Usefull to filter polyA
+tails in RNA seq data !</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-w</span></code> : Threads used.</p></li>
+</ul>
+</div></blockquote>
+<p>Please refer to the fastp manual for more informations.</p>
+</div>
+<div class="section" id="fastqc-quality-control">
+<h2>FastQC; quality control<a class="headerlink" href="#fastqc-quality-control" title="Permalink to this headline">¶</a></h2>
+<p>AllMine uses <a class="reference external" href="https://www.bioinformatics.babraham.ac.uk/projects/fastqc/">FastQC</a>
+v0.11.8 to perform quality control on submited reads. Two modules, <strong>fastqc_pe</strong>
+and <strong>fastqc_se</strong> have been implemented to handle paired end and single end reads
+respectively. Numerous indices and statistics are computed by FastQC. You may
+inspect them to ensure your data quality.</p>
+</div>
+<div class="section" id="bwa-index-genome-indexing">
+<h2>BWA index; genome indexing<a class="headerlink" href="#bwa-index-genome-indexing" title="Permalink to this headline">¶</a></h2>
+<p>If you have submited DNAseq data, AllMine will index your reference genome using
+the <code class="docutils literal notranslate"><span class="pre">bwa</span> <span class="pre">index</span></code> command from <a class="reference external" href="http://bio-bwa.sourceforge.net/">BWA</a> v0.7.17.</p>
+<p>Parameters :</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-a</span> <span class="pre">is</span></code> : Algorithm used to index the genome. <strong>IS</strong> does not work for
+large genome (size &gt; 3Gbp). Switch to <code class="docutils literal notranslate"><span class="pre">-a</span> <span class="pre">bwtsw</span></code> if needed.</p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="star-index-genome-indexing">
+<h2>STAR index; genome indexing<a class="headerlink" href="#star-index-genome-indexing" title="Permalink to this headline">¶</a></h2>
+<p>If you have submited RNAseq data, AllMine will index your reference genome using
+the <code class="docutils literal notranslate"><span class="pre">STAR</span> <span class="pre">--runMode</span> <span class="pre">genomeGenerate</span></code> command from
+<a class="reference external" href="https://github.com/alexdobin/STAR">STAR</a> v2.7.0f.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="Dependancies.html" class="btn btn-neutral float-right" title="Dependancies" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="AllMine outputs.html" class="btn btn-neutral float-left" title="AllMine outputs" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, T.Bersez
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

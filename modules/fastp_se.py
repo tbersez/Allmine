@@ -43,6 +43,10 @@ rule fastp_single:
         -h {params.html} \
         -j {params.json} \
         --max_len1 350 \
+        --cut_mean_quality 20 \
+        --cut_window_size 4 \
+        --low_complexity_filter \
+        --complexity_threshold 30 \
         -w 10
 
         rm -f {params.html} {params.json}

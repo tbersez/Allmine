@@ -1,0 +1,328 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Quick Start guide &mdash; AllMine 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="AllMine outputs" href="AllMine outputs.html" />
+    <link rel="prev" title="AllMine Documentation" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> AllMine
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Quick Start guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#getting-allmine-code">Getting AllMine code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#input-files">Input files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sequencing-data">Sequencing data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sample-sheet">Sample sheet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#reference-genome-and-annotation">Reference genome and annotation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bed-file">Bed file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#making-your-work-space-ready">Making your work space ready</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configuration-of-an-allmine-run">Configuration of an AllMine run</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#running-allmine">Running AllMine</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="AllMine outputs.html">AllMine outputs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Modules documentation.html">Modules documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Dependancies.html">Dependancies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Licence and contact.html">Licence and contact</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">AllMine</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Quick Start guide</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/Quick Start guide.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="quick-start-guide">
+<h1>Quick Start guide<a class="headerlink" href="#quick-start-guide" title="Permalink to this headline">¶</a></h1>
+<p>First check that all requiered <a class="reference internal" href="Dependancies.html#to-dep"><span class="std std-ref">Dependancies</span></a> are installed. If you wish to use
+AllMine on a cluster, contact your admnistrator for instalations.</p>
+<div class="section" id="getting-allmine-code">
+<h2>Getting AllMine code<a class="headerlink" href="#getting-allmine-code" title="Permalink to this headline">¶</a></h2>
+<p>AllMine code is GitHub hosted. To get the source code using git CLI, use :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/tbersez/Allmine.git
+</pre></div>
+</div>
+<p>Then, from within AllMine directory, build <strong>AllMine container</strong> using
+Singularity (admin rights needed) :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo singularity build AllMine singularity/AllMine_recipe.sr
+</pre></div>
+</div>
+<p>Here, AllMine is ready to run.</p>
+</div>
+<div class="section" id="input-files">
+<h2>Input files<a class="headerlink" href="#input-files" title="Permalink to this headline">¶</a></h2>
+<p>To perform allele mining, AllMine needs :</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Sequencing data (DNA or RNA)</p></li>
+<li><p>A reference genome and annotation</p></li>
+<li><p>A bed file with regions (or genes) of interests</p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="sequencing-data">
+<h2>Sequencing data<a class="headerlink" href="#sequencing-data" title="Permalink to this headline">¶</a></h2>
+<p>AllMine supports <strong>RNA and DNA</strong> sequencing, <strong>paired or single end</strong>, with a
+maximum read lenght of <strong>350bp</strong> (you can submit longer reads but they will be
+trimmed to the maximum size). Sequencing data must be in <strong>fastq format</strong> and
+may be gzip compressed.</p>
+</div>
+<div class="section" id="sample-sheet">
+<h2>Sample sheet<a class="headerlink" href="#sample-sheet" title="Permalink to this headline">¶</a></h2>
+<p>Configuration maker for AllMine use a <strong>csv</strong> describing samples file as input.
+The csv file must have the flowing headers :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>filename R1_ext R2_ext platform date<span class="o">(</span>mm/dd/yy<span class="o">)</span>
+</pre></div>
+</div>
+<p>Here is an example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;filename&quot;</span>,<span class="s2">&quot;R1_ext&quot;</span>,<span class="s2">&quot;R2_ext&quot;</span>,<span class="s2">&quot;platform&quot;</span>,<span class="s2">&quot;date(mm/dd/yy)&quot;</span>
+<span class="s2">&quot;SRR1538456&quot;</span>,<span class="s2">&quot;_1.fastq.gz&quot;</span>,<span class="s2">&quot;_2.fastq.gz&quot;</span>,<span class="s2">&quot;illumina&quot;</span>,<span class="s2">&quot;03/03/03&quot;</span>
+<span class="s2">&quot;SRR1538457&quot;</span>,<span class="s2">&quot;_1.fastq.gz&quot;</span>,<span class="s2">&quot;_2.fastq.gz&quot;</span>,<span class="s2">&quot;illumina&quot;</span>,<span class="s2">&quot;04/03/03&quot;</span>
+<span class="s2">&quot;SRR1538484&quot;</span>,<span class="s2">&quot;_1.fastq.gz&quot;</span>,<span class="s2">&quot;_2.fastq.gz&quot;</span>,<span class="s2">&quot;illumina&quot;</span>,<span class="s2">&quot;05/03/03&quot;</span>
+</pre></div>
+</div>
+<p>You can use a spread sheet editor to create this csv file !</p>
+</div>
+<div class="section" id="reference-genome-and-annotation">
+<h2>Reference genome and annotation<a class="headerlink" href="#reference-genome-and-annotation" title="Permalink to this headline">¶</a></h2>
+<p>Reference genome must be provided in one file, in <strong>fasta format</strong>.
+Annotation can be provided in <strong>gff</strong> or <strong>gtf</strong> format (recommended).
+When possible, we advice you to download reference sequence and annotation
+from currated sources, such as <a class="reference external" href="http://ensemblgenomes.org/">Ensembl</a>.</p>
+</div>
+<div class="section" id="bed-file">
+<h2>Bed file<a class="headerlink" href="#bed-file" title="Permalink to this headline">¶</a></h2>
+<p>Regions of interest must be specified using a <strong>bed</strong> file, here is an example :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>NC_035163.1 <span class="m">25395963</span> <span class="m">25398308</span>
+NC_035168.1 <span class="m">31042453</span> <span class="m">31045884</span>
+NC_035169.1 <span class="m">25941228</span> <span class="m">25944616</span>
+NC_035175.1 <span class="m">3317633</span> <span class="m">3320503</span>
+NC_035177.1 <span class="m">20184932</span> <span class="m">20187543</span>
+</pre></div>
+</div>
+<p>Be sure that the first column (contigs) match with the ones used in your
+reference genome.</p>
+</div>
+<div class="section" id="making-your-work-space-ready">
+<h2>Making your work space ready<a class="headerlink" href="#making-your-work-space-ready" title="Permalink to this headline">¶</a></h2>
+<p>Place your reference genome and annotation in a common folder. That one must
+only contain those both file. Place your bed file with regions of interest in
+an other folder. <strong>AllMine outputs are created where your start the analysis.</strong>
+Make sure that you have enought space to store all outputs !</p>
+</div>
+<div class="section" id="configuration-of-an-allmine-run">
+<h2>Configuration of an AllMine run<a class="headerlink" href="#configuration-of-an-allmine-run" title="Permalink to this headline">¶</a></h2>
+<p>To configure an AllMine run use :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./csv_to_yaml.py
+</pre></div>
+</div>
+<p>Answer the question the script is asking you to configure your run.
+Note : the bind path is the path from the <strong>root to your home folder.</strong></p>
+<p>Once done run :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./annovar_makebd.py
+</pre></div>
+</div>
+<p>This script build the annotation database of Annovar. It need to done once for
+each new genome used.</p>
+</div>
+<div class="section" id="running-allmine">
+<h2>Running AllMine<a class="headerlink" href="#running-allmine" title="Permalink to this headline">¶</a></h2>
+<p>We recommend to first do a dry run using the following command.
+<strong>CORE_NUMBER</strong> must be replaced by the number of cores you wish to use.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>snakemake -j CORE_NUMBER <span class="se">\</span>
+--cluster-config slurm_config.json <span class="se">\</span>
+--cluster <span class="s2">&quot;sbatch&quot;</span> -n
+</pre></div>
+</div>
+<p>Check the output to ensure that your run is properly configured.
+If no, return to configurtion step to correct errors. If yes, run :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>snakemake -j CORE_NUMBER <span class="se">\</span>
+--cluster-config slurm_config.json <span class="se">\</span>
+--cluster <span class="s2">&quot;sbatch&quot;</span>
+</pre></div>
+</div>
+<p>AllMine is now running. Depending on how much data you have submited and
+CORE_NUMBER, the analysis may take from few hours to a few days.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="AllMine outputs.html" class="btn btn-neutral float-right" title="AllMine outputs" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="AllMine Documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, T.Bersez
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
