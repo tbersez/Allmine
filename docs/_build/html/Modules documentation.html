@@ -91,6 +91,9 @@
 <li class="toctree-l2"><a class="reference internal" href="#star-index-genome-indexing">STAR index; genome indexing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#bwa-mem-dnaseq-read-mapping">BWA mem; DNAseq read mapping</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#star-rnaseq-reads-mapping">STAR; RNAseq reads mapping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#varscan-snp-calling">Varscan; SNP calling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#whatshap-snp-phasing">WhatsHap; SNP Phasing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#annovar-snp-annotation">ANNOVAR; SNP annotation</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="Dependancies.html">Dependancies</a></li>
@@ -162,7 +165,8 @@
   <div class="section" id="modules-documentation">
 <h1>Modules documentation<a class="headerlink" href="#modules-documentation" title="Permalink to this headline">¶</a></h1>
 <p>AllMine is developed in a <strong>modular fashion</strong>. Current AllMine modules are
-documented here. Some of them include <strong>tweakable parameters</strong> !</p>
+documented here. Some of them include <strong>tweakable parameters</strong> ! Only key steps
+modules are documented here.</p>
 <div class="section" id="fastp-reads-presprocessing">
 <h2>fastp; reads presprocessing<a class="headerlink" href="#fastp-reads-presprocessing" title="Permalink to this headline">¶</a></h2>
 <p>AllMine uses <a class="reference external" href="https://github.com/OpenGene/fastp">fastp</a> v0.20.0 to
@@ -212,7 +216,8 @@ large genome (size &gt; 3Gbp). Switch to <code class="docutils literal notransla
 <h2>STAR index; genome indexing<a class="headerlink" href="#star-index-genome-indexing" title="Permalink to this headline">¶</a></h2>
 <p>If you have submited RNAseq data, AllMine will index your reference genome using
 the <code class="docutils literal notranslate"><span class="pre">STAR</span> <span class="pre">--runMode</span> <span class="pre">genomeGenerate</span></code> command from
-<a class="reference external" href="https://github.com/alexdobin/STAR">STAR</a> v2.7.0f.</p>
+<a class="reference external" href="https://github.com/alexdobin/STAR">STAR</a> v2.7.0f.
+To perfom a two pass mapping strategy</p>
 </div>
 <div class="section" id="bwa-mem-dnaseq-read-mapping">
 <h2>BWA mem; DNAseq read mapping<a class="headerlink" href="#bwa-mem-dnaseq-read-mapping" title="Permalink to this headline">¶</a></h2>
@@ -265,10 +270,43 @@ scoreGenomicLengthLog2scale*log2(genomicLength).</p></li>
 (in addition to scoreInsOpen).</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">--scoreStitchSJshift</span></code> : Set to 1. Maximum score reduction while searching
 for SJ boundaries inthe stitching step.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--runThreadN</span></code> : Set to 10. Number of threads used per jobs.</p></li>
 </ul>
 </div></blockquote>
 <p>Note : STAR include numerous parameters, please read the manual for more
 informations.</p>
+</div>
+<div class="section" id="varscan-snp-calling">
+<h2>Varscan; SNP calling<a class="headerlink" href="#varscan-snp-calling" title="Permalink to this headline">¶</a></h2>
+<p>AllMine use <a class="reference external" href="http://varscan.sourceforge.net/">Varscan</a> v2.4.3 to perform SNP
+calling on aligned reads.</p>
+<p>Parameters :</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">--p-value</span></code> : Set to 0.99. We did not choosed to use p value as filter for
+SNP calling. However you can tune this parameter if wanted.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--min-coverage</span></code> : Set to 8. Minimal deep at SNP loci for calling.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--min-var-freq</span></code> : Set to 0.15. Minimal variant frequency at SNP loci for
+calling.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--min-avg-qual</span></code> : Set to 20. Minimal sequencing quality at SNP loci for
+calling.</p></li>
+</ul>
+</div></blockquote>
+<p>Note : The tunning of Varscan parameters is a trade-off between sensitivity and
+specificity. It should be keeped in mind when analysing your results!</p>
+</div>
+<div class="section" id="whatshap-snp-phasing">
+<h2>WhatsHap; SNP Phasing<a class="headerlink" href="#whatshap-snp-phasing" title="Permalink to this headline">¶</a></h2>
+<p>AllMine use <a class="reference external" href="https://bitbucket.org/whatshap/whatshap">WhatsHap</a> v0.18 to
+perform phasing of called SNPs.</p>
+<p>Note : 330 Bp long paired end reads at 15X depth are required for haplotypes
+chunks of 300 Kb in average.</p>
+</div>
+<div class="section" id="annovar-snp-annotation">
+<h2>ANNOVAR; SNP annotation<a class="headerlink" href="#annovar-snp-annotation" title="Permalink to this headline">¶</a></h2>
+<p>AllMine use <a class="reference external" href="http://annovar.openbioinformatics.org/en/latest/">SnpEff</a>
+v2018-04-16 00:43:31 to annotate called SNPs. A gene base annotation is done by
+default.</p>
 </div>
 </div>
 

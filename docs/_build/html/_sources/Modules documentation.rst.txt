@@ -2,7 +2,8 @@ Modules documentation
 =====================
 
 AllMine is developed in a **modular fashion**. Current AllMine modules are
-documented here. Some of them include **tweakable parameters** !
+documented here. Some of them include **tweakable parameters** ! Only key steps
+modules are documented here.
 
 fastp; reads presprocessing
 ---------------------------
@@ -56,6 +57,7 @@ STAR index; genome indexing
 If you have submited RNAseq data, AllMine will index your reference genome using
 the ``STAR --runMode genomeGenerate`` command from
 `STAR <https://github.com/alexdobin/STAR>`_ v2.7.0f.
+To perfom a two pass mapping strategy
 
 BWA mem; DNAseq read mapping
 ----------------------------
@@ -109,6 +111,42 @@ Parameters :
     (in addition to scoreInsOpen).
   * ``--scoreStitchSJshift`` : Set to 1. Maximum score reduction while searching
     for SJ boundaries inthe stitching step.
+  * ``--runThreadN`` : Set to 10. Number of threads used per jobs.
 
 Note : STAR include numerous parameters, please read the manual for more
 informations.
+
+Varscan; SNP calling
+--------------------
+
+AllMine use `Varscan <http://varscan.sourceforge.net/>`_ v2.4.3 to perform SNP
+calling on aligned reads.
+
+Parameters :
+
+  * ``--p-value`` : Set to 0.99. We did not choosed to use p value as filter for
+    SNP calling. However you can tune this parameter if wanted.
+  * ``--min-coverage`` : Set to 8. Minimal deep at SNP loci for calling.
+  * ``--min-var-freq`` : Set to 0.15. Minimal variant frequency at SNP loci for
+    calling.
+  * ``--min-avg-qual`` : Set to 20. Minimal sequencing quality at SNP loci for
+    calling.
+
+Note : The tunning of Varscan parameters is a trade-off between sensitivity and
+specificity. It should be keeped in mind when analysing your results!
+
+WhatsHap; SNP Phasing
+---------------------
+
+AllMine use `WhatsHap <https://bitbucket.org/whatshap/whatshap>`_ v0.18 to
+perform phasing of called SNPs.
+
+Note : 330 Bp long paired end reads at 15X depth are required for haplotypes
+chunks of 300 Kb in average.
+
+ANNOVAR; SNP annotation
+-----------------------
+
+AllMine use `SnpEff <http://annovar.openbioinformatics.org/en/latest/>`_
+v2018-04-16 00:43:31 to annotate called SNPs. A gene base annotation is done by
+default.

@@ -83,7 +83,13 @@
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="Quick Start guide.html">Quick Start guide</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">AllMine outputs</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">AllMine outputs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#quality-control-reports-and-trimmed-reads">Quality control reports and trimmed reads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mapped-reads-and-de-novo-splicing-junctions">Mapped reads and de novo splicing junctions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#putative-snps">Putative SNPs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#non-synonymous-variant-summary">Non synonymous variant summary</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="Modules documentation.html">Modules documentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Dependancies.html">Dependancies</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Licence and contact.html">Licence and contact</a></li>
@@ -153,6 +159,49 @@
             
   <div class="section" id="allmine-outputs">
 <h1>AllMine outputs<a class="headerlink" href="#allmine-outputs" title="Permalink to this headline">¶</a></h1>
+<p>AllMine outputs are detailled here. Some of them (such a trimmed reads)
+are “non-final” outputs and so, should not be conserved after the completion
+of the run. However if, for any reasons you may need them, you can gather them
+from the outputs.</p>
+<div class="section" id="quality-control-reports-and-trimmed-reads">
+<h2>Quality control reports and trimmed reads<a class="headerlink" href="#quality-control-reports-and-trimmed-reads" title="Permalink to this headline">¶</a></h2>
+<p>During prepossessing, adapters, linker, low quality bases and low complexity
+regions are trimmed for the raw reads. Trimmed reads are stored in the
+<strong>trimmed</strong> directory. Thoses reads are then passed to quality checking.
+Quality control steps are performed by AllMine in order to ensure the quality of
+the sequencing data submitted. Reports names use the format &lt;sample_name&gt;.html
+and can be found in the <strong>QC_post_preproc</strong> directory.
+You can inspect them using your favorite web browser. As the sequencing data
+quality influence allele mining reliability, quality control report always
+should be carefully inspected and taken in account during the results
+interpretation.</p>
+</div>
+<div class="section" id="mapped-reads-and-de-novo-splicing-junctions">
+<h2>Mapped reads and de novo splicing junctions<a class="headerlink" href="#mapped-reads-and-de-novo-splicing-junctions" title="Permalink to this headline">¶</a></h2>
+<p>Two different strategies of mapping are supported by AllMine. For DNA sequencing
+inputs, AllMine uses BWA (Burrows-Wheeler Aligner). For RNA sequencing input,
+STAR (Spliced Transcripts Alignment to a Reference) is used with a two pass
+strategy. In both case, mapped and sorted reads are stored in the <strong>mapped</strong>
+directory. Both full alignments files and parsed around specified regions are
+conserved, allowing new parsing around other regions without executing the
+mapping one again. In the case of RNA sequencing data, the sub-directory
+<strong>STAR_SJ</strong> is created. It contains the de novo splicing junctions discovered by
+STAR during the first pass of the mapping.</p>
+</div>
+<div class="section" id="putative-snps">
+<h2>Putative SNPs<a class="headerlink" href="#putative-snps" title="Permalink to this headline">¶</a></h2>
+<p>Putative variants called by Varscan can be found in the <strong>variant</strong> directory.
+Each subfolder correspond to one sample. Annotated, phased and raw variants are
+displayed.</p>
+</div>
+<div class="section" id="non-synonymous-variant-summary">
+<h2>Non synonymous variant summary<a class="headerlink" href="#non-synonymous-variant-summary" title="Permalink to this headline">¶</a></h2>
+<p>This is the main AllMine output. <strong>Non_synonymous_variant_summary.tab</strong> is a
+tabular file displaying all non synonymous SNPs found by AllMine. Base and amino
+acid reference and variation are indicated as well as genotype (het or hom),
+location in the gene (exon1, exon2 …). If a variant is found in more than one
+sample, all concerned samples are indicated in the SAMPLE(s) column.</p>
+</div>
 </div>
 
 
