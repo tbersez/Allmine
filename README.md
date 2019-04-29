@@ -1,4 +1,4 @@
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![Documentation Status](https://readthedocs.org/projects/allmine/badge/?version=latest)](https://allmine.readthedocs.io/en/latest/?badge=latest)      [![Github All Releases](https://github.com/tbersez/Allmine)]()
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![Documentation Status](https://readthedocs.org/projects/allmine/badge/?version=latest)](https://allmine.readthedocs.io/en/latest/?badge=latest)     
 
 # AllMine, a flexible pipeline for Allele Mining
 ### What is AllMine ?
