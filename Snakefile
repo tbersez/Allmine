@@ -39,13 +39,13 @@ include : cwd + "modules/" + config["FASTP"]
 include : cwd + "modules/" + config["INDEXER"]
 include : cwd + "modules/" + config["ALLIGNER"]
 include : cwd + "modules/bam_with_bed_parse.py"
+include : cwd + "modules/cov_tracks.py"
 include : cwd + "modules/vcf_to_avinput.py"
 include : cwd + "modules/varscan.py"
 include : cwd + "modules/annovar.py"
 include : cwd + "modules/make_report.py"
 include : cwd + "modules/bam_index.py"
 include : cwd + "modules/whatshap.py"
-include : cwd + "modules/alternative_proteins.py"
 
 # target files...
 #
@@ -57,5 +57,5 @@ include : cwd + "modules/alternative_proteins.py"
 rule all:
     input:
         expand(config["VAR"] + "{samples}/{samples}_varscan_phased.vcf", samples = config["samples"]),
-        expand(config["VAR"] + "{samples}/{samples}_mutated_proteins.fasta", samples = config["samples"]),
-        'Non_synonymous_variants_summary.tab'
+        "Non_synonymous_variants_summary.tab",
+        "Coverage_Track.tab"
