@@ -16,13 +16,13 @@
 rule cov_track:
     input:
         bams = expand(config["MAP"] + "{samples}_sorted_parsed.bam", samples = config["samples"])
-    params:
-        bed = config["REGIONS"]
     output:
-        cov = "Coverage_Track.tab",
+        cov = "Coverage_Track.tab"
+    params:
+        bed = config["REGIONS"],
         bind = config["BIND"],
         cont = config["CONT"]
-    message: "Computing depth in regions {params.bed} on bams {input.bam} \n"
+    message: "Computing depth in regions {params.bed} on bams {input.bams} \n"
     shell:
         """
         singularity exec -B {params.bind} {params.cont} \
