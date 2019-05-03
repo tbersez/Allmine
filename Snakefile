@@ -46,6 +46,7 @@ include : cwd + "modules/annovar.py"
 include : cwd + "modules/make_report.py"
 include : cwd + "modules/bam_index.py"
 include : cwd + "modules/whatshap.py"
+include : cwd + "modules/do_markdown.py"
 
 # target files...
 #
@@ -57,5 +58,4 @@ include : cwd + "modules/whatshap.py"
 rule all:
     input:
         expand(config["VAR"] + "{samples}/{samples}_varscan_phased.vcf", samples = config["samples"]),
-        "Non_synonymous_variants_summary.tab",
-        "Coverage_Track.tab"
+        "Run_report.html"

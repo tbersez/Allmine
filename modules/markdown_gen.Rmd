@@ -1,0 +1,61 @@
+---
+title: "AllMine Run Report"
+author: "cpr T.Bersez 2019"
+date: '`r format(Sys.Date(), "%B %d, %Y")`'
+output: html_document
+---
+
+```{r setup, include=FALSE, echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(yaml)
+config = read_yaml("../config.yaml", fileEncoding = "ASCII")
+bed = read.table(file = config[["REGIONS"]])
+samples = names(config[["samples"]])
+snps = read.table('../Non_synonymous_variants_summary.tab', sep = '\t', header = T)
+cov = read.table("../Coverage_Track.tab", sep = '\t')
+```
+### Your Run in brief
+
+Reference genome : **`r tail(strsplit(config[["GENOME"]], "/"), 1)`** <br/>
+Reference annotation : **`r tail(strsplit(config[["ANO"]], "/"), 1)`** 
+
+This run looked for **non synonymous SNPs** in **`r nrow(bed)`** regions and across **`r length(samples)`** samples.
+A total of **`r nrow(snps)`** differents SNPs where found.
+
+### SNPs summary
+
+Informations about found SNPs are displayed here.
+```{r resume_snp, include= T, echo= T}
+barplot(table(snps$GENE), ylab = "SNPs Count", xlab = "Genes", col = 1:length(snps$GENE), main = "SNPs count per gene")
+knitr::kable(snps, caption = "Found SNPs")
+```
+
+### Coverage plots
+
+Coverage across regions of interest in your samples are displayed here.
+```{r coverage}
+for(i in 1:nrow(bed)){
+  filtered_cov = subset(cov, subset = V1 == bed$V1[i])
+  filtered_cov = subset(filtered_cov, subset = V2 >= bed$V2[i])
+  filtered_cov = subset(filtered_cov, subset = V2 <= bed$V3[i])
+  plot(filtered_cov[,2], filtered_cov[,3], ylab = "Reading Depth",
+       xlab = as.character(bed$V1[i]), type = 'l',
+       xlim = c(bed[i,2], bed[i,3]), ylim = c(0,max(filtered_cov[,3:ncol(filtered_cov)])))
+  for(j in 4:ncol(cov)){
+    lines(filtered_cov[,2], filtered_cov[,j], col = j)
+  }
+  grid()
+}
+
+```
+
+
+### R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+### Session info
+```{r info}
+sessionInfo()
+```
+
