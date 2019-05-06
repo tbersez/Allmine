@@ -1,0 +1,3 @@
+SyntaxError:
+Not all output, log and benchmark files of rule bwa_index contain the same wildcards. This is crucial though, in order to avoid that two or more jobs write to the same file.
+  File "/home/aa/pipeline_dev/Allmine/modules/bwa_index_building.py", line 28, in <module>

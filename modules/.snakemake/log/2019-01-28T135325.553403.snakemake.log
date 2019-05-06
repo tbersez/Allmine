@@ -1,0 +1,6 @@
+The flag 'protected' used in rule run_fastp_paired is only valid for outputs, not inputs.
+The flag 'protected' used in rule run_fastp_paired is only valid for outputs, not inputs.
+Building DAG of jobs...
+MissingInputException in line 13 of /home/aa/pipeline_dev/Allmine/modules/fastp_pe.py:
+Missing input files for rule run_fastp_paired:
+/home/aa/pipeline_dev/Allmine/testdata/ecoA_2.fastq

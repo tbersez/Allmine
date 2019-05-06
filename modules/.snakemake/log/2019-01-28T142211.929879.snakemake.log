@@ -1,0 +1,30 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	all
+	1	run_multiQC
+	2
+
+[Mon Jan 28 14:22:11 2019]
+rule run_multiQC:
+    output: /home/aa/pipeline_dev/Allmine/modules/QC_reports/Global_QC_summary.html
+    jobid: 1
+
+[Mon Jan 28 14:22:15 2019]
+Error in rule run_multiQC:
+    jobid: 1
+    output: /home/aa/pipeline_dev/Allmine/modules/QC_reports/Global_QC_summary.html
+
+RuleException:
+CalledProcessError in line 16 of /home/aa/pipeline_dev/Allmine/modules/multiqc.py:
+Command ' set -euo pipefail;  
+        /usr/local/bin/multiqc         --quiet         --outdir /home/aa/pipeline_dev/Allmine/modules/QC_reports/         --filename Global_QC_summary.html
+        /home/aa/pipeline_dev/Allmine/modules/QC_reports ' returned non-zero exit status 2.
+  File "/home/aa/pipeline_dev/Allmine/modules/multiqc.py", line 16, in __rule_run_multiQC
+  File "/usr/lib/python3.6/concurrent/futures/thread.py", line 56, in run
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /home/aa/pipeline_dev/Allmine/modules/.snakemake/log/2019-01-28T142211.929879.snakemake.log

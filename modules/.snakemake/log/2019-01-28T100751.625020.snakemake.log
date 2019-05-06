@@ -1,0 +1,27 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	all
+	1	run_fastp_paired
+	2
+
+[Mon Jan 28 10:07:51 2019]
+Job 1: Running fastp on file /home/aa/pipeline_dev/Allmine/testdata/ecoB.fastq
+
+
+[Mon Jan 28 10:08:04 2019]
+Finished job 1.
+1 of 2 steps (50%) done
+
+[Mon Jan 28 10:08:04 2019]
+localrule all:
+    input: /home/aa/pipeline_dev/Allmine/modules/trimmed/ecoB_trim.fastq.gz
+    jobid: 0
+
+[Mon Jan 28 10:08:04 2019]
+Finished job 0.
+2 of 2 steps (100%) done
+Complete log: /home/aa/pipeline_dev/Allmine/modules/.snakemake/log/2019-01-28T100751.625020.snakemake.log

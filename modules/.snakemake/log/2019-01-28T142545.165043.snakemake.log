@@ -1,0 +1,23 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	all
+	1	run_multiQC
+	2
+
+[Mon Jan 28 14:25:45 2019]
+rule run_multiQC:
+    output: /home/aa/pipeline_dev/Allmine/modules/QC_reports/Global_QC_summary.html
+    jobid: 1
+
+Waiting at most 5 seconds for missing files.
+MissingOutputException in line 12 of /home/aa/pipeline_dev/Allmine/modules/multiqc.py:
+Missing files after 5 seconds:
+/home/aa/pipeline_dev/Allmine/modules/QC_reports/Global_QC_summary.html
+This might be due to filesystem latency. If that is the case, consider to increase the wait time with --latency-wait.
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /home/aa/pipeline_dev/Allmine/modules/.snakemake/log/2019-01-28T142545.165043.snakemake.log

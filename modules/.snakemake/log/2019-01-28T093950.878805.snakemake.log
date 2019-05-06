@@ -1,0 +1,7 @@
+Building DAG of jobs...
+File path /home/aa/pipeline_dev/Allmine/modules//home/aa/pipeline_dev/Allmine/testdata/ecoA_1.fastq contains double '/'. This is likely unintended. It can also lead to inconsistent results of the file-matching approach used by Snakemake.
+File path /home/aa/pipeline_dev/Allmine/modules//home/aa/pipeline_dev/Allmine/testdata/ecoA_2.fastq contains double '/'. This is likely unintended. It can also lead to inconsistent results of the file-matching approach used by Snakemake.
+MissingInputException in line 10 of /home/aa/pipeline_dev/Allmine/modules/fastp.py:
+Missing input files for rule run_fastp_paired:
+/home/aa/pipeline_dev/Allmine/modules//home/aa/pipeline_dev/Allmine/testdata/ecoA_1.fastq
+/home/aa/pipeline_dev/Allmine/modules//home/aa/pipeline_dev/Allmine/testdata/ecoA_2.fastq

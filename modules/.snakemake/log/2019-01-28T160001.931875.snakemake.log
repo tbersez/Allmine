@@ -1,0 +1,2 @@
+SyntaxError in line 9 of /home/aa/pipeline_dev/Allmine/modules/bwa_index_building.py:
+Unexpected keyword cwd in rule definition (bwa_index_building.py, line 9)

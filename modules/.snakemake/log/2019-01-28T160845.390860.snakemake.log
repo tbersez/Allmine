@@ -1,0 +1,4 @@
+Building DAG of jobs...
+MissingInputException in line 16 of /home/aa/pipeline_dev/Allmine/modules/bwa_index_building.py:
+Missing input files for rule bwa_index:
+/home/aa/pipeline_dev/Allmine/modules/testgenome/ecoli_cds.fna

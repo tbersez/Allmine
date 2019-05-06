@@ -1,0 +1,5 @@
+Building DAG of jobs...
+MissingInputException in line 5 of /home/aa/pipeline_dev/Allmine/modules/fastp.py:
+Missing input files for rule all:
+trimmed/ecoA_1_trim.fastq.gz
+trimmed/ecoA_2_trim.fastq.gz

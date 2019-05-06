@@ -47,3 +47,9 @@ tabular file displaying all non synonymous SNPs found by AllMine. Base and amino
 acid reference and variation are indicated as well as genotype (het or hom),
 location in the gene (exon1, exon2 ...). If a variant is found in more than one
 sample, all concerned samples are indicated in the SAMPLE(s) column.
+
+Run Report
+----------
+
+Allmine build an R markdown report to sum up most of the information about
+the run. This report also include coverage plots for regions of interest. 

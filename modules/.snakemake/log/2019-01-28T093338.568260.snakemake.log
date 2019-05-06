@@ -1,0 +1,5 @@
+Building DAG of jobs...
+InputFunctionException in line 8 of /home/aa/pipeline_dev/Allmine/modules/fastp.py:
+KeyError: 'R2'
+Wildcards:
+samples=ecoB
