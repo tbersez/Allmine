@@ -99,7 +99,7 @@ To configure an AllMine run use :
 
 .. code-block:: bash
 
-          ./csv_to_yaml.py
+          ./csv_to_yaml.py path/to/sample_sheet.csv
 
 Answer the question the script is asking you to configure your run.
 Note : the bind path is the path from the **root to your home folder.**

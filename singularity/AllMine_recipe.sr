@@ -65,12 +65,9 @@ From: ubuntu:18.04
   apt-get install -y python3
   apt-get install -y python3-pip
   apt-get install -y python3-yaml
+  apt-get install -y r-base
 
-  # Install snpEff
-  cd /opt
-  wget https://sourceforge.net/projects/snpeff/files/snpEff_latest_core.zip/download
-  unzip download -d /
-  rm -rf /clinEff
+  # Install Annovar
   wget http://www.openbioinformatics.org/annovar/download/0wgxR2rIVP/annovar.latest.tar.gz
   tar -xvf annovar.latest.tar.gz
   rm -rf annovar.latest.tar.gz
