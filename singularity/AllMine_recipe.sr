@@ -27,6 +27,7 @@ From: ubuntu:18.04
 
   AllMine, a flexible pipeline for Allele Mining.
   Please read documentation to get help !
+  (hosted at : https://allmine.readthedocs.io/en/latest/?badge=latest)
 
   # This software is under the MIT License         #
   # Copyright Thomas Bersez  2019                  #
@@ -65,7 +66,12 @@ From: ubuntu:18.04
   apt-get install -y python3
   apt-get install -y python3-pip
   apt-get install -y python3-yaml
+
+  # Install R and rmarkdown
   apt-get install -y r-base
+  apt-get install -y pandoc
+  R -e "install.packages('rmarkdown', repos = 'https://cloud.r-project.org')"
+  R -e "install.packages('knitr', repos = 'https://cloud.r-project.org')"
 
   # Install Annovar
   wget http://www.openbioinformatics.org/annovar/download/0wgxR2rIVP/annovar.latest.tar.gz

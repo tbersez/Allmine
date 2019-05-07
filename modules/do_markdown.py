@@ -27,4 +27,5 @@ rule make_markdown :
         singularity exec -B {params.bind} {params.cont}\
         R -e \
         "rmarkdown::render('./modules/markdown_gen.Rmd', output_file='../{output.Rmd}')"
+        rm -rf Run_report_files
         """
