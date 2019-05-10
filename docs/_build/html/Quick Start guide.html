@@ -186,7 +186,7 @@ Singularity (admin rights needed) :</p>
 <div><ul class="simple">
 <li><p>Sequencing data (DNA or RNA)</p></li>
 <li><p>A reference genome and annotation</p></li>
-<li><p>A bed file with regions (or genes) of interests</p></li>
+<li><p>A bed file with regions (or genes) of interest</p></li>
 </ul>
 </div></blockquote>
 </div>
@@ -217,8 +217,8 @@ The csv file must have the flowing headers :</p>
 <h2>Reference genome and annotation<a class="headerlink" href="#reference-genome-and-annotation" title="Permalink to this headline">¶</a></h2>
 <p>Reference genome must be provided in one file, in <strong>fasta format</strong>.
 Annotation can be provided in <strong>gff</strong> or <strong>gtf</strong> format (recommended).
-When possible, we advice you to download reference sequence and annotation
-from currated sources, such as <a class="reference external" href="http://ensemblgenomes.org/">Ensembl</a>.</p>
+When possible, we advice you to download the reference sequence and annotation
+from curated sources, such as <a class="reference external" href="http://ensemblgenomes.org/">Ensembl</a>.</p>
 </div>
 <div class="section" id="bed-file">
 <h2>Bed file<a class="headerlink" href="#bed-file" title="Permalink to this headline">¶</a></h2>
@@ -236,7 +236,7 @@ reference genome.</p>
 <div class="section" id="making-your-work-space-ready">
 <h2>Making your work space ready<a class="headerlink" href="#making-your-work-space-ready" title="Permalink to this headline">¶</a></h2>
 <p>Place your reference genome and annotation in a common folder. That one must
-only contain those both file. Place your bed file with regions of interest in
+only contain those both files. Place your bed file with regions of interest in
 an other folder. <strong>AllMine outputs are created where your start the analysis.</strong>
 Make sure that you have enought space to store all outputs !</p>
 </div>
@@ -246,7 +246,7 @@ Make sure that you have enought space to store all outputs !</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./csv_to_yaml.py path/to/sample_sheet.csv
 </pre></div>
 </div>
-<p>Answer the question the script is asking you to configure your run.
+<p>Answer the questions the script is asking you to configure your run.
 Note : the bind path is the path from the <strong>root to your home folder.</strong></p>
 <p>Once done run :</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./annovar_makebd.py
@@ -257,7 +257,7 @@ each new genome used.</p>
 </div>
 <div class="section" id="running-allmine">
 <h2>Running AllMine<a class="headerlink" href="#running-allmine" title="Permalink to this headline">¶</a></h2>
-<p>We recommend to first do a dry run using the following command.
+<p>We recommend first to do a dry run using the following command.
 <strong>CORE_NUMBER</strong> must be replaced by the number of cores you wish to use.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>snakemake -j CORE_NUMBER <span class="se">\</span>
 --cluster-config slurm_config.json <span class="se">\</span>
@@ -265,7 +265,7 @@ each new genome used.</p>
 </pre></div>
 </div>
 <p>Check the output to ensure that your run is properly configured.
-If no, return to configurtion step to correct errors. If yes, run :</p>
+If not, return to configuration step to correct errors. If yes, run :</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>snakemake -j CORE_NUMBER <span class="se">\</span>
 --cluster-config slurm_config.json <span class="se">\</span>
 --cluster <span class="s2">&quot;sbatch&quot;</span>

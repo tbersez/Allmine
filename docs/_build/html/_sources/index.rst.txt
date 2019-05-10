@@ -5,7 +5,7 @@ AllMine Documentation
 *********************
 
 AllMine is a flexible allele mining pipeline. AllMine can handle various NGS
-data types (WGS, RRGS, RNAseq, paired/sengle end layouts...) and process all
+data types (WGS, RRGS, RNAseq, paired/single end layouts...) and process all
 steps from raw reads to de novo SNPs phasing and annotation. Designed for easy
 usage, AllMine can be use by non bioinformaticians. AllMine is HPC compatible
 via Slurm.
@@ -22,7 +22,7 @@ Follow AllMine development on `GitHub <https://github.com/tbersez/Allmine>`_.
   :caption: Contents:
 
   Quick Start guide
-  
+
   AllMine outputs
   Modules documentation
   Dependancies

@@ -110,7 +110,7 @@ Parameters :
   * ``--scoreInsBase`` : Set to -2. Insertion extension penalty per base
     (in addition to scoreInsOpen).
   * ``--scoreStitchSJshift`` : Set to 1. Maximum score reduction while searching
-    for SJ boundaries inthe stitching step.
+    for SJ boundaries in the stitching step.
   * ``--runThreadN`` : Set to 10. Number of threads used per jobs.
 
 Note : STAR include numerous parameters, please read the manual for more

@@ -25,17 +25,17 @@ Mapped reads and de novo splicing junctions
 Two different strategies of mapping are supported by AllMine. For DNA sequencing
 inputs, AllMine uses BWA (Burrows-Wheeler Aligner). For RNA sequencing input,
 STAR (Spliced Transcripts Alignment to a Reference) is used with a two pass
-strategy. In both case, mapped and sorted reads are stored in the **mapped**
+strategy. In both cases, mapped and sorted reads are stored in the **mapped**
 directory. Both full alignments files and parsed around specified regions are
 conserved, allowing new parsing around other regions without executing the
-mapping one again. In the case of RNA sequencing data, the sub-directory
+mapping once again. In the case of RNA sequencing data, the sub-directory
 **STAR_SJ** is created. It contains the de novo splicing junctions discovered by
 STAR during the first pass of the mapping.
 
 Putative SNPs
 -------------
 
-Putative variants called by Varscan can be found in the **variant** directory.
+Putative variants called by Annovar can be found in the **variant** directory.
 Each subfolder correspond to one sample. Annotated, phased and raw variants are
 displayed.
 
@@ -52,4 +52,4 @@ Run Report
 ----------
 
 Allmine build an R markdown report to sum up most of the information about
-the run. This report also include coverage plots for regions of interest. 
+the run. This report also include coverage plots for regions of interest.

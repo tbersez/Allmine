@@ -29,7 +29,7 @@ To perform allele mining, AllMine needs :
 
  * Sequencing data (DNA or RNA)
  * A reference genome and annotation
- * A bed file with regions (or genes) of interests
+ * A bed file with regions (or genes) of interest
 
 Sequencing data
 ---------------
@@ -65,8 +65,8 @@ Reference genome and annotation
 
 Reference genome must be provided in one file, in **fasta format**.
 Annotation can be provided in **gff** or **gtf** format (recommended).
-When possible, we advice you to download reference sequence and annotation
-from currated sources, such as `Ensembl <http://ensemblgenomes.org/>`_.
+When possible, we advice you to download the reference sequence and annotation
+from curated sources, such as `Ensembl <http://ensemblgenomes.org/>`_.
 
 Bed file
 --------
@@ -88,7 +88,7 @@ Making your work space ready
 ----------------------------
 
 Place your reference genome and annotation in a common folder. That one must
-only contain those both file. Place your bed file with regions of interest in
+only contain those both files. Place your bed file with regions of interest in
 an other folder. **AllMine outputs are created where your start the analysis.**
 Make sure that you have enought space to store all outputs !
 
@@ -101,7 +101,7 @@ To configure an AllMine run use :
 
           ./csv_to_yaml.py path/to/sample_sheet.csv
 
-Answer the question the script is asking you to configure your run.
+Answer the questions the script is asking you to configure your run.
 Note : the bind path is the path from the **root to your home folder.**
 
 Once done run :
@@ -116,7 +116,7 @@ each new genome used.
 Running AllMine
 ---------------
 
-We recommend to first do a dry run using the following command.
+We recommend first to do a dry run using the following command.
 **CORE_NUMBER** must be replaced by the number of cores you wish to use.
 
 .. code-block:: bash
@@ -126,7 +126,7 @@ We recommend to first do a dry run using the following command.
           --cluster "sbatch" -n
 
 Check the output to ensure that your run is properly configured.
-If no, return to configurtion step to correct errors. If yes, run :
+If not, return to configuration step to correct errors. If yes, run :
 
 .. code-block:: bash
 
