@@ -74,6 +74,7 @@ From: ubuntu:18.04
   R -e "install.packages('knitr', repos = 'https://cloud.r-project.org')"
 
   # Install Annovar
+  cd /opt/
   wget http://www.openbioinformatics.org/annovar/download/0wgxR2rIVP/annovar.latest.tar.gz
   tar -xvf annovar.latest.tar.gz
   rm -rf annovar.latest.tar.gz
