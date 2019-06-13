@@ -35,7 +35,7 @@ STAR during the first pass of the mapping.
 Putative SNPs
 -------------
 
-Putative variants called by Varscan can be found in the **variant** directory.
+Putative variants called by Annovar can be found in the **variant** directory.
 Each subfolder correspond to one sample. Annotated, phased and raw variants are
 displayed.
 
